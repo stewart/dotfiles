@@ -67,3 +67,6 @@
 [submodule "vim/vim.symlink/bundle/unimpaired"]
 	path = vim/vim.symlink/bundle/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "vim/vim.symlink/bundle/haml"]
+	path = vim/vim.symlink/bundle/haml
+	url = https://github.com/tpope/vim-haml.git
