@@ -1,0 +1,250 @@
+call pathogen#infect()          " Call pathogen
+set noswapfile                  " Who needs swapfiles, anyways?
+set nocompatible                " Don't want to be compatible with vi
+
+" ----------------------------------------------------------
+" Text Formatting
+" ----------------------------------------------------------
+set autoindent                  " automagically indent new lines
+set smartindent                 " be smart about it
+inoremap # X<BS>#
+set wrap                        " wrap lines
+set softtabstop=2               " four spaces? yeah right.
+set shiftwidth=2                " see above.
+set tabstop=2
+set expandtab                   " tabs to spaces
+set nosmarttab                  " fuck off, tabs
+set formatoptions+=n            " add support for numbered/bulleted lists
+set virtualedit=block           " allow virtual edit in visual block
+set clipboard=unnamed
+set scrolljump=5
+set scrolloff=5
+set cursorline
+
+autocmd FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
+" ----------------------------------------------------------
+" Interface
+" ----------------------------------------------------------
+set ruler                       " show the ruler at all times.
+set noshowcmd                   " don't show incomplete commands
+set nolazyredraw                " turn off lazy redraw
+set number                      " turn on line numbers
+set wildmenu                    " turn on wildmenu
+set wildmode=list:longest,full
+set backspace=2                 " allow backspacing over everything in insert mode
+set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
+set shortmess=filtIoOA          " shorten messages
+set report=0                    " tell us about changes
+set nostartofline               " don't jump to the start of line when scrolling
+
+if has("gui_running")
+    colorscheme solarized       " colorscheme
+    let g:solarized_termcolors=256
+    let g:molokai_original=1    " use old-school monokai
+    set background=dark
+else
+  colorscheme basic
+endif
+
+set guifont=Inconsolata-dz\ for\ PowerLine:h11 " best goddamn terminal font around
+set guioptions-=T                              " strip MacVim/GVim chrome
+set guioptions-=m                              " ...
+set guioptions=aAce                            " ...
+
+set list
+set listchars=tab:▸\ ,trail:⋅,extends:❯,precedes:❮
+
+set noerrorbells
+set novisualbell
+set noshowmatch                 " vim, kindly shut up about my >'s.
+set t_vb=
+
+" Statusline
+set laststatus=2
+let g:Powerline_symbols='fancy'
+
+" Syntax hightlighing
+filetype on
+filetype indent on
+filetype plugin on
+syntax enable
+syntax on
+" Multi-line comments in PHP
+au BufRead,BufNewFile *.php set comments=s1:/*,mb:*,ex:*/,://,:#
+
+" ----------------------------------------------------------
+" Remappings
+" ----------------------------------------------------------
+
+let mapleader = ","
+
+" exit to normal mode with 'jj'
+inoremap jj <ESC>
+
+" ; acts as : in normal mode:
+nmap ; :
+
+" Set newline commands to return to insert mode
+nmap o o<Esc>
+nmap O O<Esc>
+
+" Change window splits easily
+map <C-J> <C-w><C-j>
+map <C-K> <C-w><C-k>
+map <C-h> <C-w><C-h>
+map <C-l> <C-w><C-l>
+
+map <Leader>n :NERDTree<CR>
+
+map <Leader>t :CommandT<CR>
+
+" Shortcut for T-Comment
+map <Leader>c <c-_><c-_>
+
+" Write as sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" Use space key to toggle folds
+nnoremap <Space> za
+vnoremap <Space> za
+
+" Make find/replace easier
+nnoremap <leader>s :%s//g<left><left>
+
+" Centers search results
+map N Nzz
+map n nzz
+
+" Up and down are more logical with g
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+
+" Open Markdown previews in Marked.app
+:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+
+imap <c-p> <c-x><c-o>
+
+" Call the StripWhitespace function
+map <Leader>s :call StripWhitespace ()<CR>
+
+" C-TAB and C-SHIFT-TAB cycle tabs forward and backward
+nmap <c-tab> :tabnext<cr>
+imap <c-tab> <c-o>:tabnext<cr>
+vmap <c-tab> <c-o>:tabnext<cr>
+nmap <c-s-tab> :tabprevious<cr>
+imap <c-s-tab> <c-o>:tabprevious<cr>
+vmap <c-s-tab> <c-o>:tabprevious<cr>
+
+" C-# switches to tab
+nmap <d-1> 1gt
+nmap <d-2> 2gt
+nmap <d-3> 3gt
+nmap <d-4> 4gt
+nmap <d-5> 5gt
+nmap <d-6> 6gt
+nmap <d-7> 7gt
+nmap <d-8> 8gt
+nmap <d-9> 9gt
+
+" sane movement with wrap turned on
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+" Markdown Headers
+nnoremap <leader>1 yypVr=
+nnoremap <leader>2 yypVr-
+nnoremap <leader>3 03i#<ESC>
+
+" Ackmate
+nnoremap <leader>a :Ack
+nnoremap <leader>ft Vatzf
+nnoremap <leader>v V`]
+
+" Map to switch between absolute and relative line numbers
+nnoremap <C-n> :call NumberToggle()<cr>
+
+" Make Y behave like other capitals
+nnoremap Y y$
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" ----------------------------------------------------------
+" Searching
+" ----------------------------------------------------------
+set showmatch              " brackets/braces that is
+set mat=5                  " duration to show matching brace (1/10 sec)
+set incsearch              " do incremental searching
+set ignorecase             " ignore case when searching
+set hlsearch               " highlight searches
+set novisualbell           " shut the fuck up
+
+
+" ----------------------------------------------------------
+" Plugins
+" ----------------------------------------------------------
+
+" Snipmate
+let g:snips_author = 'Andrew Stewart'
+
+" Bubble text
+nmap <Up> [e
+nmap <Down> ]e
+vmap <Up> [egv
+vmap <Down> ]egv
+
+" NERDTree
+let NERDTreeShowHidden=0
+let NERDTreeIgnore=['\.rbc$', '\~$', '.git/']
+map <Leader>n :NERDTree<CR>
+
+" Indent Guides
+let g:indent_guides_guide_size = 0
+let g:indent_guides_start_level = 2
+
+
+" ---------------------------------------------------------------------------
+"  Functions
+" ---------------------------------------------------------------------------
+
+" Strip whitespace in file
+function! StripWhitespace ()
+  exec ':%s/ \+$//g'
+endfunction
+
+" Toggle relative line numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+" ---------------------------------------------------------------------------
+"  Misc
+" ---------------------------------------------------------------------------
+" Trigger relative line numbers in current buffer
+if exists('&relativenumber')
+  set relativenumber
+  augroup WindowRNU
+    auto!
+    auto BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
+    auto WinLeave,FocusLost               * setlocal number
+  augroup END
+endif
+
