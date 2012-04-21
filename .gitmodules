@@ -49,3 +49,6 @@
 [submodule "vim/vim.symlink/bundle/scratch"]
 	path = vim/vim.symlink/bundle/scratch
 	url = https://github.com/vim-scripts/scratch.vim.git
+[submodule "vim/vim.symlink/bundle/sparkup"]
+	path = vim/vim.symlink/bundle/sparkup
+	url = https://github.com/rstacruz/sparkup.git
