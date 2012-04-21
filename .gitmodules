@@ -13,3 +13,6 @@
 [submodule "vim/vim.symlink/bundle/command-t"]
 	path = vim/vim.symlink/bundle/command-t
 	url = https://github.com/wincent/Command-T.git
+[submodule "vim/vim.symlink/bundle/delimitmate"]
+	path = vim/vim.symlink/bundle/delimitmate
+	url = https://github.com/Raimondi/delimitMate.git
