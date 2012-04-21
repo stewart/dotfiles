@@ -10,3 +10,6 @@
 [submodule "vim/vim.symlink/bundle/solarized"]
 	path = vim/vim.symlink/bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/vim.symlink/bundle/command-t"]
+	path = vim/vim.symlink/bundle/command-t
+	url = https://github.com/wincent/Command-T.git
