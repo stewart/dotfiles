@@ -1,0 +1,29 @@
+# shortcut to dotfiles path
+export ZSH=$HOME/.dotfiles
+
+# source all .zsh files in this repo
+for config_file ($ZSH/**/*.zsh) source $config_file
+
+# rbenv has to be init'd after PATH is declared
+eval "$(rbenv init -)"
+
+# .localrc for MYSTERY AND WONDER
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+# vim mode
+bindkey -v
+
+# give me my bash style incremental search
+bindkey '^R' history-incremental-search-backward
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
+# initialize autocomplete
+autoload -U compinit
+compinit
+
+# load every completion file after autocomplete loads
+for config_file ($ZSH/**/completion.sh) source $config_file
