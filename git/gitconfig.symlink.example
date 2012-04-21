@@ -1,0 +1,108 @@
+# Sample gitconfig
+#
+# This is a sample gitconfig. To set this up, rename this file to
+# .gitconfig and run 'rake install' from the project root.
+
+[user]
+  name  = Andrew Stewart
+  email = foo@bar.com
+[core]
+  excludesfile = ~/.gitignore
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  editor = vim
+  autocrlf = false
+[color]
+  ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[github]
+  user  = stewart
+[branch]
+  autosetupmerge = true
+[merge]
+  summary = true
+  verbosity = 1
+  tool = fugitive
+[push]
+  default = tracking
+[mergetool "fugitive"]
+  cmd = vim -f -c \"Gdiff\" \"$MERGED\"MERGED
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[alias]
+  # add
+  a = add
+
+  # branch
+  b = branch -v
+
+  # commit
+  c = commit -m
+  ca = commit -am
+  ci = commit
+  amend = commit --amend
+
+  # checkout
+  co = checkout
+  nb = checkout -b
+
+  # cherry-pick
+  cp = cherry-pick -x
+
+  # diff
+  d = diff
+  dc = diff --cached
+  last = diff HEAD
+
+  # log
+  log = log --decorate --graph --date=short
+  l = log
+  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  changelog = log --pretty=format:\" * %s\"
+  shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+
+  # pull
+  pl = pull
+
+  # push
+  ps = push
+
+  # rebase
+  rc = rebase --continue
+  rs = rebase --skip
+
+  # remote
+  r = remote -v
+
+  # reset
+  unstage = reset HEAD
+  uncommit = reset --soft HEAD^
+  filelog = log -u
+  mt = mergetool
+
+  # stash
+  ss = stash
+  sl = stash list
+  sa = stash apply
+  sd = stash drop
+
+  # status
+  s = status
+  st = status
+  stat = status
+
+  # tag
+  t = tag -n

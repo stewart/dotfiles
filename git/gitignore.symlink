@@ -1,0 +1,10 @@
+.DS_Store
+.svn
+*~
+*.sqp
+*.rbc
+.sass-cache
+nbproject
+*.esproj
+
+todo
