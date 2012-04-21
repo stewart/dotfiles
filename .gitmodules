@@ -46,3 +46,6 @@
 [submodule "vim/vim.symlink/bundle/repeat"]
 	path = vim/vim.symlink/bundle/repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "vim/vim.symlink/bundle/scratch"]
+	path = vim/vim.symlink/bundle/scratch
+	url = https://github.com/vim-scripts/scratch.vim.git
