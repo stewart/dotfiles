@@ -7,3 +7,6 @@
 [submodule "vim/vim.symlink/bundle/coffee-script"]
 	path = vim/vim.symlink/bundle/coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/vim.symlink/bundle/solarized"]
+	path = vim/vim.symlink/bundle/solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
