@@ -58,3 +58,6 @@
 [submodule "vim/vim.symlink/bundle/stylus"]
 	path = vim/vim.symlink/bundle/stylus
 	url = https://github.com/wavded/vim-stylus.git
+[submodule "vim/vim.symlink/bundle/surround"]
+	path = vim/vim.symlink/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
