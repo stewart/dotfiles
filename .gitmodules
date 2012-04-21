@@ -52,3 +52,6 @@
 [submodule "vim/vim.symlink/bundle/sparkup"]
 	path = vim/vim.symlink/bundle/sparkup
 	url = https://github.com/rstacruz/sparkup.git
+[submodule "vim/vim.symlink/bundle/supertab"]
+	path = vim/vim.symlink/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
