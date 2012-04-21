@@ -67,3 +67,6 @@
 [submodule "vim/vim.symlink/bundle/haml"]
 	path = vim/vim.symlink/bundle/haml
 	url = https://github.com/tpope/vim-haml.git
+[submodule "vim/vim.symlink/bundle/sparkup"]
+	path = vim/vim.symlink/bundle/sparkup
+	url = https://github.com/bingaman/vim-sparkup.git
