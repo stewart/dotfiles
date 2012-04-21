@@ -12,7 +12,7 @@ Dotfiles _are_ your system. This is my collection. It's very prejudiced towards:
 
 ## install
 
-- `git clone https://github.com/stewart/dotfiles.git ~/.dotfiles`
+- `git clone --recursive https://github.com/stewart/dotfiles.git ~/.dotfiles`
 - `cd ~/.dotfiles`
 - `rake install`
 
