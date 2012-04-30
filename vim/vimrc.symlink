@@ -215,6 +215,10 @@ map <Leader>n :NERDTree<CR>
 let g:indent_guides_guide_size = 0
 let g:indent_guides_start_level = 2
 
+" LustyJuggler
+let g:LustyJugglerAltTabMode = 1
+noremap <silent> <Leader><Tab> :LustyJuggler<CR>
+
 " Ctrlp
 let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_max_files = 10000

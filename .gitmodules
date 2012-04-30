@@ -75,4 +75,4 @@
 	url = https://github.com/Lokaltog/vim-easymotion.git
 [submodule "vim/vim.symlink/bundle/lustyjuggler"]
 	path = vim/vim.symlink/bundle/lustyjuggler
-	url = https://github.com/mutewinter/LustyJuggler.git
+	url = https://github.com/vim-scripts/LustyJuggler
