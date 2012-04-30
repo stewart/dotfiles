@@ -21,6 +21,8 @@ set scrolljump=5
 set scrolloff=5
 set cursorline
 
+autocmd FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
 " ----------------------------------------------------------
 " Interface
 " ----------------------------------------------------------
