@@ -67,9 +67,6 @@
 [submodule "vim/vim.symlink/bundle/sparkup"]
 	path = vim/vim.symlink/bundle/sparkup
 	url = https://github.com/bingaman/vim-sparkup.git
-[submodule "vim/vim.symlink/bundle/minibufexplorer"]
-	path = vim/vim.symlink/bundle/minibufexplorer
-	url = https://github.com/fholgado/minibufexpl.vim.git
 [submodule "vim/vim.symlink/bundle/ctrlp"]
 	path = vim/vim.symlink/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
