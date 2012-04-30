@@ -28,3 +28,6 @@ bind l select-pane -R
 
 # Sane scrolling
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
+# Make sure tmux knows we're using a 256-color terminal
+set -g default-terminal "screen-256color"
