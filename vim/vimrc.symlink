@@ -21,8 +21,6 @@ set scrolljump=5
 set scrolloff=5
 set cursorline
 
-autocmd FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4
-
 " ----------------------------------------------------------
 " Interface
 " ----------------------------------------------------------
@@ -43,8 +41,6 @@ if has("gui_running")
     let g:solarized_termcolors=256
     let g:molokai_original=1    " use old-school monokai
     set background=dark
-else
-  colorscheme basic
 endif
 
 set guifont=Inconsolata-dz\ for\ PowerLine:h11 " best goddamn terminal font around
@@ -96,8 +92,6 @@ map <C-h> <C-w><C-h>
 map <C-l> <C-w><C-l>
 
 map <Leader>n :NERDTree<CR>
-
-map <Leader>t :CommandT<CR>
 
 " Shortcut for T-Comment
 map <Leader>c <c-_><c-_>
@@ -219,6 +213,14 @@ map <Leader>n :NERDTree<CR>
 let g:indent_guides_guide_size = 0
 let g:indent_guides_start_level = 2
 
+" Ctrlp
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_max_files = 10000
+let g:ctrlp_working_path_mode = 0
+
+if has("unix")
+    let g:ctrlp_user_command = {'types': {1: ['.git/', 'cd %s && git ls-files']},'fallback': 'find %s -type f | head -' . g:ctrlp_max_files}
+endif
 
 " ---------------------------------------------------------------------------
 "  Functions
