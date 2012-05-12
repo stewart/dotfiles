@@ -16,6 +16,9 @@ fi
 # vim mode
 bindkey -v
 
+# macvim as $EDITOR
+export EDITOR="mvim -v"
+
 # give me my bash style incremental search
 bindkey '^R' history-incremental-search-backward
 bindkey "^[[A" history-beginning-search-backward
