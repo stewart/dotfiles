@@ -258,3 +258,5 @@ if exists('&relativenumber')
     auto WinLeave,FocusLost               * setlocal number
   augroup END
 endif
+
+let g:SuperTabCrMapping = 0
