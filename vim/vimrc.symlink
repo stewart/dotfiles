@@ -21,8 +21,6 @@ set scrolljump=5
 set scrolloff=5
 set cursorline
 
-autocmd FileType php setlocal shiftwidth=4 tabstop=4 softtabstop=4
-
 " ----------------------------------------------------------
 " Interface
 " ----------------------------------------------------------
@@ -39,10 +37,10 @@ set report=0                    " tell us about changes
 set nostartofline               " don't jump to the start of line when scrolling
 
 if has("gui_running")
-    colorscheme solarized       " colorscheme
-    let g:solarized_termcolors=256
-    let g:molokai_original=1    " use old-school monokai
-    set background=dark
+  colorscheme solarized       " colorscheme
+  let g:solarized_termcolors=256
+  let g:molokai_original=1    " use old-school monokai
+  set background=dark
 endif
 
 set guifont=Inconsolata-dz\ for\ PowerLine:h11 " best goddamn terminal font around
@@ -162,10 +160,9 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
-" Markdown Headers
-nnoremap <leader>1 yypVr=
-nnoremap <leader>2 yypVr-
-nnoremap <leader>3 03i#<ESC>
+" Alternate between two and four space indentation
+nnoremap <leader>2 :setlocal shiftwidth=2 tabstop=2 softtabstop=2<cr>
+nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 
 " Ackmate
 nnoremap <leader>a :Ack
