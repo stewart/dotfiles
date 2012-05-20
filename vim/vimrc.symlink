@@ -68,8 +68,12 @@ filetype indent on
 filetype plugin on
 syntax enable
 syntax on
+
 " Multi-line comments in PHP
 au BufRead,BufNewFile *.php set comments=s1:/*,mb:*,ex:*/,://,:#
+
+" Jump to last cursor position unless it's invalid or in an event handler
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 
 " ----------------------------------------------------------
 " Remappings
@@ -112,12 +116,15 @@ nnoremap <leader>s :%s//g<left><left>
 map N Nzz
 map n nzz
 
+" Clear search buffer on return
+nnoremap <CR> :nohlsearch<cr>
+
 " Up and down are more logical with g
 nnoremap <silent> k gk
 nnoremap <silent> j gj
 
 " Open Markdown previews in Marked.app
-:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
 imap <c-p> <c-x><c-o>
 
@@ -171,6 +178,8 @@ map <Leader>b :TMiniBufExplorer<CR>
 " Map to switch between absolute and relative line numbers
 nnoremap <C-n> :call NumberToggle()<cr>
 
+map <leader>rf :call RenameFile()<cr>
+
 " Make Y behave like other capitals
 nnoremap Y y$
 
@@ -188,7 +197,7 @@ vmap <C-Down> ]egv
 set showmatch              " brackets/braces that is
 set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
-set ignorecase             " ignore case when searching
+set ignorecase smartcase   " ignore case when searching, unless it contains uppercase characters
 set hlsearch               " highlight searches
 set novisualbell           " shut the fuck up
 
@@ -245,6 +254,17 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
+
+" Rename Current File
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
 
 " ---------------------------------------------------------------------------
 "  Misc
