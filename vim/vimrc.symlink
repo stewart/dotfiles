@@ -20,6 +20,7 @@ set clipboard=unnamed
 set scrolljump=5
 set scrolloff=5
 set cursorline
+set history=10000
 
 " ----------------------------------------------------------
 " Interface
@@ -30,7 +31,7 @@ set nolazyredraw                " turn off lazy redraw
 set number                      " turn on line numbers
 set wildmode=list:longest,full
 set wildmenu                    " turn on wildmenu
-set backspace=2                 " allow backspacing over everything in insert mode
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 set shortmess=filtIoOA          " shorten messages
 set report=0                    " tell us about changes
@@ -159,10 +160,9 @@ nnoremap Y y$
 " ----------------------------------------------------------
 " Searching
 " ----------------------------------------------------------
-set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
-set ignorecase smartcase   " ignore case when searching, unless it contains uppercase characters
 set hlsearch               " highlight searches
+set ignorecase smartcase   " ignore case when searching, unless it contains uppercase characters
 
 " ----------------------------------------------------------
 " Plugins
