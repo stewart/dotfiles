@@ -22,9 +22,6 @@
 [submodule "vim/vim.symlink/bundle/jade"]
 	path = vim/vim.symlink/bundle/jade
 	url = https://github.com/digitaltoad/vim-jade.git
-[submodule "vim/vim.symlink/bundle/javascript-syntax"]
-	path = vim/vim.symlink/bundle/javascript-syntax
-	url = https://github.com/jelera/vim-javascript-syntax.git
 [submodule "vim/vim.symlink/bundle/nerdtree"]
 	path = vim/vim.symlink/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
