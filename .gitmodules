@@ -43,9 +43,6 @@
 [submodule "vim/vim.symlink/bundle/scratch"]
 	path = vim/vim.symlink/bundle/scratch
 	url = https://github.com/vim-scripts/scratch.vim.git
-[submodule "vim/vim.symlink/bundle/supertab"]
-	path = vim/vim.symlink/bundle/supertab
-	url = https://github.com/ervandew/supertab.git
 [submodule "vim/vim.symlink/bundle/stylus"]
 	path = vim/vim.symlink/bundle/stylus
 	url = https://github.com/wavded/vim-stylus.git
