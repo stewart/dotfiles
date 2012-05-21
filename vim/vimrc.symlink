@@ -28,8 +28,8 @@ set ruler                       " show the ruler at all times.
 set noshowcmd                   " don't show incomplete commands
 set nolazyredraw                " turn off lazy redraw
 set number                      " turn on line numbers
-set wildmenu                    " turn on wildmenu
 set wildmode=list:longest,full
+set wildmenu                    " turn on wildmenu
 set backspace=2                 " allow backspacing over everything in insert mode
 set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 set shortmess=filtIoOA          " shorten messages
@@ -39,7 +39,6 @@ set nostartofline               " don't jump to the start of line when scrolling
 if has("gui_running")
   colorscheme solarized       " colorscheme
   let g:solarized_termcolors=256
-  let g:molokai_original=1    " use old-school monokai
   set background=dark
 endif
 
@@ -117,10 +116,6 @@ map n nzz
 " Clear search buffer on return
 nnoremap <CR> :nohlsearch<cr>
 
-" Up and down are more logical with g
-nnoremap <silent> k gk
-nnoremap <silent> j gj
-
 " Open Markdown previews in Marked.app
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
@@ -137,28 +132,11 @@ nmap <c-s-tab> :tabprevious<cr>
 imap <c-s-tab> <c-o>:tabprevious<cr>
 vmap <c-s-tab> <c-o>:tabprevious<cr>
 
-" C-# switches to tab
-nmap <d-1> 1gt
-nmap <d-2> 2gt
-nmap <d-3> 3gt
-nmap <d-4> 4gt
-nmap <d-5> 5gt
-nmap <d-6> 6gt
-nmap <d-7> 7gt
-nmap <d-8> 8gt
-nmap <d-9> 9gt
-
 " sane movement with wrap turned on
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
-vnoremap <Down> gj
-vnoremap <Up> gk
-inoremap <Down> <C-o>gj
-inoremap <Up> <C-o>gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+vnoremap <silent> j gj
+vnoremap <silent> k gk
 
 " Alternate between two and four space indentation
 nnoremap <leader>2 :setlocal shiftwidth=2 tabstop=2 softtabstop=2<cr>
@@ -166,8 +144,6 @@ nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 
 " Ackmate
 nnoremap <leader>a :Ack
-nnoremap <leader>ft Vatzf
-nnoremap <leader>v V`]
 
 " MiniBufExplorer
 map <Leader>b :TMiniBufExplorer<CR>
@@ -179,47 +155,23 @@ map <leader>rf :call RenameFile()<cr>
 
 " Make Y behave like other capitals
 nnoremap Y y$
-
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
+"
 " ----------------------------------------------------------
 " Searching
 " ----------------------------------------------------------
-set showmatch              " brackets/braces that is
 set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
 set ignorecase smartcase   " ignore case when searching, unless it contains uppercase characters
 set hlsearch               " highlight searches
-set novisualbell           " shut the fuck up
-
 
 " ----------------------------------------------------------
 " Plugins
 " ----------------------------------------------------------
 
-" Snipmate
-let g:snips_author = 'Andrew Stewart'
-
-" Bubble text
-nmap <Up> [e
-nmap <Down> ]e
-vmap <Up> [egv
-vmap <Down> ]egv
-
 " NERDTree
 let NERDTreeShowHidden=0
 let NERDTreeIgnore=['\.rbc$', '\~$', '.git/']
 map <Leader>n :NERDTree<CR>
-
-" Indent Guides
-let g:indent_guides_guide_size = 0
-let g:indent_guides_start_level = 2
 
 " LustyJuggler
 let g:LustyJugglerAltTabMode = 1
