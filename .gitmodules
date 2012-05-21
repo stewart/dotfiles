@@ -16,9 +16,6 @@
 [submodule "vim/vim.symlink/bundle/fugitive"]
 	path = vim/vim.symlink/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "vim/vim.symlink/bundle/indent-guides"]
-	path = vim/vim.symlink/bundle/indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "vim/vim.symlink/bundle/jade"]
 	path = vim/vim.symlink/bundle/jade
 	url = https://github.com/digitaltoad/vim-jade.git
