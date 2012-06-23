@@ -55,3 +55,6 @@
 [submodule "vim/vim.symlink/bundle/supertab"]
 	path = vim/vim.symlink/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "vim/vim.symlink/bundle/repeat"]
+	path = vim/vim.symlink/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
