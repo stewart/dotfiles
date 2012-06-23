@@ -43,7 +43,7 @@ if has("gui_running")
   set background=dark
 endif
 
-set guifont=Inconsolata-dz\ for\ PowerLine:h11 " best goddamn terminal font around
+set guifont=Inconsolata-dz\ for\ PowerLine:h14 " best goddamn terminal font around
 set guioptions-=T                              " strip MacVim/GVim chrome
 set guioptions-=m                              " ...
 set guioptions=aAce                            " ...
