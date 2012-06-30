@@ -115,7 +115,7 @@ map N Nzz
 map n nzz
 
 " Clear search buffer on return
-nnoremap <CR> :nohlsearch<cr>
+nnoremap <cr> :nohlsearch<cr>
 
 " Open Markdown previews in Marked.app
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
@@ -229,3 +229,5 @@ if exists('&relativenumber')
 endif
 
 let g:SuperTabCrMapping = 0
+let g:LustyJugglerSuppressRubyWarning = 1
+let g:NERDTreeWinPos = "right"
