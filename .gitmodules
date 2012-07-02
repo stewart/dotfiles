@@ -61,3 +61,6 @@
 [submodule "vim/vim.symlink/bundle/eunuch"]
 	path = vim/vim.symlink/bundle/eunuch
 	url = https://github.com/tpope/vim-eunuch.git
+[submodule "vim/vim.symlink/bundle/ragtag"]
+	path = vim/vim.symlink/bundle/ragtag
+	url = https://github.com/tpope/vim-ragtag.git
