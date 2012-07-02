@@ -58,3 +58,6 @@
 [submodule "vim/vim.symlink/bundle/repeat"]
 	path = vim/vim.symlink/bundle/repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "vim/vim.symlink/bundle/eunuch"]
+	path = vim/vim.symlink/bundle/eunuch
+	url = https://github.com/tpope/vim-eunuch.git
