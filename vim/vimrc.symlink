@@ -82,6 +82,9 @@ let mapleader = ","
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
 
+" move the current line front and center
+nnoremap <c-z> zvzz
+
 " ; acts as : in normal mode:
 nmap ; :
 
@@ -96,6 +99,7 @@ map <C-h> <C-w><C-h>
 map <C-l> <C-w><C-l>
 
 map <Leader>n :NERDTree<CR>
+map <silent> <C-s> :NERDTreeClose<CR>:NERDTreeFind<CR>
 
 " Shortcut for T-Comment
 map <Leader>c <c-_><c-_>
@@ -143,8 +147,9 @@ vnoremap <silent> k gk
 nnoremap <leader>2 :setlocal shiftwidth=2 tabstop=2 softtabstop=2<cr>
 nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 
-" Ackmate
+" ack.vim
 nnoremap <leader>a :Ack
+nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
 
 " Map to switch between absolute and relative line numbers
 nnoremap <C-n> :call NumberToggle()<cr>
