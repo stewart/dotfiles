@@ -146,9 +146,6 @@ nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 " Ackmate
 nnoremap <leader>a :Ack
 
-" MiniBufExplorer
-map <Leader>b :TMiniBufExplorer<CR>
-
 " Map to switch between absolute and relative line numbers
 nnoremap <C-n> :call NumberToggle()<cr>
 
