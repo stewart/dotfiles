@@ -228,3 +228,4 @@ endif
 let g:SuperTabCrMapping = 0
 let g:LustyJugglerSuppressRubyWarning = 1
 let g:NERDTreeWinPos = "right"
+let g:ragtag_global_maps = 1
