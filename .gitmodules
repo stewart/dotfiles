@@ -64,3 +64,6 @@
 [submodule "vim/vim.symlink/bundle/ragtag"]
 	path = vim/vim.symlink/bundle/ragtag
 	url = https://github.com/tpope/vim-ragtag.git
+[submodule "vim/vim.symlink/bundle/linediff"]
+	path = vim/vim.symlink/bundle/linediff
+	url = https://github.com/AndrewRadev/linediff.vim.git
