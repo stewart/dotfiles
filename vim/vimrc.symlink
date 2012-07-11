@@ -15,7 +15,7 @@ set shiftwidth=2                " see above.
 set tabstop=2
 set expandtab                   " tabs to spaces
 set nosmarttab                  " fuck off, tabs
-set formatoptions+=n            " add support for numbered/bulleted lists
+set formatoptions+=nr           " add support for numbered/bulleted lists and * comments
 set virtualedit=block           " allow virtual edit in visual block
 set clipboard=unnamed
 set scrolljump=5
@@ -25,6 +25,9 @@ set history=10000
 set encoding=utf-8
 set modelines=0
 set ttyfast
+set showbreak=↪
+set splitbelow
+set splitright
 
 " ----------------------------------------------------------
 " Interface
@@ -53,20 +56,17 @@ set guioptions-=m                              " ...
 set guioptions=aAce                            " ...
 
 set list
-set listchars=tab:▸\ ,trail:⋅,extends:❯,precedes:❮
+set listchars=tab:▸\ ,trail:⋅,eol:¬,extends:❯,precedes:❮
 
 set noerrorbells
 set novisualbell
 set noshowmatch                 " vim, kindly shut up about my >'s.
 set t_vb=
 
-" Save when losing focus
-au FocusLost * :silent! wall
+set completeopt=longest,menuone,preview
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
-
-
 
 " Statusline
 set laststatus=2
