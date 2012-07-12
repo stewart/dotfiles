@@ -67,3 +67,6 @@
 [submodule "vim/vim.symlink/bundle/linediff"]
 	path = vim/vim.symlink/bundle/linediff
 	url = https://github.com/AndrewRadev/linediff.vim.git
+[submodule "vim/vim.symlink/bundle/yankring"]
+	path = vim/vim.symlink/bundle/yankring
+	url = https://github.com/vim-scripts/YankRing.vim.git
