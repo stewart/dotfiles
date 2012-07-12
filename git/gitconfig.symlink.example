@@ -66,6 +66,10 @@
   dc = diff --cached
   last = diff HEAD
 
+  # fetch
+  fo = fetch origin
+  fu = fetch upstream
+
   # log
   log = log --decorate --graph --date=short
   l = log
@@ -79,6 +83,7 @@
 
   # push
   ps = push
+  po = push origin
 
   # rebase
   rc = rebase --continue
@@ -106,3 +111,5 @@
 
   # tag
   t = tag -n
+
+  ff = merge --ff-only
