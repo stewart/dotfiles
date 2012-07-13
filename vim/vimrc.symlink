@@ -91,6 +91,12 @@ let mapleader = ","
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
 
+" gundo
+nnoremap <Leader>u :GundoToggle<CR>
+
+" yankring
+nnoremap <silent> <Leader>y :YRShow<CR>
+
 " change case
 inoremap <C-u> <esc>mzgUiw`za
 
