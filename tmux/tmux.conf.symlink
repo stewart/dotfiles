@@ -64,7 +64,7 @@ set -g status-left-length 32
 set -g status-right-length 150
 set -g status-interval 5
 
-set -g status-left '#[fg=colour0,bg=colour34,bold] #S #[fg=colour34,bg=colour234,bold]⮀'
+set -g status-left '#[fg=colour0,bg=colour33,bold] #S #[fg=colour33,bg=colour234,bold]⮀'
 
 set -g status-right '#[fg=colour238]⮃ %R ⮃ %d %b #[fg=colour238]⮂#[fg=colour250,bg=colour238,nobold] #(nowplaying) #[fg=colour254]⮂#[fg=colour16,bg=colour254,bold] #h '
 
