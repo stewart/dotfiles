@@ -76,3 +76,6 @@
 [submodule "vim/vim.symlink/bundle/clojure"]
 	path = vim/vim.symlink/bundle/clojure
 	url = https://github.com/vim-scripts/VimClojure.git
+[submodule "vim/vim.symlink/bundle/css"]
+	path = vim/vim.symlink/bundle/css
+	url = https://github.com/vim-scripts/Better-CSS-Syntax-for-Vim.git
