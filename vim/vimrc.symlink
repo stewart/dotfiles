@@ -56,7 +56,7 @@ set guioptions-=m                              " ...
 set guioptions=aAce                            " ...
 
 set list
-set listchars=tab:▸\ ,trail:⋅,eol:¬,extends:❯,precedes:❮
+set listchars=tab:▸\ ,trail:⋅,extends:❯,precedes:❮
 
 set noerrorbells
 set novisualbell
