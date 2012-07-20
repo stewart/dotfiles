@@ -136,7 +136,11 @@ nnoremap <Space> za
 vnoremap <Space> za
 
 " Make find/replace easier
-nnoremap <leader>s :%s//g<left><left>
+nnoremap <leader>s :%s//g<left>
+
+" Emacs bindings in command line mode
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
 
 " Centers search results
 map N Nzz
@@ -148,10 +152,20 @@ nnoremap <CR> :nohlsearch<cr>
 " Open Markdown previews in Marked.app
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
-imap <c-p> <c-x><c-o>
+" Charwise selection
+nnoremap vv ^vg_
+
+" Make finding marks easier
+noremap ' `
+
+" Insert mode completion
+inoremap <c-l> <c-x><c-l>
+inoremap <c-f> <c-x><c-f>
+
+nnoremap L $
 
 " Call the StripWhitespace function
-map <Leader>s :call StripWhitespace ()<CR>
+map <Leader>w :call StripWhitespace ()<CR>
 
 " C-TAB and C-SHIFT-TAB cycle tabs forward and backward
 nmap <c-tab> :tabnext<cr>
@@ -171,9 +185,8 @@ vnoremap <silent> k gk
 nnoremap <leader>2 :setlocal shiftwidth=2 tabstop=2 softtabstop=2<cr>
 nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 
-" ack.vim
-nnoremap <leader>a :Ack
-nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
+" Select all
+nnoremap <leader>a ggVG
 
 " Map to switch between absolute and relative line numbers
 nnoremap <C-n> :call NumberToggle()<cr>
@@ -200,7 +213,14 @@ xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
 onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 
-"
+
+" mappings for Steve Losh's AckMotion
+nnoremap <silent> <leader>A :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <leader>A :<C-U>call <SID>AckMotion(visualmode())<CR>
+
+nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
+xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
+
 " ----------------------------------------------------------
 " Searching
 " ----------------------------------------------------------
@@ -265,6 +285,24 @@ let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command
 " ---------------------------------------------------------------------------
 "  Functions
 " ---------------------------------------------------------------------------
+
+function! s:CopyMotionForType(type)
+    if a:type ==# 'v'
+        silent execute "normal! `<" . a:type . "`>y"
+    elseif a:type ==# 'char'
+        silent execute "normal! `[v`]y"
+    endif
+endfunction
+
+function! s:AckMotion(type) abort
+    let reg_save = @@
+
+    call s:CopyMotionForType(a:type)
+
+    execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
+
+    let @@ = reg_save
+endfunction
 
 " Strip whitespace in file
 function! StripWhitespace ()
@@ -389,3 +427,6 @@ endif
 let g:SuperTabCrMapping = 0
 let g:LustyJugglerSuppressRubyWarning = 1
 let g:ragtag_global_maps = 1
+
+nnoremap Ajj <nop>
+nnoremap A<esc> <nop>
