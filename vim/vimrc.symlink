@@ -192,7 +192,7 @@ nnoremap <leader>2 :setlocal shiftwidth=2 tabstop=2 softtabstop=2<cr>
 nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 
 " Select all
-nnoremap <leader>a ggVG
+nnoremap <leader>A ggVG
 
 " Map to switch between absolute and relative line numbers
 nnoremap <C-n> :call NumberToggle()<cr>
@@ -221,8 +221,8 @@ xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 
 
 " mappings for Steve Losh's AckMotion
-nnoremap <silent> <leader>A :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <leader>A :<C-U>call <SID>AckMotion(visualmode())<CR>
+nnoremap <silent> <leader>a :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 " ----------------------------------------------------------
 " Searching
