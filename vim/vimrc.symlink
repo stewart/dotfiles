@@ -162,10 +162,16 @@ noremap ' `
 inoremap <c-l> <c-x><c-l>
 inoremap <c-f> <c-x><c-f>
 
-nnoremap L $
+" Go to beginning or end of line
+nnoremap H ^
+nnoremap L g_
 
 " Call the StripWhitespace function
 map <Leader>w :call StripWhitespace ()<CR>
+
+" Sane regular expressions
+nnoremap / /\v
+vnoremap / /\v
 
 " C-TAB and C-SHIFT-TAB cycle tabs forward and backward
 nmap <c-tab> :tabnext<cr>
@@ -217,9 +223,6 @@ xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 " mappings for Steve Losh's AckMotion
 nnoremap <silent> <leader>A :set opfunc=<SID>AckMotion<CR>g@
 xnoremap <silent> <leader>A :<C-U>call <SID>AckMotion(visualmode())<CR>
-
-nnoremap <bs> :Ack! '\b<c-r><c-w>\b'<cr>
-xnoremap <silent> <bs> :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 " ----------------------------------------------------------
 " Searching
