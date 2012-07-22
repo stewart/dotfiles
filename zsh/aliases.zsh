@@ -8,8 +8,10 @@ alias df='df -h'
 # use the MacVim version of Vim
 alias vim="mvim -v"
 
-# err'yday i'm zippin
 alias gz='tar -zcvf'
+
+# git
+alias g='git'
 
 # kill
 alias ka9='killall -9'
