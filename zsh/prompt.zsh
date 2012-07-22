@@ -11,7 +11,7 @@ export GIT_PROMPT_SUFFIX="%{$reset_color%}"
 export GIT_PROMPT_DIRTY=""
 export GIT_PROMPT_CLEAN=""
 
-export RPROMPT='${return_status} $(git_prompt_status) %{$reset_color%}$(todo)'
+export RPROMPT='${return_status} $(git_prompt_status) %{$reset_color%}'
 
 export GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
 export GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
