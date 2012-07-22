@@ -1,93 +1,163 @@
-call pathogen#infect()          " Call pathogen
-set noswapfile                  " Who needs swapfiles, anyways?
-set nocompatible                " Don't want to be compatible with vi
+" .vimrc
+" Author: Andrew Stewart <andrew@averagestudios.com>
+" Source: https://github.com/stewart/dotfiles/tree/master/vim
+
+" Preamble ---------------------------------------------------------------- {{{
+
+filetype off
+call pathogen#infect()
 filetype plugin indent on
+set nocompatible
 
-" ----------------------------------------------------------
-" Text Formatting
-" ----------------------------------------------------------
-set autoindent                  " automagically indent new lines
-set smartindent                 " be smart about it
-inoremap # X<BS>#
-set wrap                        " wrap lines
-set softtabstop=2               " four spaces? yeah right.
-set shiftwidth=2                " see above.
-set tabstop=2
-set expandtab                   " tabs to spaces
-set nosmarttab                  " fuck off, tabs
-set formatoptions+=nr           " add support for numbered/bulleted lists and * comments
-set virtualedit=block           " allow virtual edit in visual block
+" }}}
+" Basic options ----------------------------------------------------------- {{{
+"
+set autoindent
+set autoread
+set autowrite
+set backspace=indent,eol,start
+set backupskip=/tmp/*,/private/tmp/*"
+set completeopt=longest,menuone,preview
 set clipboard=unnamed
-set scrolljump=5
-set scrolloff=5
 set cursorline
-set history=10000
+set dictionary=/usr/share/dict/words
 set encoding=utf-8
-set modelines=0
-set ttyfast
-set showbreak=↪
-set splitbelow
-set splitright
-
-" ----------------------------------------------------------
-" Interface
-" ----------------------------------------------------------
-set ruler                       " show the ruler at all times.
-set noshowcmd                   " don't show incomplete commands
-set lazyredraw                  " turn on lazy redraw
-set number                      " turn on line numbers
-set wildmode=list:longest,full
-set wildmenu                    " turn on wildmenu
-set backspace=indent,eol,start  " allow backspacing over everything in insert mode
-set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
-set shortmess=filtIoOA          " shorten messages
-set report=0                    " tell us about changes
-set nostartofline               " don't jump to the start of line when scrolling
-
-if has("gui_running")
-  colorscheme solarized       " colorscheme
-  let g:solarized_termcolors=256
-  set background=dark
-endif
-
-set guifont=Inconsolata-dz\ for\ PowerLine:h14 " best goddamn terminal font around
-set guioptions-=T                              " strip MacVim/GVim chrome
-set guioptions-=m                              " ...
-set guioptions=aAce                            " ...
-
+set fillchars=diff:⣿,vert:│
+set hidden
+set history=1000
+set laststatus=2
+set lazyredraw
+set linebreak
 set list
 set listchars=tab:▸\ ,trail:⋅,extends:❯,precedes:❮
-
+set matchtime=3
+set modelines=0
 set noerrorbells
+set noshowcmd
+set notimeout
 set novisualbell
-set noshowmatch                 " vim, kindly shut up about my >'s.
-set t_vb=
-
-set completeopt=longest,menuone,preview
+set number
+set relativenumber
+set ruler
+set scrolloff=3
+set shiftround
+set showbreak=↪
+set sidescroll=1
+set sidescrolloff=10
+set spellfile=~/.vim/custom-dictionary.utf-8.add
+set splitbelow
+set splitright
+set synmaxcol=800
+set title
+set ttimeout
+set ttimeoutlen=10
+set ttyfast
+set undofile
+set undoreload=10000
+set virtualedit+=block
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
-" Statusline
-set laststatus=2
-let g:Powerline_symbols='fancy'
+" Cursorline {{{
+" Only show cursorline in the current window and in normal mode.
 
-" Syntax hightlighing
-syntax enable
-syntax on
+augroup cline
+    au!
+    au WinLeave * set nocursorline
+    au WinEnter * set cursorline
+    au InsertEnter * set nocursorline
+    au InsertLeave * set cursorline
+augroup END
 
-" Multi-line comments in PHP
-au BufRead,BufNewFile *.php set comments=s1:/*,mb:*,ex:*/,://,:#
+" }}}
+" Wildmenu completion {{{
 
-" Jump to last cursor position unless it's invalid or in an event handler
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+set wildmenu
+set wildmode=list:longest,full
 
-" ----------------------------------------------------------
-" Remappings
-" ----------------------------------------------------------
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
+set wildignore+=*.spl
+set wildignore+=*.DS_Store
+
+" }}}
+"
+" Line Return {{{
+
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
+" }}}
+" Tabs, spaces, wrapping {{{
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set nosmarttab
+set textwidth=80
+set formatoptions=qrn1
+set wrap
+
+" }}}
+" Relative Line Numbers in Current Buffer {{{
+
+if exists('&relativenumber')
+  set relativenumber
+  augroup WindowRNU
+    auto!
+    auto BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
+    auto WinLeave,FocusLost               * setlocal number
+  augroup END
+endif
+
+" }}}
+" Backups {{{
+
+set undodir=~/.vim/tmp/undo//
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set backup
+set noswapfile
+
+" }}}
+" Leader {{{
 
 let mapleader = ","
+let maplocalleader = "\\"
 
+" }}}
+" Colorscheme Font, and Guioptions {{{
+
+colorscheme solarized
+let g:solarized_termcolors=256
+set background=dark
+set guifont=Inconsolata-dz\ for\ PowerLine:h14
+set guioptions-=T
+set guioptions-=m
+set guioptions=aAce
+syntax on
+
+" }}}
+"
+" }}}
+" Convenience mappings ---------------------------------------------------- {{{
+
+" Kill window
+nnoremap K :q<cr>
+
+" Change window splits easily
+map <C-J> <C-w><C-j>
+map <C-K> <C-w><C-k>
+map <C-h> <C-w><C-h>
+map <C-l> <C-w><C-l>
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
 
@@ -122,9 +192,6 @@ map <C-K> <C-w><C-k>
 map <C-h> <C-w><C-h>
 map <C-l> <C-w><C-l>
 
-map <Leader>n :NERDTree<CR>
-map <silent> <C-s> :NERDTreeClose<CR>:NERDTreeFind<CR>
-
 " Shortcut for T-Comment
 map <Leader>c <c-_><c-_>
 
@@ -141,13 +208,6 @@ nnoremap <leader>s :%s//<left>
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
-
-" Centers search results
-map N Nzz
-map n nzz
-
-" Clear search buffer on return
-nnoremap <CR> :nohlsearch<cr>
 
 " Open Markdown previews in Marked.app
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
@@ -166,20 +226,8 @@ inoremap <c-f> <c-x><c-f>
 nnoremap H ^
 nnoremap L g_
 
-" Call the StripWhitespace function
-map <Leader>w :call StripWhitespace ()<CR>
-
-" Sane regular expressions
-nnoremap / /\v
-vnoremap / /\v
-
-" C-TAB and C-SHIFT-TAB cycle tabs forward and backward
-nmap <c-tab> :tabnext<cr>
-imap <c-tab> <c-o>:tabnext<cr>
-vmap <c-tab> <c-o>:tabnext<cr>
-nmap <c-s-tab> :tabprevious<cr>
-imap <c-s-tab> <c-o>:tabprevious<cr>
-vmap <c-s-tab> <c-o>:tabprevious<cr>
+" Clear trailing whitespace
+nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 
 " sane movement with wrap turned on
 nnoremap <silent> j gj
@@ -197,9 +245,6 @@ nnoremap <leader>A ggVG
 " Easier to press
 nnoremap <tab> %
 
-" Map to switch between absolute and relative line numbers
-nnoremap <C-n> :call NumberToggle()<cr>
-
 map <leader>rf :call RenameFile()<cr>
 
 " Make Y behave like other capitals
@@ -212,7 +257,14 @@ nnoremap Vat vatV
 nnoremap Vab vabV
 nnoremap VaB vaBV
 
+" made D behave
+nnoremap D d$
+
 noremap <leader>v <C-w>v
+
+" Formatting, TextMate-style
+nnoremap Q gqip
+vnoremap Q gq
 
 " numbers as objects
 onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
@@ -222,36 +274,138 @@ xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
 onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
 
-
-" mappings for Steve Losh's AckMotion
 nnoremap <silent> <leader>a :set opfunc=<SID>AckMotion<CR>g@
 xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
 
-" ----------------------------------------------------------
-" Searching
-" ----------------------------------------------------------
-set incsearch              " do incremental searching
-set hlsearch               " highlight searches
-set ignorecase smartcase   " ignore case when searching, unless it contains uppercase characters
-set gdefault               " i want global more often than not
+" Easy filetype switching {{{
 
-" ----------------------------------------------------------
-" Plugins
-" ----------------------------------------------------------
+nnoremap _md :set ft=markdown<CR>
+nnoremap _js :set ft=javascript<CR>
+nnoremap _rb :set ft=ruby<CR>
 
-" NERDTree
-let NERDTreeShowHidden=0
-let NERDTreeIgnore=['\.rbc$', '\~$', '.git/']
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeWinPos = "right"
-map <Leader>n :NERDTree<CR>
+" }}}
+" Insert Mode Completion {{{
 
-" LustyJuggler
-let g:LustyJugglerAltTabMode = 1
-noremap <silent> <Leader><Tab> :LustyJuggler<CR>
+inoremap <c-f> <c-x><c-f>
+inoremap <c-]> <c-x><c-]>
 
-" Ctrlp
+" }}}
+
+" }}}
+" Quick editing ----------------------------------------------------------- {{{
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ed :vsplit ~/.vim/custom-dictionary.utf-8.add<cr>
+nnoremap <leader>eg :vsplit ~/.gitconfig<cr>
+nnoremap <leader>ez :vsplit ~/.zshrc<cr>
+nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
+
+" }}}
+" Searching and movement -------------------------------------------------- {{{
+
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+set gdefault
+
+" Centers search results
+map N Nzz
+map n nzz
+
+" Clear search buffer on return
+nnoremap <CR> :nohlsearch<cr>
+
+" }}}
+" Folding ----------------------------------------------------------------- {{{
+
+set foldlevelstart=0
+
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+
+" "Refocus" folds
+nnoremap ,z zMzvzz
+
+" Make zO recursively open whatever top level fold we're in, no matter where the
+" cursor happens to be.
+nnoremap zO zCzO
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
+
+" }}}
+" Filetype-specific ------------------------------------------------------- {{{
+
+" Javascript {{{
+
+augroup ft_javascript
+    au!
+
+    au FileType javascript setlocal foldmethod=marker
+    au FileType javascript setlocal foldmarker={,}
+
+    " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
+    " positioned inside of them AND the following code doesn't get unfolded.
+    au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
+augroup END
+
+" }}}
+" Markdown {{{
+
+augroup ft_markdown
+    au!
+
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=markdown
+    au BufNewFile,BufRead *.md,*.markdown setlocal textwidth=80
+
+    " Use <localleader>1/2/3 to add headings.
+    au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=
+    au Filetype markdown nnoremap <buffer> <localleader>2 yypVr-
+    au Filetype markdown nnoremap <buffer> <localleader>3 I### <ESC>
+augroup END
+" }}}
+" Vim {{{
+
+augroup ft_vim
+    au!
+
+    au FileType vim setlocal foldmethod=marker
+    au FileType vim setlocal textwidth=80
+    au FileType help setlocal textwidth=78
+    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END
+
+" }}}
+
+" }}}
+" Plugin settings --------------------------------------------------------- {{{
+
+" Ack {{{
+
+nnoremap <leader>a :Ack!<space>
+nnoremap <silent> <leader>a :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
+
+" }}}
+" Ctrl-P {{{
+
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_jump_to_buffer = 0
 let g:ctrlp_map = '<Leader>t'
@@ -288,19 +442,55 @@ let my_ctrlp_git_command = "" .
 
 let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
 
-" ---------------------------------------------------------------------------
-"  Functions
-" ---------------------------------------------------------------------------
+" }}}
+" NERDTree {{{
 
-function! s:CopyMotionForType(type)
+map <Leader>n :NERDTree<CR>
+
+let NERDTreeHighlightCursorline = 1
+let NERDTreeIgnore = ['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
+                    \ 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json',
+                    \ '.*\.o$', 'db.db', 'tags.bak']
+
+let NERDTreeShowHidden=0
+let NERDTreeIgnore=['\.rbc$', '\~$', '.git/']
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+" }}}
+" LustyJuggler {{{
+
+let g:LustyJugglerAltTabMode = 1
+let g:LustyJugglerSuppressRubyWarning = 1
+noremap <silent> <Leader><Tab> :LustyJuggler<CR>
+
+" }}}
+" Powerline {{{
+
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_cache_enabled = 1
+
+" }}}
+" Supertab {{{
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 1
+
+"}}}
+
+" }}}
+" Functions--------------------------------------------------------- {{{
+
+function! s:CopyMotionForType(type) " {{{
     if a:type ==# 'v'
         silent execute "normal! `<" . a:type . "`>y"
     elseif a:type ==# 'char'
         silent execute "normal! `[v`]y"
     endif
-endfunction
+endfunction " }}}
 
-function! s:AckMotion(type) abort
+function! s:AckMotion(type) abort " {{{
     let reg_save = @@
 
     call s:CopyMotionForType(a:type)
@@ -308,34 +498,10 @@ function! s:AckMotion(type) abort
     execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
 
     let @@ = reg_save
-endfunction
+endfunction " }}}
 
-" Strip whitespace in file
-function! StripWhitespace ()
-  exec ':%s/ \+$//g'
-endfunction
 
-" Toggle relative line numbers
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-
-" Rename Current File
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-
-function! s:NumberTextObject(whole)
+function! s:NumberTextObject(whole) " {{{
     normal! v
 
     while getline('.')[col('.')] =~# '\v[0-9]'
@@ -349,9 +515,9 @@ function! s:NumberTextObject(whole)
             normal! h
         endwhile
     endif
-endfunction
+endfunction " }}}
 
-function! BufOnly(buffer, bang)
+function! BufOnly(buffer, bang) " {{{
   if a:buffer == ''
     " No buffer provided, use the current buffer.
     let buffer = bufnr('%')
@@ -397,42 +563,6 @@ function! BufOnly(buffer, bang)
     echomsg delete_count "buffers deleted"
   endif
 
-endfunction
+endfunction " }}}
 
-command! -nargs=? -complete=buffer -bang Bonly
-    \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang BOnly
-    \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang Bufonly
-    \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang BufOnly
-    \ :call BufOnly('<args>', '<bang>')
-
-
-" ---------------------------------------------------------------------------
-"  Quick Edits
-" ---------------------------------------------------------------------------
-
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>et :vsplit ~/todo/todo.txt<cr>
-nnoremap <leader>ez :vsplit ~/.localrc<cr>
-
-" ---------------------------------------------------------------------------
-"  Misc
-" ---------------------------------------------------------------------------
-" Trigger relative line numbers in current buffer
-if exists('&relativenumber')
-  set relativenumber
-  augroup WindowRNU
-    auto!
-    auto BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
-    auto WinLeave,FocusLost               * setlocal number
-  augroup END
-endif
-
-let g:SuperTabCrMapping = 0
-let g:LustyJugglerSuppressRubyWarning = 1
-let g:ragtag_global_maps = 1
-
-nnoremap Ajj <nop>
-nnoremap A<esc> <nop>
+" }}}
