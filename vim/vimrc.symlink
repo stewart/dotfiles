@@ -279,15 +279,29 @@ xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 " Easy filetype switching {{{
 
-nnoremap _md :set ft=markdown<CR>
-nnoremap _js :set ft=javascript<CR>
-nnoremap _rb :set ft=ruby<CR>
+nnoremap _md  :set ft=markdown<CR>
+nnoremap _php :set ft=php<CR>
+nnoremap _js  :set ft=javascript<CR>
+nnoremap _rb  :set ft=ruby<CR>
+nnoremap _v   :set ft=vim<CR>
 
 " }}}
 " Insert Mode Completion {{{
 
 inoremap <c-f> <c-x><c-f>
 inoremap <c-]> <c-x><c-]>
+
+" }}}
+" BufferOnly {{{
+
+command! -nargs=? -complete=buffer -bang Bonly
+    \ :call BufOnly('<args>', '<bang>')
+command! -nargs=? -complete=buffer -bang BOnly
+    \ :call BufOnly('<args>', '<bang>')
+command! -nargs=? -complete=buffer -bang Bufonly
+    \ :call BufOnly('<args>', '<bang>')
+command! -nargs=? -complete=buffer -bang BufOnly
+    \ :call BufOnly('<args>', '<bang>')
 
 " }}}
 
@@ -393,6 +407,26 @@ augroup ft_vim
 augroup END
 
 " }}}
+" PHP {{{
+
+augroup ft_php
+    au!
+
+    au FileType php,phtml setlocal foldmethod=marker
+    au FileType php,phtml setlocal foldmarker={,}
+augroup END
+
+" }}}
+" CSS {{{
+
+augroup ft_css
+    au!
+
+    au FileType css setlocal foldmethod=marker
+    au FileType css setlocal foldmarker={,}
+augroup END
+
+" }}}
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
@@ -456,6 +490,7 @@ let NERDTreeShowHidden=0
 let NERDTreeIgnore=['\.rbc$', '\~$', '.git/']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDChristmasTree = 1
 
 " }}}
 " LustyJuggler {{{
@@ -499,7 +534,6 @@ function! s:AckMotion(type) abort " {{{
 
     let @@ = reg_save
 endfunction " }}}
-
 
 function! s:NumberTextObject(whole) " {{{
     normal! v
