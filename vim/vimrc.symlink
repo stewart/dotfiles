@@ -139,7 +139,7 @@ let maplocalleader = "\\"
 " Colorscheme Font, and Guioptions {{{
 
 colorscheme solarized
-let g:solarized_termcolors=256
+let g:solarized_termcolors=16
 set background=dark
 set guifont=Inconsolata-dz\ for\ PowerLine:h12
 set guioptions-=T
