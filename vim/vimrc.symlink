@@ -13,6 +13,7 @@ set nocompatible
 " Basic options ----------------------------------------------------------- {{{
 "
 set autoindent
+set smartindent
 set autoread
 set autowrite
 set backspace=indent,eol,start
@@ -105,6 +106,7 @@ set nosmarttab
 set textwidth=80
 set formatoptions=qrn1
 set wrap
+set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 
 " }}}
 " Relative Line Numbers in Current Buffer {{{
@@ -139,7 +141,7 @@ let maplocalleader = "\\"
 colorscheme solarized
 let g:solarized_termcolors=256
 set background=dark
-set guifont=Inconsolata-dz\ for\ PowerLine:h14
+set guifont=Inconsolata-dz\ for\ PowerLine:h12
 set guioptions-=T
 set guioptions-=m
 set guioptions=aAce
@@ -279,11 +281,13 @@ xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 " Easy filetype switching {{{
 
-nnoremap _md  :set ft=markdown<CR>
-nnoremap _php :set ft=php<CR>
-nnoremap _js  :set ft=javascript<CR>
-nnoremap _rb  :set ft=ruby<CR>
-nnoremap _v   :set ft=vim<CR>
+nnoremap _md   :set ft=markdown<CR>
+nnoremap _php  :set ft=php<CR>
+nnoremap _js   :set ft=javascript<CR>
+nnoremap _html :set ft=html<CR>
+nnoremap _erb  :set ft=eruby<CR>
+nnoremap _rb   :set ft=ruby<CR>
+nnoremap _v    :set ft=vim<CR>
 
 " }}}
 " Insert Mode Completion {{{
@@ -487,7 +491,7 @@ let NERDTreeIgnore = ['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index
                     \ '.*\.o$', 'db.db', 'tags.bak']
 
 let NERDTreeShowHidden=0
-let NERDTreeIgnore=['\.rbc$', '\~$', '.git/']
+let NERDTreeIgnore=['\.rbc$', '\~$']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
@@ -511,6 +515,11 @@ let g:Powerline_cache_enabled = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabCrMapping = 1
+
+"}}}
+" YankRing {{{
+
+let g:yankring_max_history = 1000
 
 "}}}
 
