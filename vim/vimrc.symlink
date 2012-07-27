@@ -247,10 +247,6 @@ nnoremap <leader>A ggVG
 " Easier to press
 nnoremap <tab> %
 
-nnoremap <C-[> :tabprevious<CR>
-nnoremap <C-]> :tabnext<CR>
-nnoremap <C-t> :tabnew<CR>
-
 map <leader>rf :call RenameFile()<cr>
 
 " Make Y behave like other capitals
