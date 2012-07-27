@@ -79,3 +79,6 @@
 [submodule "vim/vim.symlink/bundle/gist"]
 	path = vim/vim.symlink/bundle/gist
 	url = https://github.com/mattn/gist-vim.git
+[submodule "vim/vim.symlink/bundle/vitality"]
+	path = vim/vim.symlink/bundle/vitality
+	url = https://github.com/sjl/vitality.vim.git
