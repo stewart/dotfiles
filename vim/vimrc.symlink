@@ -19,6 +19,7 @@ set autowrite
 set backspace=indent,eol,start
 set backupskip=/tmp/*,/private/tmp/*"
 set completeopt=longest,menuone,preview
+set complete-=i
 set clipboard=unnamed
 set cursorline
 set dictionary=/usr/share/dict/words
