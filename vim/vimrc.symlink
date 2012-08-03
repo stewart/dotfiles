@@ -244,6 +244,7 @@ nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 
 " Select all
 nnoremap <leader>A ggVG
+nnoremap <c-a> ggVG
 
 " Easier to press
 nnoremap <tab> %
@@ -429,6 +430,16 @@ augroup ft_css
 
     au FileType css setlocal foldmethod=marker
     au FileType css setlocal foldmarker={,}
+augroup END
+
+" }}}
+" Python {{{
+
+augroup ft_python
+    au!
+
+    au Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+    au FileType python setlocal foldmethod=indent
 augroup END
 
 " }}}
