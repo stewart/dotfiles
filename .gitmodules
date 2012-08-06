@@ -85,3 +85,6 @@
 [submodule "vim/vim.symlink/bundle/sparkup"]
 	path = vim/vim.symlink/bundle/sparkup
 	url = https://github.com/kogakure/vim-sparkup.git
+[submodule "vim/vim.symlink/bundle/tagbar"]
+	path = vim/vim.symlink/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar.git
