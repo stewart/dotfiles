@@ -94,3 +94,6 @@
 [submodule "vim/vim.symlink/bundle/liquid"]
 	path = vim/vim.symlink/bundle/liquid
 	url = https://github.com/tpope/vim-liquid.git
+[submodule "vim/vim.symlink/bundle/git"]
+	path = vim/vim.symlink/bundle/git
+	url = https://github.com/tpope/vim-git.git
