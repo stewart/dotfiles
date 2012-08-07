@@ -534,6 +534,11 @@ let g:SuperTabCrMapping = 1
 let g:yankring_max_history = 1000
 
 "}}}
+" Tagbar {{{
+
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+"}}}
 
 " }}}
 " Functions--------------------------------------------------------- {{{
