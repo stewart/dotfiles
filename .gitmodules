@@ -88,3 +88,6 @@
 [submodule "vim/vim.symlink/bundle/commentary"]
 	path = vim/vim.symlink/bundle/commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule "vim/vim.symlink/bundle/endwise"]
+	path = vim/vim.symlink/bundle/endwise
+	url = https://github.com/tpope/vim-endwise.git
