@@ -57,6 +57,7 @@ set ttyfast
 set undofile
 set undoreload=10000
 set virtualedit+=block
+set mouse=a
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
@@ -139,8 +140,8 @@ let maplocalleader = "\\"
 " }}}
 " Colorscheme Font, and Guioptions {{{
 
-colorscheme solarized
 let g:solarized_termcolors=16
+colorscheme solarized
 set background=dark
 set guifont=Inconsolata-dz\ for\ PowerLine:h12
 set guioptions-=T
@@ -420,6 +421,8 @@ augroup ft_php
 
     au FileType php,phtml setlocal foldmethod=marker
     au FileType php,phtml setlocal foldmarker={,}
+    au FileType php,phtml setlocal makeprg=php\ -l\ %
+    au FileType php,phtml setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 augroup END
 
 " }}}
