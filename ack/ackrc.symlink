@@ -1,0 +1,2 @@
+--type-set=php=.inc,.php
+--type-set=clojure=.clj
