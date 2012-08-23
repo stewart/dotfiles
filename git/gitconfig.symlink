@@ -42,6 +42,7 @@
 [alias]
   # add
   a = add
+  aa = add --all
 
   # branch
   b = branch -v
@@ -68,6 +69,7 @@
   # fetch
   fo = fetch origin
   fu = fetch upstream
+  fa = fetch --all
 
   # log
   log = log --decorate --graph --date=short
@@ -77,12 +79,17 @@
   changelog = log --pretty=format:\" * %s\"
   shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
 
+  # fast-forward
+  ff = merge --ff-only
+  pullff = pull --ff-only
+
   # pull
   pl = pull
 
   # push
   ps = push
   po = push origin
+  pom = push origin master
 
   # rebase
   rc = rebase --continue
@@ -110,5 +117,3 @@
 
   # tag
   t = tag -n
-
-  ff = merge --ff-only
