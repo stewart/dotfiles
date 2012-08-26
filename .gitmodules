@@ -91,3 +91,6 @@
 [submodule "vim/vim.symlink/bundle/git"]
 	path = vim/vim.symlink/bundle/git
 	url = https://github.com/tpope/vim-git.git
+[submodule "vim/vim.symlink/bundle/html"]
+	path = vim/vim.symlink/bundle/html
+	url = https://github.com/tudorprodan/html_annoyance.vim.git
