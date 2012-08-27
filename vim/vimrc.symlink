@@ -58,6 +58,7 @@ set undofile
 set undoreload=10000
 set virtualedit+=block
 set mouse=a
+set t_ti= t_te=   " makes vim play nice with terminal scrollback
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
