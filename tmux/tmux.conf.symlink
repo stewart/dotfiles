@@ -1,12 +1,12 @@
 # Rebind control key to C-a
-set-option -g prefix C-a
-bind C-a send-prefix
+set-option -g prefix F10
+bind F10 send-prefix
 
 set -sg escape-time 0
 set -sg repeat-time 600
 
-# C-a C-a will load the last window
-bind-key C-a last-window
+# F10 F10 will load the last window
+bind-key F10 last-window
 
 # Change statusline colors
 set -g status-bg black
@@ -94,4 +94,3 @@ bind -t vi-copy v begin-selection
 bind -t vi-copy y copy-selection
 bind -t vi-copy Escape cancel
 bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-
