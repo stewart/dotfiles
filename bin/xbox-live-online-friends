@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+
+require 'httparty'
+require 'json'
+
+def to_snake_case(value)
+  case value
+  when Symbol
+    lowercase(value.to_s).to_sym
+  when String
+    lowercase(value).to_sym
+  else
+    false
+  end
+end
+
+def convert_keys(value)
+  case value
+  when Array
+    value.map(&method(:convert_keys))
+  when Hash
+    Hash[value.map { |k, v| [to_snake_case(k), convert_keys(v)] }]
+  else
+    value
+  end
+end
+
+def lowercase(string)
+  string.gsub(/::/, '/').
+    gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+    gsub(/([a-z\d])([A-Z])/,'\1_\2').
+    tr("-", "_").
+    downcase
+end
+
+response = HTTParty.get("https://xboxapi.com/friends/andrewsstewart")
+
+json = convert_keys(JSON.parse(response.body))
+
+if json[:success]
+  puts "  Online Friends:"
+  json[:friends].each do |friend|
+    if friend[:is_online]
+      puts "    #{friend[:gamer_tag]}"
+      puts "      #{friend[:presence]}"
+      if friend[:rich_presence]
+        puts "      #{friend[:rich_presence].gsub("\r\n", " ")}"
+      end
+    end
+  end
+else
+  puts "  API error!"
+  puts "    current limit: #{json[:api_limit]}"
+end
