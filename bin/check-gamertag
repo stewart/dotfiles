@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'httparty'
+
+url = "https://live.xbox.com/en-US/Profile?gamertag=Andrew%20Stewart"
+
+response = HTTParty.get(url)
+code = response.code
+
+case code
+  when 200 then puts "Unavailable. Status code 200."
+  when 404 then puts "Available!. Status code 404!"
+  else puts "Not sure. You should check yourself. Status code #{code}"
+end
