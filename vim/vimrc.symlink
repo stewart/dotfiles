@@ -250,6 +250,7 @@ nnoremap <c-a> ggVG
 
 " Easier to press
 nnoremap <tab> %
+vnoremap <tab> %
 
 map <leader>rf :call RenameFile()<cr>
 
