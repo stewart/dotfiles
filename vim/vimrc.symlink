@@ -108,7 +108,7 @@ set expandtab
 set nosmarttab
 set textwidth=80
 set formatoptions=qrn1
-set wrap
+set nowrap
 set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 
 " }}}
@@ -168,9 +168,6 @@ inoremap jj <ESC>
 
 " gundo
 nnoremap <Leader>u :GundoToggle<CR>
-
-" yankring
-nnoremap <silent> <Leader>y :YRShow<CR>
 
 " change case
 inoremap <C-u> <esc>mzgUiw`za
@@ -543,11 +540,6 @@ let g:Powerline_cache_enabled = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabCrMapping = 1
-
-"}}}
-" YankRing {{{
-
-let g:yankring_max_history = 1000
 
 "}}}
 " Tagbar {{{
