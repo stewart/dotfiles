@@ -79,9 +79,6 @@
 [submodule "vim/vim.symlink/bundle/tagbar"]
 	path = vim/vim.symlink/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
-[submodule "vim/vim.symlink/bundle/commentary"]
-	path = vim/vim.symlink/bundle/commentary
-	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim/vim.symlink/bundle/liquid"]
 	path = vim/vim.symlink/bundle/liquid
 	url = https://github.com/tpope/vim-liquid.git
@@ -91,3 +88,6 @@
 [submodule "vim/vim.symlink/bundle/html"]
 	path = vim/vim.symlink/bundle/html
 	url = https://github.com/tudorprodan/html_annoyance.vim.git
+[submodule "vim/vim.symlink/bundle/tcomment"]
+	path = vim/vim.symlink/bundle/tcomment
+	url = git://github.com/tomtom/tcomment_vim.git

@@ -194,9 +194,6 @@ map <C-K> <C-w><C-k>
 map <C-h> <C-w><C-h>
 map <C-l> <C-w><C-l>
 
-" Shortcut for T-Comment
-map <Leader>c <c-_><c-_>
-
 " Write as sudo
 cmap w!! %!sudo tee > /dev/null %
 
@@ -545,6 +542,11 @@ let g:SuperTabCrMapping = 1
 " Tagbar {{{
 
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+"}}}
+" T-Comment {{{
+
+map <Leader>c <c-_><c-_>
 
 "}}}
 
