@@ -8,3 +8,5 @@ nbproject
 *.esproj
 
 todo
+vendor/bundler/
+/.bundle
