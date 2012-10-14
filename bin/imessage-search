@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'sqlite3'
+rescue LoadError
+  warn 'SQlite3 library not found.'
+  warn 'Install it with `gem install sqlite3`'
+  exit 0
+end
+
+unless ARGV[0] != nil
+  warn 'No search provided'
+  exit 0
+end
+
+OSX_EPOCH = 978307200
+MESSAGES_LOCATION = "#{ENV['HOME']}/Library/Messages/chat.db"
+db = SQLite3::Database.new(MESSAGES_LOCATION)
+
+search = <<-SQL
+SELECT
+  `handle`.`id`,
+  `message`.`date`,
+  `message`.`text`
+FROM `message`
+  LEFT JOIN `handle`
+    ON `handle`.`ROWID` = `message`.`handle_id`
+  WHERE `message`.`text` LIKE '%#{ARGV[0]}%'
+SQL
+
+rows = db.execute(search)
+
+rows.each_with_index do |row, index|
+  unless index == 0
+    puts "\r"
+  end
+
+  time = Time.at(OSX_EPOCH + row[1])
+  formatted_time = time.strftime("%l:%M %p on %A %e %B %Y")
+
+  puts "User: #{row[0]}"
+  puts "Time: #{formatted_time}"
+  puts "Message: \"#{row[2]}\""
+end
