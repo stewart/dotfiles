@@ -26,10 +26,21 @@ There are a few special files in here:
 
 ## but wait, there's more!
 
-Added value if you install the following:
+Added value if you install the following from Homebrew:
 
-- core-utils - `brew install core-utils`
-- grb - `brew install grc`
+- ack
+- coreutils
+- grc
+- hub
+- postgresql
+- rbenv
+- reattach-to-user-namespace
+- redis
+- ruby-build
+- ssh-copy-id
+- tmux
+- vim (from homebrew/dupes)
+- z
 
 ## thanks
 
