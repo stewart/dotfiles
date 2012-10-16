@@ -5,12 +5,12 @@ begin
 rescue LoadError
   warn 'SQlite3 library not found.'
   warn 'Install it with `gem install sqlite3`'
-  exit 0
+  exit
 end
 
-unless ARGV[0] != nil
+if ARGV.length == 0
   warn 'No search provided'
-  exit 0
+  exit
 end
 
 OSX_EPOCH = 978307200
