@@ -5,9 +5,6 @@ alias psr='ps aux | grep ruby'
 # human friendly df
 alias df='df -h'
 
-# use the MacVim version of Vim
-alias vim="mvim -v"
-
 alias gz='tar -zcvf'
 
 # git
