@@ -19,10 +19,9 @@ set autowrite
 set backspace=indent,eol,start
 set backupskip=/tmp/*,/private/tmp/*"
 set completeopt=longest,menuone,preview
-set complete-=i
+set complete=.,w,b,u,t
 set clipboard=unnamed
 set cursorline
-set dictionary=/usr/share/dict/words
 set encoding=utf-8
 set fillchars=diff:⣿,vert:│
 set hidden
@@ -46,6 +45,7 @@ set shiftround
 set showbreak=↪
 set sidescroll=1
 set sidescrolloff=10
+set dictionary=/usr/share/dict/words
 set spellfile=~/.vim/custom-dictionary.utf-8.add
 set splitbelow
 set splitright
@@ -86,8 +86,13 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest
 set wildignore+=*.spl
 set wildignore+=*.DS_Store
 
+set wildignore+=migrations
+set wildignore+=*.pyc
+
+set wildignore+=classes
+set wildignore+=lib
+
 " }}}
-"
 " Line Return {{{
 
 augroup line_return
@@ -126,11 +131,23 @@ endif
 " }}}
 " Backups {{{
 
+set backup
+set noswapfile
+
 set undodir=~/.vim/tmp/undo//
 set backupdir=~/.vim/tmp/backup//
 set directory=~/.vim/tmp/swap//
-set backup
-set noswapfile
+
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
 
 " }}}
 " Leader {{{
@@ -245,7 +262,7 @@ nnoremap <c-a> ggVG
 " Easier to press
 nnoremap <tab> %
 vnoremap <tab> %
-
+mzggg?G`z
 map <leader>rf :call RenameFile()<cr>
 
 " Make Y behave like other capitals
@@ -266,17 +283,6 @@ noremap <leader>v <C-w>v
 " Formatting, TextMate-style
 nnoremap Q gqip
 vnoremap Q gq
-
-" numbers as objects
-onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
-xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
-onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
-onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
-xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
-
-nnoremap <silent> <leader>a :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
 
 " Easy filetype switching {{{
 
@@ -489,18 +495,16 @@ let ctrlp_filter_greps = "".
     \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" .
+    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/|docs/build/" .
     \ ")'"
 
 let my_ctrlp_user_command = "" .
     \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*' | " .
     \ ctrlp_filter_greps
 
-let my_ctrlp_git_command = "" .
-    \ "cd %s && git ls-files | " .
-    \ ctrlp_filter_greps
+let g:ctrlp_user_command = my_ctrlp_user_command
 
-let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+nnoremap <leader>. :CtrlPTag<cr>
 
 " }}}
 " NERDTree {{{
@@ -551,6 +555,50 @@ map <Leader>c <c-_><c-_>
 "}}}
 
 " }}}
+" Text objects ------------------------------------------------------------ {{{
+
+" Shortcut for [] {{{
+
+onoremap ir i[
+onoremap ar a[
+vnoremap ir i[
+vnoremap ar a[
+
+" }}}
+" Numbers {{{
+
+" Motion for numbers.  Great for CSS.  Lets you do things like this:
+"
+" margin-top: 200px; -> daN -> margin-top: px;
+"              ^                          ^
+" TODO: Handle floats.
+
+onoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+xnoremap N :<c-u>call <SID>NumberTextObject(0)<cr>
+onoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap aN :<c-u>call <SID>NumberTextObject(1)<cr>
+onoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+xnoremap iN :<c-u>call <SID>NumberTextObject(1)<cr>
+
+function! s:NumberTextObject(whole)
+    normal! v
+
+    while getline('.')[col('.')] =~# '\v[0-9]'
+        normal! l
+    endwhile
+
+    if a:whole
+        normal! o
+
+        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
+            normal! h
+        endwhile
+    endif
+endfunction
+
+" }}}
+
+" }}}
 " Functions--------------------------------------------------------- {{{
 
 function! s:CopyMotionForType(type) " {{{
@@ -569,22 +617,6 @@ function! s:AckMotion(type) abort " {{{
     execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
 
     let @@ = reg_save
-endfunction " }}}
-
-function! s:NumberTextObject(whole) " {{{
-    normal! v
-
-    while getline('.')[col('.')] =~# '\v[0-9]'
-        normal! l
-    endwhile
-
-    if a:whole
-        normal! o
-
-        while col('.') > 1 && getline('.')[col('.') - 2] =~# '\v[0-9]'
-            normal! h
-        endwhile
-    endif
 endfunction " }}}
 
 function! BufOnly(buffer, bang) " {{{
