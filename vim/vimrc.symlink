@@ -262,7 +262,6 @@ nnoremap <c-a> ggVG
 " Easier to press
 nnoremap <tab> %
 vnoremap <tab> %
-mzggg?G`z
 map <leader>rf :call RenameFile()<cr>
 
 " Make Y behave like other capitals
@@ -608,7 +607,6 @@ function! s:CopyMotionForType(type) " {{{
         silent execute "normal! `[v`]y"
     endif
 endfunction " }}}
-
 function! s:AckMotion(type) abort " {{{
     let reg_save = @@
 
@@ -618,7 +616,6 @@ function! s:AckMotion(type) abort " {{{
 
     let @@ = reg_save
 endfunction " }}}
-
 function! BufOnly(buffer, bang) " {{{
   if a:buffer == ''
     " No buffer provided, use the current buffer.
@@ -666,7 +663,6 @@ function! BufOnly(buffer, bang) " {{{
   endif
 
 endfunction " }}}
-
 function! GetClojureFold() " {{{
       if getline(v:lnum) =~ '^\s*(defn.*\s'
             return ">1"
@@ -697,7 +693,6 @@ function! GetClojureFold() " {{{
             return "="
       endif
 endfunction " }}}
-
 function! TurnOnClojureFolding() " {{{
       setlocal foldexpr=GetClojureFold()
       setlocal foldmethod=expr
