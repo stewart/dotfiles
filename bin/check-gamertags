@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'httparty'
+require 'cgi'
+
+gamertags = ['Andrew Stewart']
+
+gamertags.each do |gamertag|
+  url = "https://live.xbox.com/en-US/Profile?gamertag=#{gamertag.gsub(' ', '%20')}"
+
+  response = HTTParty.get(url)
+  code = response.code
+
+  puts "Gamertag: #{gamertag}"
+  case code
+    when 200 then puts 'Unavailable. Status code is 200'
+    when 404 then puts 'Available. Status code is 404.'
+    else
+      puts "Unknown availability. You should check yourself. Status code #{code}"
+      puts url
+  end
+end
