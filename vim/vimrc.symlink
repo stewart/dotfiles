@@ -257,7 +257,6 @@ nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 
 " Select all
 nnoremap <leader>A ggVG
-nnoremap <c-a> ggVG
 
 " Easier to press
 nnoremap <tab> %
