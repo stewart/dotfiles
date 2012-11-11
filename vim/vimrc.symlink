@@ -461,13 +461,6 @@ augroup END
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
-" Ack {{{
-
-nnoremap <leader>a :Ack!<space>
-nnoremap <silent> <leader>a :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
-
-" }}}
 " Ctrl-P {{{
 
 let g:ctrlp_dont_split = 'NERD_tree_2'
@@ -539,11 +532,6 @@ let g:Powerline_cache_enabled = 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabLongestHighlight = 1
 let g:SuperTabCrMapping = 1
-
-"}}}
-" Tagbar {{{
-
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 "}}}
 " T-Comment {{{
