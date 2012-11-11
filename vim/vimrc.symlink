@@ -216,8 +216,8 @@ cmap w!! %!sudo tee > /dev/null %
 nnoremap <Space> za
 vnoremap <Space> za
 
-" Make find/replace easier
-nnoremap <leader>s :%s//<left>
+" Shortcut to open a scratch buffer
+nnoremap <leader>s :Scratch<cr>
 
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
@@ -259,7 +259,9 @@ nnoremap <leader>A ggVG
 " Easier to press
 nnoremap <tab> %
 vnoremap <tab> %
-map <leader>rf :call RenameFile()<cr>
+
+" Shortcut to rename current file
+map <leader>r :call RenameFile()<cr>
 
 " Make Y behave like other capitals
 nnoremap Y y$
@@ -681,6 +683,15 @@ endfunction " }}}
 function! TurnOnClojureFolding() " {{{
       setlocal foldexpr=GetClojureFold()
       setlocal foldmethod=expr
+endfunction " }}}
+function! RenameFile() " {{{
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
 endfunction " }}}
 
 " }}}
