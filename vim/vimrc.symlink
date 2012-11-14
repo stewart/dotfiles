@@ -473,6 +473,16 @@ let g:ctrlp_split_window = 0
 let g:ctrlp_max_height = 20
 let g:ctrlp_extensions = ['tag']
 
+" Easier mappings for searches
+nnoremap <leader>gl :CtrlP lib/<cr>
+nnoremap <leader>gt :CtrlP test/<cr>
+nnoremap <leader>gs :CtrlP spec/<cr>
+nnoremap <leader>gf :CtrlP features/<cr>
+nnoremap <leader>gm :CtrlP app/models/<cr>
+nnoremap <leader>gc :CtrlP app/controllers/<cr>
+nnoremap <leader>gv :CtrlP app/views/<cr>
+nnoremap <leader>gb :CtrlPBufTag<cr>
+
 let g:ctrlp_prompt_mappings = {
 \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
 \ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
