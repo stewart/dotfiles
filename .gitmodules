@@ -55,3 +55,6 @@
 [submodule "vim/vim.symlink/bundle/fugitive"]
 	path = vim/vim.symlink/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "vim/vim.symlink/bundle/clojure"]
+	path = vim/vim.symlink/bundle/clojure
+	url = https://github.com/vim-scripts/VimClojure.git
