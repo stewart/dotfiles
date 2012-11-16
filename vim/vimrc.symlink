@@ -403,6 +403,7 @@ augroup ft_markdown
 
     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=markdown
     au BufNewFile,BufRead *.md,*.markdown setlocal textwidth=80
+    au BufNewFile,BufRead *.md,*.markdown setlocal syntax=off
 
     " Use <localleader>1/2/3 to add headings.
     au Filetype markdown nnoremap <buffer> <localleader>1 yypVr=
