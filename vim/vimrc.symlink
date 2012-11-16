@@ -524,13 +524,6 @@ let NERDTreeDirArrows = 1
 let NERDChristmasTree = 1
 
 " }}}
-" LustyJuggler {{{
-
-let g:LustyJugglerAltTabMode = 1
-let g:LustyJugglerSuppressRubyWarning = 1
-noremap <silent> <Leader><Tab> :LustyJuggler<CR>
-
-" }}}
 " Powerline {{{
 
 let g:Powerline_symbols = 'fancy'
