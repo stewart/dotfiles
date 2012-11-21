@@ -1,6 +1,6 @@
 # ps
-alias psg="ps aux | grep "
-alias psr='ps aux | grep ruby'
+alias psa="ps | ack "
+alias psr='ps | ack ruby'
 
 # human friendly df
 alias df='df -h'
@@ -21,3 +21,10 @@ alias less='less -r'
 
 # bundler, you crazy
 alias bx='bundle exec'
+
+# shortcut
+alias vi='vim'
+
+# make sudo more fun
+alias fucking='sudo'
+alias ffs='sudo !!'
