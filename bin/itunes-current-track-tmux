@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+ITUNES_TRACK=$(osascript <<EOF
+if appIsRunning("iTunes") then
+  tell application "iTunes" to if player state is playing then get the name of current track
+end if
+
+on appIsRunning(appName)
+    tell app "System Events" to (name of processes) contains appName
+end appIsRunning
+EOF)
+
+if test "x$ITUNES_TRACK" != "x"; then
+ITUNES_ARTIST=$(osascript <<EOF
+if appIsRunning("iTunes") then
+  tell application "iTunes" to if player state is playing then get the artist of current track
+end if
+
+on appIsRunning(appName)
+    tell app "System Events" to (name of processes) contains appName
+end appIsRunning
+EOF)
+    echo '#[fg=colour238]⮂#[fg=colour250,bg=colour238,nobold] ♫ ' $ITUNES_TRACK '#[nobold]-#[bold]' $ITUNES_ARTIST ''
+fi
