@@ -224,9 +224,6 @@ map <leader>ra :call RunTests('')<cr>
 nnoremap <Space> za
 vnoremap <Space> za
 
-" Shortcut to open a scratch buffer
-nnoremap <leader>s :Scratch<cr>
-
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
@@ -356,7 +353,7 @@ nnoremap <Space> za
 vnoremap <Space> za
 
 " "Refocus" folds
-nnoremap ,z zMzvzz
+nnoremap <c-z> zMzvzz
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
@@ -382,6 +379,59 @@ set foldtext=MyFoldText()
 " }}}
 " Filetype-specific ------------------------------------------------------- {{{
 
+" andrew-stewart.ca blog entries {{{
+
+augroup ft_andrewstewartca
+    au!
+    au BufRead,BufNewFile */blog/source/_posts/*.md set spell
+augroup END
+
+" }}}
+" Clojure {{{
+
+augroup ft_clojure
+    au!
+    set wildignore+=classes
+    set wildignore+=lib
+
+    au FileType clojure silent! call TurnOnClojureFolding()
+augroup END
+
+" }}}
+" CSS {{{
+
+augroup ft_css
+    au!
+
+    au FileType css,scss setlocal foldmethod=marker
+    au FileType css,scss setlocal foldmarker={,}
+
+
+    " Use <leader>S to sort properties.  Turns this:
+    "
+    "     p {
+    "         width: 200px;
+    "         height: 100px;
+    "         background: red;
+    "         ...
+    "     }
+    "
+    " into this:
+    "
+    "     p {
+    "         background: red;
+    "         height: 100px;
+    "         width: 200px;
+    "         ...
+    "     }
+    au BufNewFile,BufRead *.scss,*.css nnoremap <buffer> <localleader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
+    " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
+    " positioned inside of them AND the following code doesn't get unfolded.
+    au Filetype css,scss inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
+augroup END
+
+" }}}
 " Javascript {{{
 
 augroup ft_javascript
@@ -411,18 +461,6 @@ augroup ft_markdown
     au Filetype markdown nnoremap <buffer> <localleader>3 I### <ESC>
 augroup END
 " }}}
-" Vim {{{
-
-augroup ft_vim
-    au!
-
-    au FileType vim setlocal foldmethod=marker
-    au FileType vim setlocal textwidth=80
-    au FileType help setlocal textwidth=78
-    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
-augroup END
-
-" }}}
 " PHP {{{
 
 augroup ft_php
@@ -435,27 +473,6 @@ augroup ft_php
 augroup END
 
 " }}}
-" CSS {{{
-
-augroup ft_css
-    au!
-
-    au FileType css setlocal foldmethod=marker
-    au FileType css setlocal foldmarker={,}
-augroup END
-
-" }}}
-" Clojure {{{
-
-augroup ft_clojure
-    au!
-    set wildignore+=classes
-    set wildignore+=lib
-
-    au FileType clojure silent! call TurnOnClojureFolding()
-augroup END
-
-" }}}
 " Python {{{
 
 augroup ft_python
@@ -463,6 +480,18 @@ augroup ft_python
 
     au Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
     au FileType python setlocal foldmethod=indent
+augroup END
+
+" }}}
+" Vim {{{
+
+augroup ft_vim
+    au!
+
+    au FileType vim setlocal foldmethod=marker
+    au FileType vim setlocal textwidth=80
+    au FileType help setlocal textwidth=78
+    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
 augroup END
 
 " }}}
@@ -487,6 +516,7 @@ nnoremap <leader>gl :CtrlP lib/<cr>
 nnoremap <leader>gt :CtrlP test/<cr>
 nnoremap <leader>gs :CtrlP spec/<cr>
 nnoremap <leader>gf :CtrlP features/<cr>
+nnoremap <leader>ga :CtrlP app/assets/<cr>
 nnoremap <leader>gm :CtrlP app/models/<cr>
 nnoremap <leader>gc :CtrlP app/controllers/<cr>
 nnoremap <leader>gv :CtrlP app/views/<cr>
@@ -505,7 +535,7 @@ let ctrlp_filter_greps = "".
     \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/|docs/build/" .
+    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/|docs/build/|vendor/bundle" .
     \ ")'"
 
 let my_ctrlp_user_command = "" .
@@ -546,6 +576,23 @@ let g:SuperTabLongestHighlight = 1
 let g:SuperTabCrMapping = 1
 
 "}}}
+" Scratch {{{
+
+command! ScratchToggle call ScratchToggle()
+
+function! ScratchToggle()
+    if exists("w:is_scratch_window")
+        unlet w:is_scratch_window
+        exec "q"
+    else
+        exec "normal! :Sscratch\<cr>\<C-W>L"
+        let w:is_scratch_window = 1
+    endif
+endfunction
+
+nnoremap <silent> <leader><tab> :ScratchToggle<cr>
+
+" }}}
 " T-Comment {{{
 
 map <Leader>c <c-_><c-_>
@@ -605,15 +652,6 @@ function! s:CopyMotionForType(type) " {{{
     elseif a:type ==# 'char'
         silent execute "normal! `[v`]y"
     endif
-endfunction " }}}
-function! s:AckMotion(type) abort " {{{
-    let reg_save = @@
-
-    call s:CopyMotionForType(a:type)
-
-    execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
-
-    let @@ = reg_save
 endfunction " }}}
 function! BufOnly(buffer, bang) " {{{
   if a:buffer == ''
