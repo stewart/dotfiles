@@ -8,10 +8,9 @@ function console() {
   fi
 }
 
-# Runs a simple web server from the folder you're currently in.
-# Takes a port number as an argument.
-#
-# From @padolsey's comment on this gist: gist.github.com/1525217
-function server() {
-  open "http://localhost:$1" && python -m SimpleHTTPServer $1
+function server() { # via https://gist.github.com/1525217
+    local host=`hostname`
+    local port="${1:-8888}"
+    (sleep 1 && open "http://${host}:${port}/")&
+    python -m SimpleHTTPServer "$port"
 }
