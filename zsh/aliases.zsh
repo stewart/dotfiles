@@ -1,14 +1,7 @@
-# ps
-alias psa="ps | ack "
-alias psr='ps | ack ruby'
-
 # human friendly df
 alias df='df -h'
 
 alias gz='tar -zcvf'
-
-# git
-alias g='git'
 
 # kill
 alias ka9='killall -9'
@@ -19,12 +12,9 @@ alias ps='ps aux'
 alias cl='clear'
 alias less='less -r'
 
-# bundler, you crazy
-alias bx='bundle exec'
-
-# shortcut
-alias vi='vim'
-
 # make sudo more fun
 alias fucking='sudo'
 alias ffs='sudo !!'
+
+# shortcut for javascript terminal
+alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc'

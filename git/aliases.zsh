@@ -1,3 +1,6 @@
+# git
+alias g='git'
+
 # use 'hub as our git wrapper
 alias git='hub'
 
