@@ -586,7 +586,14 @@ function! ScratchToggle()
     endif
 endfunction
 
-nnoremap <silent> <leader><tab> :ScratchToggle<cr>
+nnoremap <silent> <leader>s :ScratchToggle<cr>
+
+" }}}
+" LustyJuggler {{{
+
+let g:LustyJugglerAltTabMode = 1
+let g:LustyJugglerSuppressRubyWarning = 1
+noremap <silent> <Leader><Tab> :LustyJuggler<CR>
 
 " }}}
 " T-Comment {{{
