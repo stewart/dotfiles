@@ -40,7 +40,6 @@ set novisualbell
 set number
 set relativenumber
 set ruler
-set scrolloff=3
 set shiftround
 set showbreak=↪
 set sidescroll=1
@@ -119,12 +118,33 @@ set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 " }}}
 " Relative Line Numbers in Current Buffer {{{
 
+fun! SetRelativeNumberInBuffer()
+  if &ft =~ 'nerdtree'
+    setlocal norelativenumber
+    return
+  endif
+  setlocal relativenumber
+endfun
+
+fun! SetNumberInBuffer()
+  if &ft =~ 'nerdtree'
+    setlocal nonumber
+    return
+  endif
+  setlocal number
+endfun
+
 if exists('&relativenumber')
   set relativenumber
+
+  if &ft =~ 'nerdtree'
+    set norelativenumber
+  end
+
   augroup WindowRNU
     auto!
-    auto BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
-    auto WinLeave,FocusLost               * setlocal number
+    auto BufWinEnter,WinEnter,FocusGained * call SetRelativeNumberInBuffer()
+    auto WinLeave,FocusLost               * call SetNumberInBuffer()
   augroup END
 endif
 
