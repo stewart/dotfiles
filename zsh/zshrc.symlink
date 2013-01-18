@@ -16,8 +16,9 @@ fi
 # vim mode
 bindkey -v
 
-# macvim as $EDITOR
 export EDITOR="vim"
+
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
 # give me my bash style incremental search
 bindkey '^R' history-incremental-search-backward
