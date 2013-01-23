@@ -332,6 +332,16 @@ command! -nargs=? -complete=buffer -bang BufOnly
 " }}}
 
 " }}}
+" Tabs -------------------------------------------------------------------- {{{
+
+nnoremap <leader>tc :tabnew<cr>
+nnoremap <leader>td :tabclose<cr>
+nnoremap <leader>tf :tabfirst<cr>
+nnoremap <leader>tl :tablast<cr>
+nnoremap <leader>[ :tabprev<cr>
+nnoremap <leader>] :tabnext<cr>
+
+" }}}
 " Quick editing ----------------------------------------------------------- {{{
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -513,7 +523,7 @@ augroup END
 
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_jump_to_buffer = 0
-let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_map = '<Leader>g'
 let g:ctrlp_max_files = 10000
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 1
