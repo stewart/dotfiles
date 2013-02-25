@@ -8,5 +8,9 @@ nbproject
 *.esproj
 
 todo
+notes
 vendor/bundle/
 /.bundle
+/.vimrc
+dump.rdb
+run-test.sh

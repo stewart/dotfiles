@@ -12,8 +12,8 @@ set nocompatible
 " }}}
 " Basic options ----------------------------------------------------------- {{{
 "
-set autoindent
-set smartindent
+set noai
+set nosi
 set autoread
 set autowrite
 set backspace=indent,eol,start
@@ -23,6 +23,7 @@ set complete=.,w,b,u,t
 set clipboard=unnamed
 set cursorline
 set encoding=utf-8
+set exrc
 set fillchars=diff:⣿,vert:│
 set hidden
 set history=1000
@@ -801,3 +802,6 @@ function! RunTests(filename) " {{{
 endfunction " }}}
 
 " }}}
+
+" Prevent project vimrc files from damaging stuff
+set secure

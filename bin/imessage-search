@@ -28,9 +28,7 @@ FROM `message`
   WHERE `message`.`text` LIKE '%#{ARGV[0]}%'
 SQL
 
-rows = db.execute(search)
-
-rows.each_with_index do |row, index|
+db.execute(search).each_with_index do |row, index|
   unless index == 0
     puts "\r"
   end

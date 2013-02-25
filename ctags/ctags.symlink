@@ -1,5 +1,9 @@
 --recurse=yes
 --tag-relative=yes
+--fields=-s
+
+--languages=-html
+--languages=-javascript
 
 --langdef=Clojure
 --langmap=Clojure:.clj
