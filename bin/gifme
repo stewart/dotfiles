@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+# Stupid and quick gif finding with the power of ack, only relevant to me.
+#
+# This should probably just be a shell script. Too lazy.
+#
+# Usage:
+#   gif chilicheesefriess
+#     http://pics.stwrt.ca/chilicheesefries.gif copied to your clipboard
+#   gif theylive
+#     Take your pick:
+#       A: theylive.gif
+#       B: theylive.png
+#     a
+#     http://pics.stwrt.ca/they_life.gif copied to your clipboard.
+
+GIFS_FOLDER = "~/Dropbox/Pictures/gifs"
+URL_BASE = "http://pics.stwrt.ca/"
+ALPHABET = %w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0)
+
+def main
+  search_term = ARGV.first
+
+  quit("Usage: gifme burrito") if search_term.nil?
+
+  results = `ls #{GIFS_FOLDER} | ack #{search_term}`.split("\n")
+
+  quit("No gifs found. Try something else.") unless results.length > 0
+  quit("Way too many gifs found. Try something else.") if results.length > ALPHABET.length
+
+  if results.length == 1
+    url = URL_BASE + results.first
+    system "echo '#{url}' | pbcopy"
+    puts "  #{url} copied to your clipboard."
+  else
+    letters_to_results = []
+    results.each_with_index do |result, i|
+      letters_to_results << {url: result, letter: ALPHABET[i]}
+    end
+
+    puts "  Take your pick:"
+    letters_to_results.each do |result|
+      puts "    #{result[:letter]}: #{result[:url]}"
+    end
+
+    picked_letter = STDIN.gets.chomp.upcase
+
+    picked = letters_to_results.find { |r| r[:letter] == picked_letter }
+
+    quit("Invalid selection. Try again.") unless picked
+
+    url = URL_BASE + picked[:url]
+    system "echo '#{url}' | pbcopy"
+    puts "  #{url} copied to your clipboard."
+  end
+end
+
+
+def quit(reason)
+  puts "  #{reason}"
+  exit
+end
+
+main
