@@ -22,6 +22,7 @@ set completeopt=longest,menuone,preview
 set complete=.,w,b,u,t
 set clipboard=unnamed
 set cursorline
+set cursorcolumn
 set encoding=utf-8
 set exrc
 set fillchars=diff:⣿,vert:│
@@ -69,9 +70,13 @@ au VimResized * :wincmd =
 augroup cline
     au!
     au WinLeave * set nocursorline
+    au WinLeave * set nocursorcolumn
     au WinEnter * set cursorline
+    au WinEnter * set cursorcolumn
     au InsertEnter * set nocursorline
+    au InsertEnter * set nocursorcolumn
     au InsertLeave * set cursorline
+    au InsertLeave * set cursorcolumn
 augroup END
 
 " }}}
@@ -196,24 +201,22 @@ syntax on
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
 
+nnoremap <leader>` :set cursorline!<cr>:set cursorcolumn!<cr>
+
+" Get filename quickly
+nnoremap <leader>f :silent let @*=@%
+
+nnoremap ; :
+vnoremap ; :
+
 " gundo
 nnoremap <Leader>u :GundoToggle<CR>
-
-" change case
-inoremap <C-u> <esc>mzgUiw`za
 
 " keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
 " split line
-nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
-
-" move the current line front and center
-nnoremap <c-z> zvzz
-
-" ; acts as : in normal mode:
-nmap ; :
-
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w 
 " Set newline commands to return to insert mode
 nmap o o<Esc>
 nmap O O<Esc>
@@ -246,15 +249,8 @@ cnoremap <c-e> <end>
 " Open Markdown previews in Marked.app
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
-" Charwise selection
-nnoremap vv ^vg_
-
 " Make finding marks easier
 noremap ' `
-
-" Insert mode completion
-inoremap <c-l> <c-x><c-l>
-inoremap <c-f> <c-x><c-f>
 
 " Go to beginning or end of line
 nnoremap H ^
@@ -303,7 +299,6 @@ nnoremap Q gqip
 vnoremap Q gq
 
 " Easy filetype switching {{{
-
 nnoremap _md   :set ft=markdown<CR>
 nnoremap _php  :set ft=php<CR>
 nnoremap _js   :set ft=javascript<CR>
@@ -614,6 +609,13 @@ noremap <silent> <Leader><Tab> :LustyJuggler<CR>
 " T-Comment {{{
 
 map <Leader>c <c-_><c-_>
+
+"}}}
+" GitGutter {{{
+
+let g:gitgutter_enabled = 0
+map <silent> <Leader>/ :ToggleGitGutter<cr>
+highlight clear SignColumn
 
 "}}}
 
