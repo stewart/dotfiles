@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# Stupid and quick gif finding with the power of ack, only relevant to me.
+# Stupid and quick gif finding with the power of the_silver_searcher, only relevant to me.
 #
 # This should probably just be a shell script. Too lazy.
 #
@@ -22,7 +22,7 @@ def main
 
   quit("Usage: gifme burrito") if search_term.nil?
 
-  results = `ls #{GIFS_FOLDER} | ack #{search_term}`.split("\n")
+  results = `ls #{GIFS_FOLDER} | ag #{search_term}`.split("\n")
 
   quit("No gifs found. Try something else.") unless results.length > 0
   quit("Way too many gifs found. Try something else.") if results.length > ALPHABET.length
