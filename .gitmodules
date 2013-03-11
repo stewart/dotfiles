@@ -58,3 +58,12 @@
 [submodule "vim/vim.symlink/bundle/lustyjuggler"]
 	path = vim/vim.symlink/bundle/lustyjuggler
 	url = https://github.com/vim-scripts/LustyJuggler.git
+[submodule "vim/vim.symlink/bundle/gitgutter"]
+	path = vim/vim.symlink/bundle/gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "vim/vim.symlink/bundle/jade"]
+	path = vim/vim.symlink/bundle/jade
+	url = git://github.com/digitaltoad/vim-jade.git
+[submodule "vim/vim.symlink/bundle/stylus"]
+	path = vim/vim.symlink/bundle/stylus
+	url = git://github.com/wavded/vim-stylus.git
