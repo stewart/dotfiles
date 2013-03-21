@@ -584,13 +584,6 @@ noremap <silent> <Leader><Tab> :LustyJuggler<CR>
 map <Leader>c <c-_><c-_>
 
 "}}}
-" GitGutter {{{
-
-let g:gitgutter_enabled = 0
-map <silent> <Leader>/ :ToggleGitGutter<cr>
-highlight clear SignColumn
-
-"}}}
 
 " }}}
 " Text objects ------------------------------------------------------------ {{{
