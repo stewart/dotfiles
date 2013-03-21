@@ -48,9 +48,7 @@
   b = branch -v
 
   # commit
-  c = commit -m
-  ca = commit -am
-  ci = commit
+  c = commit -v
   amend = commit --amend
 
   # checkout
