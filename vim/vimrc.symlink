@@ -502,6 +502,8 @@ nnoremap <leader>gl :CtrlP lib/<cr>
 nnoremap <leader>gt :CtrlP test/<cr>
 nnoremap <leader>gs :CtrlP spec/<cr>
 nnoremap <leader>gf :CtrlP features/<cr>
+nnoremap <leader>gd :CtrlP db/<cr>
+nnoremap <leader>gs :CtrlP app/services/<cr>
 nnoremap <leader>ga :CtrlP app/assets/<cr>
 nnoremap <leader>gm :CtrlP app/models/<cr>
 nnoremap <leader>gc :CtrlP app/controllers/<cr>
