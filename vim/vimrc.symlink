@@ -503,7 +503,6 @@ nnoremap <leader>gt :CtrlP test/<cr>
 nnoremap <leader>gs :CtrlP spec/<cr>
 nnoremap <leader>gf :CtrlP features/<cr>
 nnoremap <leader>gd :CtrlP db/<cr>
-nnoremap <leader>gs :CtrlP app/services/<cr>
 nnoremap <leader>ga :CtrlP app/assets/<cr>
 nnoremap <leader>gm :CtrlP app/models/<cr>
 nnoremap <leader>gc :CtrlP app/controllers/<cr>
@@ -586,6 +585,28 @@ noremap <silent> <Leader><Tab> :LustyJuggler<CR>
 map <Leader>c <c-_><c-_>
 
 "}}}
+" Rails.vim {{{
+
+" Projections
+  let g:rails_projections = {
+  \ "app/services/*.rb": {
+  \   "command": "service",
+  \   "template": "class %S\nend",
+  \   "test": [
+  \     "test/service/%s_test.rb",
+  \     "spec/service/%s_spec.rb"
+  \   ]
+  \ },
+  \ "spec/fabricators/*_fabricator.rb": {
+  \   "command": "fabricator",
+  \   "template": "Fabricator(:%s)\nend",
+  \   "keywords": "sequence",
+  \   "affinity": "model"
+  \ },
+  \ "features/support/*.rb": {"command": "support"},
+  \ "features/support/env.rb": {"command": "support"}}
+
+" }}}
 
 " }}}
 " Text objects ------------------------------------------------------------ {{{
