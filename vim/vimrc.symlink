@@ -573,6 +573,13 @@ endfunction
 nnoremap <silent> <leader>s :ScratchToggle<cr>
 
 " }}}
+"" Supertab {{{
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 1
+
+"}}}
 " LustyJuggler {{{
 
 let g:LustyJugglerAltTabMode = 1
