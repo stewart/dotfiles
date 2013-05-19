@@ -61,3 +61,6 @@
 [submodule "vim/vim.symlink/bundle/stylus"]
 	path = vim/vim.symlink/bundle/stylus
 	url = git://github.com/wavded/vim-stylus.git
+[submodule "vim/vim.symlink/bundle/handlebars"]
+	path = vim/vim.symlink/bundle/handlebars
+	url = https://github.com/nono/vim-handlebars.git
