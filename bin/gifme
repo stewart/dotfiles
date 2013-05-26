@@ -14,7 +14,7 @@
 #     http://pics.stwrt.ca/they_life.gif copied to your clipboard.
 
 GIFS_FOLDER = "~/Dropbox/Pictures/gifs"
-URL_BASE = "http://pics.stwrt.ca/"
+URL_BASE = "http://gifs.stwrt.ca/"
 ALPHABET = %w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0)
 
 def main
