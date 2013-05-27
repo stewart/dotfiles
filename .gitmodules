@@ -64,6 +64,3 @@
 [submodule "vim/vim.symlink/bundle/handlebars"]
 	path = vim/vim.symlink/bundle/handlebars
 	url = https://github.com/nono/vim-handlebars.git
-[submodule "vim/vim.symlink/bundle/supertab"]
-	path = vim/vim.symlink/bundle/supertab
-	url = git@github.com:ervandew/supertab.git
