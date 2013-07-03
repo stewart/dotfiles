@@ -1,42 +1,90 @@
 #!/usr/bin/env ruby
 
-begin
-  require 'sqlite3'
-rescue LoadError
-  warn 'SQlite3 library not found.'
-  warn 'Install it with `gem install sqlite3`'
-  exit
-end
-
-if ARGV.length == 0
-  warn 'No search provided'
-  exit
-end
-
-OSX_EPOCH = 978307200
-MESSAGES_LOCATION = "#{ENV['HOME']}/Library/Messages/chat.db"
-db = SQLite3::Database.new(MESSAGES_LOCATION)
-
-search = <<-SQL
-SELECT
-  `handle`.`id`,
-  `message`.`date`,
-  `message`.`text`
-FROM `message`
-  LEFT JOIN `handle`
-    ON `handle`.`ROWID` = `message`.`handle_id`
-  WHERE `message`.`text` LIKE '%#{ARGV[0]}%'
-SQL
-
-db.execute(search).each_with_index do |row, index|
-  unless index == 0
-    puts "\r"
+%w(json sqlite3).each do |gem|
+  begin
+    require gem
+  rescue
+    warn "  unable to load #{gem} gem"
+    warn "  please install it with: gem install #{gem}"
+    exit
   end
-
-  time = Time.at(OSX_EPOCH + row[1])
-  formatted_time = time.strftime("%l:%M %p on %A %e %B %Y")
-
-  puts "User: #{row[0]}"
-  puts "Time: #{formatted_time}"
-  puts "Message: \"#{row[2]}\""
 end
+
+# For date-mathing. For some reason, OS X has a different epoch than standard
+# UNIX. Not sure why.
+OSX_EPOCH = 978307200
+
+# iMessage conveniently keeps all it's messages sitting in a nice, tidy SQLite
+# database.
+MESSAGES_DB_LOCATION = "#{ENV['HOME']}/Library/Messages/chat.db"
+
+# Loads identities in JSON format from ~/.imessage-identities. If none are
+# present, returns an empty array.
+#
+# Example ~/.imessage-identities format:
+#   [
+#     {
+#       "name": "Mom",
+#       "identities": ["mom@gmail.com", "+5551123"]
+#     },
+#     {
+#       "name": "Dad",
+#       "identities": ["+5551234"]
+#     }
+#   ]
+IDENTITIES = JSON.parse(File.read("#{ENV['HOME']}/.imessage-identities")) rescue []
+
+def display_help
+  puts "  usage:"
+  puts "    imessage-search [search-term]"
+  exit
+end
+
+def search_query
+  <<-SQL
+  SELECT
+    `handle`.`id`,
+    `message`.`date`,
+    `message`.`text`
+  FROM `message`
+    LEFT JOIN `handle`
+      ON `handle`.`ROWID` = `message`.`handle_id`
+    WHERE `message`.`text` LIKE '%#{ARGV[0]}%'
+  SQL
+end
+
+def find_person_by_id(id)
+  return id unless IDENTITIES.any?
+
+  if person = IDENTITIES.find { |i| i['identities'].include? id }
+    person['name']
+  else
+    id
+  end
+end
+
+def execute_search(database, query)
+  results = database.execute(query)
+
+  results.each_with_index do |row, i|
+    time = Time.at(OSX_EPOCH + row[1]).strftime("%l:%M %p on %A, %B %e, %Y")
+    person = find_person_by_id(row[0])
+    message = row[2].gsub(/(#{ARGV[0]})/i, "\033[37m#{'\1'}\033[39m")
+
+    puts "\r" unless i == 0
+    puts "\033[33mPerson:\033[39m #{person}"
+    puts "\033[33mTime:\033[39m #{time}"
+    puts "\033[33mMessage:\033[39m \"#{message}\""
+  end
+end
+
+def main
+  display_help if ARGV.length == 0
+
+  db = SQLite3::Database.new(MESSAGES_DB_LOCATION)
+  query = search_query
+
+  execute_search db, query
+end
+
+main
