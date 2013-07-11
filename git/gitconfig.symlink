@@ -102,6 +102,8 @@
   filelog = log -u
   mt = mergetool
 
+  standup = log --oneline --since '1 day ago' --author 'andrew@averagestudios.com'
+
   # stash
   ss = stash
   sl = stash list
