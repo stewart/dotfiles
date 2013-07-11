@@ -60,6 +60,9 @@ set virtualedit+=block
 set mouse=a
 set t_ti= t_te=   " makes vim play nice with terminal scrollback
 
+" Save when losing focus
+au FocusLost * :silent! wall
+
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
@@ -186,6 +189,13 @@ inoremap jj <ESC>
 
 nnoremap <leader>` :set cursorline!<cr>:set cursorcolumn!<cr>
 
+" Sort lines
+vnoremap <leader>s :!sort<cr>
+
+" Tabs
+nnoremap <leader>( :tabprev<cr>
+nnoremap <leader>) :tabnext<cr>
+
 " Get filename quickly
 nnoremap <leader>f :silent let @*=@%
 
@@ -253,11 +263,18 @@ nnoremap <leader>2 :setlocal shiftwidth=2 tabstop=2 softtabstop=2<cr>
 nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
 
 " Select all
-nnoremap <leader>A ggVG
+nnoremap vaa ggvGg_
+nnoremap Vaa ggVG
+
+" sjl's uppercase word mapping
+inoremap <C-u> <esc>mzgUiw`za
 
 " Easier to press
 nnoremap <tab> %
 vnoremap <tab> %
+
+" Reformat line.
+nnoremap ql gqq
 
 " Shortcut to rename current file
 map <leader>r :call RenameFile()<cr>
