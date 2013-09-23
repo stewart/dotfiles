@@ -486,6 +486,15 @@ augroup ft_python
 augroup END
 
 " }}}
+" Ruby {{{
+
+augroup ft_ruby
+    au!
+
+    au BufRead,BufNewFile {Capfile,Gemfile,Rakefile,Thorfile,Vagrantfile,config.ru,.caprc,.irbrc} set ft=ruby
+augroup END
+
+" }}}
 " Vim {{{
 
 augroup ft_vim
