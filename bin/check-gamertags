@@ -3,7 +3,7 @@
 require 'httparty'
 require 'cgi'
 
-gamertags = ['Andrew Stewart']
+gamertags = ['Andrew Stewart', "andrewstewart"]
 
 gamertags.each do |gamertag|
   url = "https://live.xbox.com/en-US/Profile?gamertag=#{gamertag.gsub(' ', '%20')}"
