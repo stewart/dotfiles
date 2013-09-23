@@ -36,6 +36,9 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
+# Increase window resize speed for Cocoa applications
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
 # Display ASCII control characters using caret notation in standard text views
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
@@ -81,6 +84,9 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write com.apple.BezelServices kDim -bool true
 # Turn off keyboard illumination when computer is not used for 5 minutes
 defaults write com.apple.BezelServices kDimTime -int 300
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 ###############################################################################
 # Screen                                                                      #
@@ -169,7 +175,6 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
-
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
@@ -255,12 +260,18 @@ defaults write org.m0k.transmission WarningDonate -bool false
 defaults write org.m0k.transmission WarningLegal -bool false
 
 ###############################################################################
+# Google Chrome & Google Chrome Canary                                        #
+###############################################################################
+
+# Allow installing user scripts via GitHub or Userscripts.org
+defaults write com.google.Chrome ExtensionInstallSources -array "https://*.github.com/*" "http://userscripts.org/*"
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
 for app in "Address Book" "Calendar" "Contacts" "Dashboard" "Dock" "Finder" \
-  "SystemUIServer" "Transmission" \
-  "iCal" "iTunes"; do
+  "SystemUIServer" "Transmission" "iCal" "iTunes"; do
   killall "$app" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
