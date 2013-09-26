@@ -1,7 +1,4 @@
-# use git's autocompletion
-completion=/usr/local/etc/bash_completion.d/git-completion.bash
-
-if test -f $completion
+if test -f /usr/local/share/zsh/site-functions/_git
 then
-  source $completion
+  zstyle ':completion:*:*:git:*' source /usr/local/share/zsh/site-functions/_git
 fi
