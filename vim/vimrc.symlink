@@ -270,8 +270,8 @@ nnoremap Vaa ggVG
 inoremap <C-u> <esc>mzgUiw`za
 
 " Easier to press
-nnoremap <tab> %
-vnoremap <tab> %
+nmap <tab> %
+vmap <tab> %
 
 " Reformat line.
 nnoremap ql gqq
