@@ -561,6 +561,12 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 
 " }}}
+" Clever-F {{{
+
+let g:clever_f_across_no_line = '1'
+let g:clever_f_fix_key_direction = '1'
+
+" }}}
 " NERDTree {{{
 
 map <Leader>n :NERDTree<CR>
