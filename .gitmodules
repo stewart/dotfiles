@@ -67,3 +67,6 @@
 [submodule "vim/vim.symlink/bundle/indentobject"]
 	path = vim/vim.symlink/bundle/indentobject
 	url = https://github.com/austintaylor/vim-indentobject.git
+[submodule "vim/vim.symlink/bundle/matchit"]
+	path = vim/vim.symlink/bundle/matchit
+	url = https://github.com/vim-scripts/matchit.zip.git
