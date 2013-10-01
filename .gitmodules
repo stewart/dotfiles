@@ -73,3 +73,6 @@
 [submodule "vim/vim.symlink/bundle/clever-f"]
 	path = vim/vim.symlink/bundle/clever-f
 	url = https://github.com/rhysd/clever-f.vim.git
+[submodule "vim/vim.symlink/bundle/vim-tmux-navigator"]
+	path = vim/vim.symlink/bundle/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
