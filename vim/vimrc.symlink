@@ -214,12 +214,6 @@ nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 nmap o o<Esc>
 nmap O O<Esc>
 
-" Change window splits easily
-map <C-J> <C-w><C-j>
-map <C-K> <C-w><C-k>
-map <C-h> <C-w><C-h>
-map <C-l> <C-w><C-l>
-
 " Write as sudo
 cmap w!! %!sudo tee > /dev/null %
 
