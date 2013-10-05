@@ -1,1 +1,0 @@
-alias rh='rbenv rehash'

@@ -21,10 +21,10 @@ export GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
 export GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 
 rb_prompt(){
-  if $(which rbenv &> /dev/null)
+  if [[ $(which ruby) == "/usr/bin/ruby" ]]
   then
-    echo "using %{$fg_bold[red]%}$(rbenv version | awk '{print $1}')%{$reset_color%}"
+    echo "using %{$fg_bold[red]%}system%{$reset_color%}"
   else
-    echo ""
+    echo "using %{$fg_bold[red]%}$(echo $(basename $RUBY_ROOT))%{$reset_color%}"
   fi
 }

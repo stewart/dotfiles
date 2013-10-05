@@ -4,8 +4,8 @@ export ZSH=$HOME/.dotfiles
 # source all .zsh files in this repo
 for config_file ($ZSH/*/*.zsh) source $config_file
 
-# rbenv has to be init'd after PATH is declared
-eval "$(rbenv init -)"
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 
 # .localrc for MYSTERY AND WONDER
 if [[ -a ~/.localrc ]]
