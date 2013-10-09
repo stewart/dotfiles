@@ -4,7 +4,7 @@ export MODE_INDICATOR="%{$fg_bold[red]%}❮%{$reset_color%}%{$fg[red]%}❮❮%{$
 local return_status="%{$fg[red]%}%(?..⏎)%{$reset_color%}"
 
 export PROMPT='%{$fg[green]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg[cyan]%}%c$(git_prompt_info) %{$reset_color%}$(rb_prompt)
-%(!.%{$fg_bold[red]%}#.%{$fg_bold[green]%})λ%{$reset_color%} '
+%(?.%F{$fg_bold[green]%}.%F{red})λ%f '
 
 export GIT_PROMPT_PREFIX=" %{$fg[blue]%}on%{$reset_color%} %{$fg_bold[red]%}"
 export GIT_PROMPT_SUFFIX="%{$reset_color%}"
