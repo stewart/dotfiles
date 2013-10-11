@@ -196,9 +196,6 @@ vnoremap <leader>s :!sort<cr>
 nnoremap <leader>( :tabprev<cr>
 nnoremap <leader>) :tabnext<cr>
 
-" Get filename quickly
-nnoremap <leader>f :silent let @*=@%
-
 nnoremap ; :
 vnoremap ; :
 
@@ -477,16 +474,19 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_extensions = ['tag']
 
 " Easier mappings for searches
-nnoremap <leader>gl :CtrlPClearAllCaches<cr> :CtrlP lib/<cr>
-nnoremap <leader>gt :CtrlPClearAllCaches<cr> :CtrlP test/<cr>
-nnoremap <leader>gs :CtrlPClearAllCaches<cr> :CtrlP spec/<cr>
-nnoremap <leader>gf :CtrlPClearAllCaches<cr> :CtrlP features/<cr>
-nnoremap <leader>gd :CtrlPClearAllCaches<cr> :CtrlP db/<cr>
-nnoremap <leader>ga :CtrlPClearAllCaches<cr> :CtrlP app/assets/<cr>
-nnoremap <leader>gm :CtrlPClearAllCaches<cr> :CtrlP app/models/<cr>
-nnoremap <leader>gc :CtrlPClearAllCaches<cr> :CtrlP app/controllers/<cr>
-nnoremap <leader>gv :CtrlPClearAllCaches<cr> :CtrlP app/views/<cr>
-nnoremap <leader>gb :CtrlPClearAllCaches<cr> :CtrlPBufTag<cr>
+nnoremap <leader>gl :CtrlPClearAllCaches<cr>\|:CtrlP lib/<cr>
+nnoremap <leader>gt :CtrlPClearAllCaches<cr>\|:CtrlP test/<cr>
+nnoremap <leader>gs :CtrlPClearAllCaches<cr>\|:CtrlP spec/<cr>
+nnoremap <leader>gf :CtrlPClearAllCaches<cr>\|:CtrlP features/<cr>
+nnoremap <leader>gd :CtrlPClearAllCaches<cr>\|:CtrlP db/<cr>
+nnoremap <leader>ga :CtrlPClearAllCaches<cr>\|:CtrlP app/assets/<cr>
+nnoremap <leader>gm :CtrlPClearAllCaches<cr>\|:CtrlP app/models/<cr>
+nnoremap <leader>gc :CtrlPClearAllCaches<cr>\|:CtrlP app/controllers/<cr>
+nnoremap <leader>gv :CtrlPClearAllCaches<cr>\|:CtrlP app/views/<cr>
+nnoremap <leader>gb :CtrlPClearAllCaches<cr>\|:CtrlPBufTag<cr>
+nnoremap <leader>f :CtrlPClearAllCaches<cr>\|:CtrlP<cr>
+nnoremap <leader>. :CtrlPClearAllCaches<cr>\|:CtrlPTag<cr>
+nnoremap <leader>b :CtrlPClearAllCaches<cr>\|:CtrlPBuffer<cr>
 
 let g:ctrlp_prompt_mappings = {
 \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
@@ -509,9 +509,6 @@ let my_ctrlp_user_command = "" .
     \ ctrlp_filter_greps
 
 let g:ctrlp_user_command = my_ctrlp_user_command
-
-nnoremap <leader>. :CtrlPTag<cr>
-nnoremap <leader>b :CtrlPBuffer<cr>
 
 " }}}
 " NERDTree {{{
