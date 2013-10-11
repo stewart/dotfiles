@@ -600,13 +600,6 @@ let g:SuperTabLongestHighlight = 1
 let g:SuperTabCrMapping = 1
 
 "}}}
-" LustyJuggler {{{
-
-let g:LustyJugglerAltTabMode = 1
-let g:LustyJugglerSuppressRubyWarning = 1
-noremap <silent> <Leader><Tab> :LustyJuggler<CR>
-
-" }}}
 " T-Comment {{{
 
 map <Leader>c <c-_><c-_>
