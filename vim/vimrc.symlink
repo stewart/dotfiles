@@ -189,9 +189,6 @@ inoremap jj <ESC>
 
 nnoremap <leader>` :set cursorline!<cr>:set cursorcolumn!<cr>
 
-" Sort lines
-vnoremap <leader>s :!sort<cr>
-
 " Tabs
 nnoremap <leader>( :tabprev<cr>
 nnoremap <leader>) :tabnext<cr>
@@ -366,32 +363,6 @@ augroup ft_clojure
 augroup END
 
 " }}}
-" CSS {{{
-
-augroup ft_css
-    au!
-
-    " Use <leader>S to sort properties.  Turns this:
-    "
-    "     p {
-    "         width: 200px;
-    "         height: 100px;
-    "         background: red;
-    "         ...
-    "     }
-    "
-    " into this:
-    "
-    "     p {
-    "         background: red;
-    "         height: 100px;
-    "         width: 200px;
-    "         ...
-    "     }
-    au BufNewFile,BufRead *.scss,*.css nnoremap <buffer> <localleader>S ?{<CR>jV/\v^\s*\}?$<CR>k:sort<CR>:noh<CR>
-augroup END
-
-" }}}
 " Javascript {{{
 
 augroup ft_javascript
@@ -546,7 +517,7 @@ function! ScratchToggle()
     endif
 endfunction
 
-nnoremap <silent> <leader>s :ScratchToggle<cr>
+nnoremap <silent> <leader><tab> :ScratchToggle<cr>
 
 " }}}
 "" Supertab {{{
