@@ -225,10 +225,6 @@ map <leader>rt :call RunTestFile()<cr>
 map <leader>rT :call RunNearestTest()<cr>
 map <leader>ra :call RunTests('')<cr>
 
-" Use space key to toggle folds
-nnoremap <Space> za
-vnoremap <Space> za
-
 " Emacs bindings in command line mode
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
@@ -348,36 +344,12 @@ map n nzz
 nnoremap <CR> :nohlsearch<cr>
 
 " }}}
-" Folding ----------------------------------------------------------------- {{{
+" Folds ------------------------------------------------------------------- {{{
 
-set foldlevelstart=0
+set foldmethod=manual
+set nofoldenable
 
-" Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
-
-function! MyFoldText() " {{{
-    let line = getline(v:foldstart)
-
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
-
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-endfunction " }}}
-set foldtext=MyFoldText()
-
-" }}}
+"}}}
 " Filetype-specific ------------------------------------------------------- {{{
 
 " andrew-stewart.ca blog entries {{{
@@ -394,8 +366,6 @@ augroup ft_clojure
     au!
     set wildignore+=classes
     set wildignore+=lib
-
-    au FileType clojure silent! call TurnOnClojureFolding()
 augroup END
 
 " }}}
@@ -403,10 +373,6 @@ augroup END
 
 augroup ft_css
     au!
-
-    au FileType css,scss setlocal foldmethod=marker
-    au FileType css,scss setlocal foldmarker={,}
-
 
     " Use <leader>S to sort properties.  Turns this:
     "
@@ -434,9 +400,6 @@ augroup END
 augroup ft_javascript
     au!
 
-    au FileType javascript setlocal foldmethod=marker
-    au FileType javascript setlocal foldmarker={,}
-
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
     au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space>.<cr><esc>kA<bs>
@@ -463,8 +426,6 @@ augroup END
 augroup ft_php
     au!
 
-    au FileType php,phtml setlocal foldmethod=marker
-    au FileType php,phtml setlocal foldmarker={,}
     au FileType php,phtml setlocal makeprg=php\ -l\ %
     au FileType php,phtml setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 augroup END
@@ -476,7 +437,6 @@ augroup ft_python
     au!
 
     au Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-    au FileType python setlocal foldmethod=indent
 augroup END
 
 " }}}
@@ -494,7 +454,6 @@ augroup END
 augroup ft_vim
     au!
 
-    au FileType vim setlocal foldmethod=marker
     au FileType vim setlocal textwidth=80
     au FileType help setlocal textwidth=78
     au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
@@ -518,16 +477,16 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_extensions = ['tag']
 
 " Easier mappings for searches
-nnoremap <leader>gl :CtrlP lib/<cr>
-nnoremap <leader>gt :CtrlP test/<cr>
-nnoremap <leader>gs :CtrlP spec/<cr>
-nnoremap <leader>gf :CtrlP features/<cr>
-nnoremap <leader>gd :CtrlP db/<cr>
-nnoremap <leader>ga :CtrlP app/assets/<cr>
-nnoremap <leader>gm :CtrlP app/models/<cr>
-nnoremap <leader>gc :CtrlP app/controllers/<cr>
-nnoremap <leader>gv :CtrlP app/views/<cr>
-nnoremap <leader>gb :CtrlPBufTag<cr>
+nnoremap <leader>gl :CtrlPClearAllCaches<cr> :CtrlP lib/<cr>
+nnoremap <leader>gt :CtrlPClearAllCaches<cr> :CtrlP test/<cr>
+nnoremap <leader>gs :CtrlPClearAllCaches<cr> :CtrlP spec/<cr>
+nnoremap <leader>gf :CtrlPClearAllCaches<cr> :CtrlP features/<cr>
+nnoremap <leader>gd :CtrlPClearAllCaches<cr> :CtrlP db/<cr>
+nnoremap <leader>ga :CtrlPClearAllCaches<cr> :CtrlP app/assets/<cr>
+nnoremap <leader>gm :CtrlPClearAllCaches<cr> :CtrlP app/models/<cr>
+nnoremap <leader>gc :CtrlPClearAllCaches<cr> :CtrlP app/controllers/<cr>
+nnoremap <leader>gv :CtrlPClearAllCaches<cr> :CtrlP app/views/<cr>
+nnoremap <leader>gb :CtrlPClearAllCaches<cr> :CtrlPBufTag<cr>
 
 let g:ctrlp_prompt_mappings = {
 \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
@@ -728,40 +687,6 @@ function! BufOnly(buffer, bang) " {{{
     echomsg delete_count "buffers deleted"
   endif
 
-endfunction " }}}
-function! GetClojureFold() " {{{
-      if getline(v:lnum) =~ '^\s*(defn.*\s'
-            return ">1"
-      elseif getline(v:lnum) =~ '^\s*(defmacro.*\s'
-            return ">1"
-      elseif getline(v:lnum) =~ '^\s*(defmethod.*\s'
-            return ">1"
-      elseif getline(v:lnum) =~ '^\s*$'
-            let my_cljnum = v:lnum
-            let my_cljmax = line("$")
-
-            while (1)
-                  let my_cljnum = my_cljnum + 1
-                  if my_cljnum > my_cljmax
-                        return "<1"
-                  endif
-
-                  let my_cljdata = getline(my_cljnum)
-
-                  " If we match an empty line, stop folding
-                  if my_cljdata =~ '^$'
-                        return "<1"
-                  else
-                        return "="
-                  endif
-            endwhile
-      else
-            return "="
-      endif
-endfunction " }}}
-function! TurnOnClojureFolding() " {{{
-      setlocal foldexpr=GetClojureFold()
-      setlocal foldmethod=expr
 endfunction " }}}
 function! RenameFile() " {{{
     let old_name = expand('%')
