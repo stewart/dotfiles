@@ -435,7 +435,6 @@ augroup END
 " Selecta {{{
 
 " Easier mappings for searches
-nnoremap <leader>b :call SelectaBuffers()<cr>
 nnoremap <leader>. :call SelectaTag<cr>
 nnoremap <leader>f :call SelectaFile("")<cr>
 nnoremap <leader>gm :call SelectaFile("./app/models/")<cr>
@@ -447,6 +446,7 @@ nnoremap <leader>gf :call SelectaFile("./features/")<cr>
 nnoremap <leader>gl :call SelectaFile("./lib/")<cr>
 nnoremap <leader>gs :call SelectaFile("./spec/")<cr>
 nnoremap <leader>gt :call SelectaFile("./test/")<cr>
+nnoremap <leader>b :call SelectaBuffer()<cr>
 
 " }}}
 " NERDTree {{{
@@ -643,12 +643,6 @@ function! SelectaCommand(choice_command, vim_command) "{{{
   endtry
   redraw!
 endfunction " }}}
-function! SelectaBuffers() "{{{
-  redir! >~/.vimbuffers
-  buffers
-  redir END
-  call SelectaCommand("vim-parse-buffer-list", ":e")
-endfunction " }}}
 function! SelectaFile(dir_name) "{{{
   let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15"
   call SelectaCommand(command, ":e")
@@ -656,6 +650,16 @@ endfunction " }}}
 function! SelectaTag() "{{{
   let command = "awk '{print $1}' .git/tags | sort -u | grep -v '^!'"
   call SelectaCommand(command, ":tag")
+endfunction " }}}
+function! SelectaBuffer() "{{{
+  redir => bufs
+    silent buffers
+  redir END
+  try
+    silent! exec ":b " . system("grep . | selecta | awk '{print $1}'", bufs)
+  catch /Vim:Interrupt/
+  endtry
+  redraw!
 endfunction " }}}
 function! RunTestFile(...) " {{{
     if a:0
