@@ -446,6 +446,7 @@ nnoremap <leader>gf :call SelectaCommand("find ./features/* -type f -or -type l 
 nnoremap <leader>gl :call SelectaCommand("find ./lib/* -type f -or -type l -maxdepth 15", ":e")<cr>
 nnoremap <leader>gs :call SelectaCommand("find ./spec/* -type f -or -type l -maxdepth 15", ":e")<cr>
 nnoremap <leader>gt :call SelectaCommand("find ./test/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>b :call SelectaBuffers()<cr>
 
 " }}}
 " NERDTree {{{
@@ -641,6 +642,12 @@ function! SelectaCommand(choice_command, vim_command) "{{{
     " leftovers from selecta on the screen
   endtry
   redraw!
+endfunction " }}}
+function! SelectaBuffers() "{{{
+  redir! >~/.vimbuffers
+  buffers
+  redir END
+  call SelectaCommand("vim-parse-buffer-list", ":e")
 endfunction " }}}
 function! RunTestFile(...) " {{{
     if a:0
