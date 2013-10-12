@@ -432,54 +432,20 @@ augroup END
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
-" Ctrl-P {{{
-
-let g:ctrlp_dont_split = 'NERD_tree_2'
-let g:ctrlp_jump_to_buffer = 0
-let g:ctrlp_map = '<Leader>t'
-let g:ctrlp_max_files = 10000
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window_reversed = 1
-let g:ctrlp_split_window = 0
-let g:ctrlp_max_height = 20
-let g:ctrlp_extensions = ['tag']
+" Selecta {{{
 
 " Easier mappings for searches
-nnoremap <leader>gl :CtrlPClearAllCaches<cr>\|:CtrlP lib/<cr>
-nnoremap <leader>gt :CtrlPClearAllCaches<cr>\|:CtrlP test/<cr>
-nnoremap <leader>gs :CtrlPClearAllCaches<cr>\|:CtrlP spec/<cr>
-nnoremap <leader>gf :CtrlPClearAllCaches<cr>\|:CtrlP features/<cr>
-nnoremap <leader>gd :CtrlPClearAllCaches<cr>\|:CtrlP db/<cr>
-nnoremap <leader>ga :CtrlPClearAllCaches<cr>\|:CtrlP app/assets/<cr>
-nnoremap <leader>gm :CtrlPClearAllCaches<cr>\|:CtrlP app/models/<cr>
-nnoremap <leader>gc :CtrlPClearAllCaches<cr>\|:CtrlP app/controllers/<cr>
-nnoremap <leader>gv :CtrlPClearAllCaches<cr>\|:CtrlP app/views/<cr>
-nnoremap <leader>gb :CtrlPClearAllCaches<cr>\|:CtrlPBufTag<cr>
-nnoremap <leader>f :CtrlPClearAllCaches<cr>\|:CtrlP<cr>
-nnoremap <leader>. :CtrlPClearAllCaches<cr>\|:CtrlPTag<cr>
-nnoremap <leader>b :CtrlPClearAllCaches<cr>\|:CtrlPBuffer<cr>
-
-let g:ctrlp_prompt_mappings = {
-\ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
-\ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
-\ 'PrtHistory(-1)':       ['<c-n>'],
-\ 'PrtHistory(1)':        ['<c-p>'],
-\ 'ToggleFocus()':        ['<c-tab>'],
-\ }
-
-let ctrlp_filter_greps = "".
-    \ "egrep -iv '\\.(" .
-    \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po" .
-    \ ")$' | " .
-    \ "egrep -v '^(\\./)?(" .
-    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/|docs/build/|vendor/bundle" .
-    \ ")'"
-
-let my_ctrlp_user_command = "" .
-    \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*' | " .
-    \ ctrlp_filter_greps
-
-let g:ctrlp_user_command = my_ctrlp_user_command
+nnoremap <leader>. :call SelectaCommand("awk '{print $1}' tags | sort -u | grep -v '^!'", ":tag")<cr>
+nnoremap <leader>f :call SelectaCommand("find * -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>gm :call SelectaCommand("find ./app/models/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>gc :call SelectaCommand("find ./app/controllers/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>ga :call SelectaCommand("find ./app/assets/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>gv :call SelectaCommand("find ./app/views/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>gd :call SelectaCommand("find ./db/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>gf :call SelectaCommand("find ./features/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>gl :call SelectaCommand("find ./lib/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>gs :call SelectaCommand("find ./spec/* -type f -or -type l -maxdepth 15", ":e")<cr>
+nnoremap <leader>gt :call SelectaCommand("find ./test/* -type f -or -type l -maxdepth 15", ":e")<cr>
 
 " }}}
 " NERDTree {{{
@@ -664,6 +630,17 @@ function! RenameFile() " {{{
         exec ':silent !rm ' . old_name
         redraw!
     endif
+endfunction " }}}
+function! SelectaCommand(choice_command, vim_command) "{{{
+" Run a given vim command on the results of fuzzy selecting from a given shell
+" command. See usage below.
+  try
+    silent! exec a:vim_command . " " . system(a:choice_command . " | selecta")
+  catch /Vim:Interrupt/
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+  endtry
+  redraw!
 endfunction " }}}
 function! RunTestFile(...) " {{{
     if a:0
