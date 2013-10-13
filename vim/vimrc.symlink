@@ -598,7 +598,7 @@ function! SelectaBuffer() "{{{
     silent buffers
   redir END
   try
-    silent! exec ":b " . system("vim_selecta_buffer", bufs)
+    silent! exec ":b " . system("vim-selecta-buffer", bufs)
   catch /Vim:Interrupt/
   endtry
   redraw!
