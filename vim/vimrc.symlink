@@ -344,6 +344,11 @@ set foldmethod=manual
 set nofoldenable
 
 "}}}
+" Tags ------------------------------------------------------------------- {{{
+
+set tags=./.git/tags,./tags,tags
+
+"}}}
 " Filetype-specific ------------------------------------------------------- {{{
 
 " andrew-stewart.ca blog entries {{{
@@ -435,7 +440,7 @@ augroup END
 " Selecta {{{
 
 " Easier mappings for searches
-nnoremap <leader>. :call SelectaTag<cr>
+nnoremap <leader>. :call SelectaTag()<cr>
 nnoremap <leader>f :call SelectaFile("")<cr>
 nnoremap <leader>gm :call SelectaFile("./app/models/")<cr>
 nnoremap <leader>gc :call SelectaFile("./app/controllers/")<cr>
