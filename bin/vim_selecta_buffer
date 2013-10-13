@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+grep . |
+sed -n 's/  \([0-9]*\).*\"\(.*\)\".*/\1 \2/p' |
+selecta |
+awk '{print $1}'

@@ -656,7 +656,7 @@ function! SelectaBuffer() "{{{
     silent buffers
   redir END
   try
-    silent! exec ":b " . system("grep . | selecta | awk '{print $1}'", bufs)
+    silent! exec ":b " . system("vim_selecta_buffer", bufs)
   catch /Vim:Interrupt/
   endtry
   redraw!
