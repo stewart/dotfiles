@@ -189,14 +189,11 @@ inoremap jj <ESC>
 
 nnoremap <leader>` :set cursorline!<cr>:set cursorcolumn!<cr>
 
-" Tabs
-nnoremap <leader>( :tabprev<cr>
-nnoremap <leader>) :tabnext<cr>
-
+" Easier way to ex mode
 nnoremap ; :
 vnoremap ; :
 
-" gundo
+" Gundo
 nnoremap <Leader>u :GundoToggle<CR>
 
 " keep the cursor in place while joining lines
@@ -204,7 +201,8 @@ nnoremap J mzJ`z
 
 " split line
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w 
-" Set newline commands to return to insert mode
+
+" Set newline commands to return to normal mode
 nmap o o<Esc>
 nmap O O<Esc>
 
@@ -242,16 +240,9 @@ nnoremap <silent> k gk
 vnoremap <silent> j gj
 vnoremap <silent> k gk
 
-" Alternate between two and four space indentation
-nnoremap <leader>2 :setlocal shiftwidth=2 tabstop=2 softtabstop=2<cr>
-nnoremap <leader>4 :setlocal shiftwidth=4 tabstop=4 softtabstop=4<cr>
-
 " Select all
 nnoremap vaa ggvGg_
 nnoremap Vaa ggVG
-
-" sjl's uppercase word mapping
-inoremap <C-u> <esc>mzgUiw`za
 
 " Easier to press
 nmap <tab> %
@@ -259,9 +250,6 @@ vmap <tab> %
 
 " Reformat line.
 nnoremap ql gqq
-
-" Shortcut to rename current file
-map <leader>r :call RenameFile()<cr>
 
 " Make Y behave like other capitals
 nnoremap Y y$
@@ -272,10 +260,13 @@ nnoremap Vit vitVkoj
 nnoremap Vat vatV
 nnoremap Vab vabV
 nnoremap VaB vaBV
+nnoremap Va} va}V
+nnoremap Vi} vi}V
 
 " made D behave
 nnoremap D d$
 
+" Open a vsplit
 noremap <leader>v <C-w>v
 
 " Formatting, TextMate-style
@@ -293,7 +284,6 @@ nnoremap _v    :set ft=vim<CR>
 
 " }}}
 " Insert Mode Completion {{{
-
 inoremap <c-f> <c-x><c-f>
 inoremap <c-]> <c-x><c-]>
 
@@ -302,23 +292,8 @@ inoremap <c-]> <c-x><c-]>
 
 command! -nargs=? -complete=buffer -bang Bonly
     \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang BOnly
-    \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang Bufonly
-    \ :call BufOnly('<args>', '<bang>')
-command! -nargs=? -complete=buffer -bang BufOnly
-    \ :call BufOnly('<args>', '<bang>')
 
 " }}}
-
-" }}}
-" Quick editing ----------------------------------------------------------- {{{
-
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>ed :vsplit ~/.vim/custom-dictionary.utf-8.add<cr>
-nnoremap <leader>eg :vsplit ~/.gitconfig<cr>
-nnoremap <leader>ez :vsplit ~/.zshrc<cr>
-nnoremap <leader>et :vsplit ~/.tmux.conf<cr>
 
 " }}}
 " Searching and movement -------------------------------------------------- {{{
@@ -492,52 +467,14 @@ endfunction
 nnoremap <silent> <leader><tab> :ScratchToggle<cr>
 
 " }}}
-"" Supertab {{{
-
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabLongestHighlight = 1
-let g:SuperTabCrMapping = 1
-
-"}}}
 " T-Comment {{{
 
 map <Leader>c <c-_><c-_>
 
 "}}}
-" Rails.vim {{{
-
-" Projections
-  let g:rails_projections = {
-  \ "app/services/*.rb": {
-  \   "command": "service",
-  \   "template": "class %S\nend",
-  \   "test": [
-  \     "test/service/%s_test.rb",
-  \     "spec/service/%s_spec.rb"
-  \   ]
-  \ },
-  \ "spec/fabricators/*_fabricator.rb": {
-  \   "command": "fabricator",
-  \   "template": "Fabricator(:%s)\nend",
-  \   "keywords": "sequence",
-  \   "affinity": "model"
-  \ },
-  \ "features/support/*.rb": {"command": "support"},
-  \ "features/support/env.rb": {"command": "support"}}
-
-" }}}
-
 " }}}
 " Text objects ------------------------------------------------------------ {{{
 
-" Shortcut for [] {{{
-
-onoremap ir i[
-onoremap ar a[
-vnoremap ir i[
-vnoremap ar a[
-
-" }}}
 " Numbers {{{
 
 " Motion for numbers.  Great for CSS.  Lets you do things like this:
