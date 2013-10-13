@@ -1,6 +1,7 @@
 --recurse=yes
 --tag-relative=yes
 --fields=-s
+--fields=+l
 
 --languages=-html
 --languages=-javascript
@@ -18,7 +19,5 @@
 --regex-clojure=/\([ \t]*defstruct[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/s,struct/
 --regex-clojure=/\([ \t]*intern[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/v,intern/
 --regex-clojure=/\([ \t]*ns[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/n,namespace/
-
---langmap=php:.engine.inc.module.theme.install.php --exclude=.git --tag-relative=yes --PHP-kinds=+cf-v
 
 --exclude="vendor/bundle"
