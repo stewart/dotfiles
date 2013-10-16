@@ -187,6 +187,9 @@ syntax on
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
 
+" Select last pasted text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 nnoremap <leader>` :set cursorline!<cr>:set cursorcolumn!<cr>
 
 " Easier way to ex mode
