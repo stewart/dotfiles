@@ -632,16 +632,22 @@ function! SetTestFile() " {{{
 endfunction " }}}
 function! RunTests(filename) " {{{
     " Write the file and run tests for the given filename
-    :w
+    if expand("%") != ""
+        :w
+    end
+
+    " currently doesn't match minitest. Worth the trouble?
     if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
-    else
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec " . a:filename
+        if filereadable("Gemfile")
+          exec ":!bundle exec cucumber " . a:filename
         else
-            exec ":!rspec " . a:filename
+          exec ":!cucumber " . a:filename
+        end
+    else
+        if filereadable("Gemfile")
+            exec ":!bundle exec rspec --color " . a:filename
+        else
+            exec ":!rspec --color " . a:filename
         end
     end
 endfunction " }}}
