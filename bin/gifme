@@ -14,8 +14,8 @@
 #     a
 #     http://pics.stwrt.ca/they_life.gif copied to your clipboard.
 
-from string import ascii_uppercase
 import sys
+from string import ascii_uppercase
 from subprocess import check_output, call
 
 GIFS_FOLDER = "~/Dropbox/Pictures/gifs"
@@ -58,4 +58,5 @@ def quit(message="Usage: gifme [search_term]"):
     print "  %s" % message
     sys.exit()
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[0:])
