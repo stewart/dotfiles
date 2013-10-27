@@ -184,8 +184,8 @@ syntax on
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
 
-" exit to normal mode with 'jk'
-inoremap jk <ESC>
+" exit to normal mode with 'jj'
+inoremap jj <ESC>
 
 " Select last pasted text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
