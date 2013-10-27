@@ -1,5 +1,6 @@
-#!/usr/bin/env ruby
-# Stupid and quick gif finding with the power of the_silver_searcher, only relevant to me.
+#!/usr/bin/env python
+# Stupid and quick gif finding with the power of the_silver_searcher, only
+# relevant to me.
 #
 # This should probably just be a shell script. Too lazy.
 #
@@ -13,51 +14,48 @@
 #     a
 #     http://pics.stwrt.ca/they_life.gif copied to your clipboard.
 
+from string import ascii_uppercase
+import sys
+from subprocess import check_output, call
+
 GIFS_FOLDER = "~/Dropbox/Pictures/gifs"
 URL_BASE = "http://gifs.stwrt.ca/"
-ALPHABET = %w(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 1 2 3 4 5 6 7 8 9 0)
+ALPHABET = list(ascii_uppercase) + map(str, range(10))
 
-def main
-  search_term = ARGV.first
+def main(argv):
+    term = argv[0] if len(argv) > 0 else quit()
 
-  quit("Usage: gifme burrito") if search_term.nil?
+    results = check_output("ls %s | ag %s" %(GIFS_FOLDER, term), shell=True)
+    results = results.split()
 
-  results = `ls #{GIFS_FOLDER} | ag #{search_term}`.split("\n")
+    if len(results) == 0:
+        quit("No gifs found. Try something else.")
+    elif len(results) > len(ALPHABET):
+        quit("Way too many gifs found. Try a less vague search.")
 
-  quit("No gifs found. Try something else.") unless results.length > 0
-  quit("Way too many gifs found. Try something else.") if results.length > ALPHABET.length
+    if len(results) == 1:
+        url = URL_BASE + results[0]
+        call("echo '%s' | pbcopy" % url, shell=True)
+        print "  %s copied to your clipboard." % url
+    else:
+        letters_to_results = dict(zip(ALPHABET, results))
 
-  if results.length == 1
-    url = URL_BASE + results.first
-    system "echo '#{url}' | pbcopy"
-    puts "  #{url} copied to your clipboard."
-  else
-    letters_to_results = []
-    results.each_with_index do |result, i|
-      letters_to_results << {url: result, letter: ALPHABET[i]}
-    end
+        print "  Take your pick:"
 
-    puts "  Take your pick:"
-    letters_to_results.each do |result|
-      puts "    #{result[:letter]}: #{result[:url]}"
-    end
+        for result in letters_to_results:
+            print "    %s: %s" %(result, letters_to_results[result])
 
-    picked_letter = STDIN.gets.chomp.upcase
+        picked_letter = raw_input().upper()
 
-    picked = letters_to_results.find { |r| r[:letter] == picked_letter }
+        if picked_letter not in letters_to_results:
+            quit("Invalid selection. Try again")
 
-    quit("Invalid selection. Try again.") unless picked
+        url = URL_BASE + letters_to_results[picked_letter]
+        call("echo '%s' | pbcopy" % url, shell=True)
+        print "  %s copied to your clipboard." % url
 
-    url = URL_BASE + picked[:url]
-    system "echo '#{url}' | pbcopy"
-    puts "  #{url} copied to your clipboard."
-  end
-end
+def quit(message="Usage: gifme [search_term]"):
+    print "  %s" % message
+    sys.exit()
 
-
-def quit(reason)
-  puts "  #{reason}"
-  exit
-end
-
-main
+main(sys.argv[1:])
