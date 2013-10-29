@@ -23,7 +23,7 @@ URL_BASE = "http://gifs.stwrt.ca/"
 ALPHABET = list(ascii_uppercase) + map(str, range(10))
 
 def main(argv):
-    term = argv[0] if len(argv) > 0 else quit()
+    term = argv[1] if len(argv) > 0 else quit()
 
     results = check_output("ls %s | ag %s" %(GIFS_FOLDER, term), shell=True)
     results = results.split()
