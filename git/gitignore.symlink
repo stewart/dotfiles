@@ -16,3 +16,4 @@ dump.rdb
 run-test.sh
 test-commands
 tags
+*.pyc
