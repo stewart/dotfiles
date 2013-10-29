@@ -589,7 +589,7 @@ function! SelectaCommand(choice_command, vim_command) "{{{
   redraw!
 endfunction " }}}
 function! SelectaFile(dir_name) "{{{
-  let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15"
+  let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | sort -u"
   call SelectaCommand(command, ":e")
 endfunction " }}}
 function! SelectaTag() "{{{
