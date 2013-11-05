@@ -271,6 +271,11 @@ nnoremap D d$
 " Open a vsplit
 noremap <leader>v <C-w>v
 
+" Show syntax highlighting tokens for token under cursor
+map <leader>s :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " Formatting, TextMate-style
 nnoremap Q gqip
 vnoremap Q gq
