@@ -38,3 +38,10 @@ hi rubyInterpolationDelimiter ctermfg=darkgreen
 
 hi coffeeSpecialVar ctermfg=red
 hi coffeeSemicolonError ctermbg=NONE
+
+hi htmlTag ctermfg=grey
+hi htmlEndTag ctermfg=grey
+hi htmlTagName ctermfg=grey
+hi htmlArg ctermfg=grey
+hi htmlLink ctermfg=darkmagenta
+hi htmlSpecialTagName ctermfg=red
