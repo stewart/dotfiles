@@ -32,7 +32,7 @@ highlight PmenuSel ctermfg=16 ctermbg=156
 
 hi ColorColumn ctermbg=black
 
-hi Keyword ctermfg=darkgreen
+hi Keyword ctermfg=darkmagenta
 
 hi rubyInterpolationDelimiter ctermfg=darkgreen
 
