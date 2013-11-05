@@ -26,7 +26,6 @@ unbind %
 bind \ split-window -h
 bind - split-window -v
 
-
 # Aggressive resizing
 setw -g aggressive-resize on
 
@@ -71,7 +70,7 @@ set -g status-left-length 32
 set -g status-right-length 150
 set -g status-interval 5
 
-set -g status-left '#[fg=colour0,bg=colour33,bold] #S #[fg=colour33,bg=colour234,bold]'
+set -g status-left '#[fg=colour234,bg=colour11,bold] #S #[fg=colour11,bg=colour234,bold]'
 
 set -g status-right '#[fg=colour238] %R  %d %b #(itunes-current-track-tmux)#[fg=colour254,nobold]#[fg=colour16,bg=colour254,bold] #h '
 
