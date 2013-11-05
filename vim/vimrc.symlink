@@ -390,12 +390,22 @@ augroup ft_python
 augroup END
 
 " }}}
+" Coffeescript {{{
+
+augroup ft_coffee
+    au!
+
+    au Filetype coffee,javascript set path+=./lib,./app/assets/javascripts,./src
+augroup END
+
+" }}}
 " Ruby {{{
 
 augroup ft_ruby
     au!
 
     au BufRead,BufNewFile {Capfile,Gemfile,Rakefile,Thorfile,Vagrantfile,config.ru,.caprc,.irbrc} set ft=ruby
+    au Filetype ruby setlocal path+=./lib,./app/models,./app/controllers
 augroup END
 
 " }}}
