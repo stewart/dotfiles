@@ -429,6 +429,7 @@ augroup END
 " Easier mappings for searches
 nnoremap <leader>. :call SelectaTag()<cr>
 nnoremap <leader>f :call SelectaFile("")<cr>
+nnoremap <leader>gg :call SelectaFileWithoutExclude("")<cr>
 nnoremap <leader>gm :call SelectaFile("./app/models/")<cr>
 nnoremap <leader>gc :call SelectaFile("./app/controllers/")<cr>
 nnoremap <leader>ga :call SelectaFile("./app/assets/")<cr>
@@ -598,11 +599,15 @@ function! SelectaCommand(choice_command, vim_command) "{{{
   redraw!
 endfunction " }}}
 function! SelectaFile(dir_name) "{{{
+  let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | egrep -v '^(node_modules|vendor/bundle)' | sort -u"
+  call SelectaCommand(command, ":e")
+endfunction " }}}
+function! SelectaFileWithoutExclude(dir_name) "{{{
   let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | sort -u"
   call SelectaCommand(command, ":e")
 endfunction " }}}
 function! SelectaTag() "{{{
-  let command = "awk '{print $1}' .git/tags | sort -u | grep -v '^!'"
+  let command = "awk '{print $1}' tags | sort -u | grep -v '^!'"
   call SelectaCommand(command, ":tag")
 endfunction " }}}
 function! SelectaBuffer() "{{{
