@@ -4,7 +4,6 @@
 --fields=+l
 
 --languages=-html
---languages=-javascript
 
 --langdef=Clojure
 --langmap=Clojure:.clj
