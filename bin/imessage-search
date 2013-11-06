@@ -1,14 +1,19 @@
 #!/usr/bin/env ruby
 
+require 'etc'
+
 %w(json sqlite3).each do |gem|
   begin
     require gem
-  rescue
-    warn "  unable to load #{gem} gem"
-    warn "  please install it with: gem install #{gem}"
+  rescue LoadError
+    warn "  Unable to load '#{gem}' gem"
+    warn "  Please install it with: gem install #{gem}"
     exit
   end
 end
+
+# Get the user's home directory, even if ENV['HOME'] has been deleted
+HOME = Dir.home(Etc.getlogin)
 
 # For date-mathing. For some reason, OS X has a different epoch than standard
 # UNIX. Not sure why.
@@ -16,7 +21,7 @@ OSX_EPOCH = 978307200
 
 # iMessage conveniently keeps all it's messages sitting in a nice, tidy SQLite
 # database.
-MESSAGES_DB_LOCATION = "#{ENV['HOME']}/Library/Messages/chat.db"
+MESSAGES_DB_LOCATION = "#{HOME}/Library/Messages/chat.db"
 
 # Loads identities in JSON format from ~/.imessage-identities. If none are
 # present, returns an empty array.
@@ -24,18 +29,18 @@ MESSAGES_DB_LOCATION = "#{ENV['HOME']}/Library/Messages/chat.db"
 # Example ~/.imessage-identities format:
 #   [
 #     {
-#       "name": "Mom",
-#       "identities": ["mom@gmail.com", "+5551123"]
+#       "name": "Alison",
+#       "identities": ["david@gmail.com", "+5551123"]
 #     },
 #     {
-#       "name": "Dad",
+#       "name": "David",
 #       "identities": ["+5551234"]
 #     }
 #   ]
-IDENTITIES = JSON.parse(File.read("#{ENV['HOME']}/.imessage-identities")) rescue []
+IDENTITIES = JSON.parse(File.read("#{HOME}/.imessage-identities")) rescue []
 
 def display_help
-  puts "  usage:"
+  puts "  Usage:"
   puts "    imessage-search [search-term]"
   exit
 end
@@ -81,10 +86,8 @@ end
 def main
   display_help if ARGV.length == 0
 
-  db = SQLite3::Database.new(MESSAGES_DB_LOCATION)
-  query = search_query
-
-  execute_search db, query
+  db = SQLite3::Database.new MESSAGES_DB_LOCATION
+  execute_search db, search_query
 end
 
 main
