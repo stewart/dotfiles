@@ -45,3 +45,5 @@ hi htmlTagName ctermfg=grey
 hi htmlArg ctermfg=grey
 hi htmlLink ctermfg=darkmagenta
 hi htmlSpecialTagName ctermfg=red
+
+hi markdownItalic ctermfg=grey ctermbg=NONE
