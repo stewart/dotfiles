@@ -64,3 +64,6 @@
 [submodule "vim/vim.symlink/bundle/vim-tmux-navigator"]
 	path = vim/vim.symlink/bundle/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "vim/vim.symlink/bundle/literate-coffeescript"]
+	path = vim/vim.symlink/bundle/literate-coffeescript
+	url = https://github.com/mintplant/vim-literate-coffeescript.git
