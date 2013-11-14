@@ -45,23 +45,23 @@ set shiftround
 set showbreak=↪
 set sidescroll=1
 set sidescrolloff=10
+set showtabline=2
 set dictionary=/usr/share/dict/words
 set spellfile=~/.vim/custom-dictionary.utf-8.add
 set splitbelow
 set splitright
 set synmaxcol=800
+set switchbuf=useopen
 set title
 set ttimeout
 set ttimeoutlen=10
 set ttyfast
 set undofile
 set undoreload=10000
+set winwidth=79
 set virtualedit+=block
 set mouse=a
 set t_ti= t_te=   " makes vim play nice with terminal scrollback
-
-" Save when losing focus
-au FocusLost * :silent! wall
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
