@@ -47,3 +47,5 @@ hi htmlLink ctermfg=darkmagenta
 hi htmlSpecialTagName ctermfg=red
 
 hi markdownItalic ctermfg=grey ctermbg=NONE
+
+hi SpellBad ctermfg=red ctermbg=NONE
