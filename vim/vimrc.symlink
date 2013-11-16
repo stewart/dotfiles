@@ -63,7 +63,6 @@ set ttimeoutlen=10
 set ttyfast
 set undofile
 set undoreload=10000
-set winwidth=79
 set virtualedit+=block
 set mouse=a
 set t_ti= t_te=   " makes vim play nice with terminal scrollback
@@ -400,6 +399,15 @@ augroup ft_python
     au!
 
     au Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
+
+" }}}
+" Golang {{{
+
+augroup ft_go
+    au!
+
+    au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 augroup END
 
 " }}}
