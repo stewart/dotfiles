@@ -14,3 +14,18 @@ function server() { # via https://gist.github.com/1525217
     (sleep 1 && open "http://${host}:${port}/")&
     python -m SimpleHTTPServer "$port"
 }
+
+function newfile() {
+  local dir=$(find . -type d -maxdepth 15 |
+    egrep -v '^./(node_modules|vendor/bundle|.git)' |
+    sort -u |
+    selecta
+  )
+
+  echo ''
+
+  local filename=
+  vared -p "$dir/" filename
+
+  touch "$dir/$filename"
+}
