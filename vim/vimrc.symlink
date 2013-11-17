@@ -107,7 +107,7 @@ set softtabstop=2
 set expandtab
 set nosmarttab
 set textwidth=80
-set formatoptions=qrn1
+set formatoptions=qrn1j
 set nowrap
 set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 
