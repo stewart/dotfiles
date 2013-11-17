@@ -1,6 +1,6 @@
 # dotfiles
 
-Dotfiles _are_ your system. This is my collection. It's very prejudiced towards:
+Hi. These are my dotfiles. I use:
 
 - OS X
 - zsh
@@ -8,7 +8,7 @@ Dotfiles _are_ your system. This is my collection. It's very prejudiced towards:
 - Homebrew
 - Ruby
 - vim
-- rbenv
+- chruby
 
 ## install
 
@@ -26,14 +26,14 @@ There are a few special files in here:
 
 ## but wait, there's more!
 
-Added value if you install the following from Homebrew:
+These will make things more awesome:
 
 - ack
 - coreutils
 - grc
 - hub
 - postgresql
-- rbenv
+- chruby
 - reattach-to-user-namespace
 - redis
 - ruby-build
