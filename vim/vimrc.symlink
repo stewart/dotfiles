@@ -115,27 +115,15 @@ set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 " Relative Line Numbers in Current Buffer {{{
 
 fun! SetRelativeNumberInBuffer()
-  if &ft =~ 'nerdtree'
-    setlocal norelativenumber
-    return
-  endif
   setlocal relativenumber
 endfun
 
 fun! SetNumberInBuffer()
-  if &ft =~ 'nerdtree'
-    setlocal nonumber
-    return
-  endif
   setlocal number
 endfun
 
 if exists('&relativenumber')
   set relativenumber
-
-  if &ft =~ 'nerdtree'
-    set norelativenumber
-  end
 
   augroup WindowRNU
     auto!
@@ -462,22 +450,6 @@ nnoremap <leader>gl :call SelectaFile("./lib/")<cr>
 nnoremap <leader>gs :call SelectaFile("./spec/")<cr>
 nnoremap <leader>gt :call SelectaFile("./test/")<cr>
 nnoremap <leader>b :call SelectaBuffer()<cr>
-
-" }}}
-" NERDTree {{{
-
-map <Leader>n :NERDTree<CR>
-
-let NERDTreeHighlightCursorline = 1
-let NERDTreeIgnore = ['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
-                    \ 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json',
-                    \ '.*\.o$', 'db.db', 'tags.bak']
-
-let NERDTreeShowHidden=0
-let NERDTreeIgnore=['\.rbc$', '\~$']
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDChristmasTree = 1
 
 " }}}
 " Airline {{{
