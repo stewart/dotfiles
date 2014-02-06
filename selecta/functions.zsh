@@ -9,7 +9,7 @@ function tsa() {
 # Vim-Find
 # Quickly find and open a file in vim
 function vif() {
-  vim `find * -type f -or -type l -maxdepth 15 | sort -u | selecta`
+  vim `find * -type f -or -type l -maxdepth 15 | egrep -v '^(node_modules|vendor/bundle)' | sort -u | selecta`
 }
 
 # Kill-Process
