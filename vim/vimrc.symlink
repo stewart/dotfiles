@@ -32,6 +32,7 @@ set exrc
 set fillchars=diff:⣿,vert:│
 set hidden
 set history=1000
+set nojoinspaces
 set laststatus=2
 set lazyredraw
 set linebreak
