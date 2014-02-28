@@ -72,7 +72,7 @@ set -g status-interval 5
 
 set -g status-left '#[fg=colour234,bg=colour11,bold] #S #[fg=colour11,bg=colour234,bold]'
 
-set -g status-right '#[fg=colour238] %R  %d %b #(itunes-current-track-tmux)#[fg=colour254,nobold]#[fg=colour16,bg=colour254,bold] #h '
+set -g status-right '#[fg=colour238] %R  %d %b #(itunes-current-track-tmux)#[fg=colour254,nobold]#[fg=colour16,bg=colour254,bold] #h '
 
 set -g window-status-format "#[fg=colour238,bg=colour234] #I #W "
 set -g window-status-current-format "#[fg=colour234,bg=colour238]#[fg=colour230,bg=colour238,noreverse,bold] #I #[fg=colour234,bg=colour238]|#[fg=colour230,bg=colour238,noreverse,bold] #W #[fg=colour238,bg=colour234,nobold]"

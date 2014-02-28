@@ -20,5 +20,5 @@ on appIsRunning(appName)
     tell app "System Events" to (name of processes) contains appName
 end appIsRunning
 EOF)
-    echo '#[fg=colour238]⮂#[fg=colour250,bg=colour238,nobold] ♫ ' $ITUNES_TRACK '#[nobold]-#[bold]' $ITUNES_ARTIST ''
+    echo '#[fg=colour238]#[fg=colour250,bg=colour238,nobold] ♫ ' $ITUNES_TRACK '#[nobold]-#[bold]' $ITUNES_ARTIST ''
 fi
