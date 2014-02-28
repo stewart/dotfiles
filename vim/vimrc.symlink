@@ -401,6 +401,16 @@ augroup ft_go
 augroup END
 
 " }}}
+" Makefiles {{{
+
+augroup ft_makefile
+    au!
+
+    au Filetype make setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+    au Filetype make setlocal listchars+=tab:\ \ 
+augroup END
+
+" }}}
 " Coffeescript {{{
 
 augroup ft_coffee
