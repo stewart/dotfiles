@@ -70,9 +70,5 @@ function fish_prompt
   set_color normal
 end
 
-function fish_right_prompt
-  printf "[%s]" $vi_mode
-end
-
 # remove greeting
 set -g -x fish_greeting ''
