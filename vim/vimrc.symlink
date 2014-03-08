@@ -8,6 +8,7 @@ filetype off
 call pathogen#infect()
 filetype plugin indent on
 set nocompatible
+set shell=/bin/sh
 
 " }}}
 " Statusline --------------------------------------------------------------- {{{
