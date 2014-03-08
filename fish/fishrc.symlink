@@ -6,6 +6,12 @@ for config_file in $FISH/*/*.fish
   . $config_file
 end
 
+# Use vi-ish keybindings from
+# https://github.com/DarkStarSword/junk/blob/master/vi-mode.fish
+function fish_user_key_bindings
+  vi_mode_insert
+end
+
 . /usr/local/share/chruby/chruby.fish
 . /usr/local/share/chruby/auto.fish
 

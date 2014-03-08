@@ -66,6 +66,12 @@ function fish_prompt
   end
 
   printf "λ "
+
+  set_color normal
+end
+
+function fish_right_prompt
+  printf "[%s]" $vi_mode
 end
 
 # remove greeting
