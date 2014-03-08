@@ -1,0 +1,2 @@
+# shortcut
+alias vi vim

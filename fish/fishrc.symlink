@@ -1,0 +1,17 @@
+# shortcut for dotfiles path
+set FISH $HOME/.dotfiles
+
+# source all .fish files
+for config_file in $FISH/*/*.fish
+  . $config_file
+end
+
+. /usr/local/share/chruby/chruby.fish
+. /usr/local/share/chruby/auto.fish
+
+# source local config full of MYSTERY AND WONDER
+if test -s $HOME/.config/fish/local.fish
+  . $HOME/.config/fish/local.fish
+end
+
+true
