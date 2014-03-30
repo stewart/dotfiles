@@ -67,3 +67,6 @@
 [submodule "vim/vim.symlink/bundle/dispatch"]
 	path = vim/vim.symlink/bundle/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
+[submodule "vim/vim.symlink/bundle/clojure"]
+	path = vim/vim.symlink/bundle/clojure
+	url = https://github.com/guns/vim-clojure-static.git
