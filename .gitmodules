@@ -73,3 +73,6 @@
 [submodule "vim/vim.symlink/bundle/classpath"]
 	path = vim/vim.symlink/bundle/classpath
 	url = https://github.com/tpope/vim-classpath.git
+[submodule "vim/vim.symlink/bundle/fireplace"]
+	path = vim/vim.symlink/bundle/fireplace
+	url = https://github.com/tpope/vim-fireplace.git
