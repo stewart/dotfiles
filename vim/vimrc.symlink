@@ -412,6 +412,16 @@ augroup ft_makefile
 augroup END
 
 " }}}
+" C++ {{{
+
+augroup ft_cpp
+    au!
+
+    au Filetype cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+    au Filetype cpp setlocal listchars+=tab:\ \ 
+augroup END
+
+" }}}
 " Coffeescript {{{
 
 augroup ft_coffee
