@@ -18,3 +18,4 @@ prepend_to_path $HOME/.dotfiles/bin
 prepend_to_path $HOME/go/bin
 prepend_to_path $HOME/bin
 prepend_to_path /bin
+prepend_to_path ./bin
