@@ -347,6 +347,14 @@ augroup ft_clojure
 augroup END
 
 " }}}
+" Wisp {{{
+
+augroup ft_wisp
+    au!
+    au BufNewFile,BufRead *.wisp setlocal filetype=clojure
+augroup END
+
+" }}}
 " Javascript {{{
 
 augroup ft_javascript
