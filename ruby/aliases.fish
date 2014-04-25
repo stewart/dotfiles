@@ -1,1 +1,0 @@
-alias bx 'bundle exec'
