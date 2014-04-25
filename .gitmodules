@@ -61,9 +61,6 @@
 [submodule "vim/vim.symlink/bundle/exchange"]
 	path = vim/vim.symlink/bundle/exchange
 	url = https://github.com/tommcdo/vim-exchange.git
-[submodule "vim/vim.symlink/bundle/fish"]
-	path = vim/vim.symlink/bundle/fish
-	url = https://github.com/dag/vim-fish.git
 [submodule "vim/vim.symlink/bundle/dispatch"]
 	path = vim/vim.symlink/bundle/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
