@@ -7,6 +7,7 @@ Hi. These are my dotfiles. I use:
 - git
 - Homebrew
 - Ruby
+- Go
 - vim
 - chruby
 
