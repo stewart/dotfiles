@@ -55,9 +55,15 @@ end
 desc "Builds Golang in ./goscripts to binaries in ./bin"
 task :scripts do
   Dir["./goscripts/*.go"].each do |file|
-    puts "Compiling #{file}"
     dest = "./bin/" + File.basename(file, '.go')
-    `go build -o #{dest} #{file}`
+
+    src_mtime = File.mtime(file)
+    dest_mtime = File.mtime(dest)
+
+    if src_mtime > dest_mtime
+      puts "Compiling #{file}"
+      `go build -o #{dest} #{file}`
+    end
   end
 end
 
