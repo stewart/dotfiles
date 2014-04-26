@@ -406,6 +406,8 @@ augroup ft_go
 
     au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
     au Filetype go setlocal listchars+=tab:\ \ 
+    au FileType go au BufWritePre <buffer> Fmt
+    let g:gofmt_command = "goimports"
 augroup END
 
 " }}}
