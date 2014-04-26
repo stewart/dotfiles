@@ -52,4 +52,13 @@ task :uninstall do
   end
 end
 
+desc "Builds Golang in ./goscripts to binaries in ./bin"
+task :scripts do
+  Dir["./goscripts/*.go"].each do |file|
+    puts "Compiling #{file}"
+    dest = "./bin/" + File.basename(file, '.go')
+    `go build -o #{dest} #{file}`
+  end
+end
+
 task :default => 'install'
