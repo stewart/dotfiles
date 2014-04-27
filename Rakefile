@@ -58,7 +58,8 @@ task :scripts do
     dest = "./bin/" + File.basename(file, '.go')
 
     src_mtime = File.mtime(file)
-    dest_mtime = File.mtime(dest)
+
+    dest_mtime = File.exists?(dest) ? File.mtime(dest) : Time.new(0)
 
     if src_mtime > dest_mtime
       puts "Compiling #{file}"
