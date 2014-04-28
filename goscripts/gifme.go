@@ -41,7 +41,7 @@ func main() {
 	}
 
 	url := url_base + result
-	go copyToClipboard(url)
+	copyToClipboard(url)
 	quit("Copied " + url + " to clipboard.")
 }
 
