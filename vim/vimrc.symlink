@@ -329,11 +329,11 @@ set tags=./.git/tags,./tags,tags
 "}}}
 " Filetype-specific ------------------------------------------------------- {{{
 
-" andrew-stewart.ca blog entries {{{
+" stwrt.ca blog entries {{{
 
-augroup ft_andrewstewartca
+augroup ft_blog_post
     au!
-    au BufRead,BufNewFile */blog/source/_posts/*.md set spell
+    au BufRead,BufNewFile */dev/blog/* map ,rt :!hugo<cr><cr>
 augroup END
 
 " }}}
