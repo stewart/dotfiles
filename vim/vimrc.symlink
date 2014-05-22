@@ -510,6 +510,13 @@ nnoremap <silent> <leader><tab> :ScratchToggle<cr>
 map <Leader>c <c-_><c-_>
 
 "}}}
+" Ultisnips {{{
+
+let g:UltiSnipsExpandTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
+nnoremap <silent> <leader>es :UltiSnipsEdit<cr>
+
+"}}}
 " }}}
 " Text objects ------------------------------------------------------------ {{{
 

@@ -1,0 +1,50 @@
+snippet fn "Function"
+var ${1:function_name} = function $1(${2:args}) {
+	$0
+};
+endsnippet
+
+snippet : "Object Value JS"
+${1:key}: ${0:value},
+endsnippet
+
+snippet :f "Object Method"
+${1:key}: function(${3:attribute}) {
+	${VISUAL}$0
+}${10:,}
+endsnippet
+
+snippet proto "Prototype (proto)"
+${1:class}.prototype.${2:function} = function $2(${3:args}) {
+	${VISUAL}$0
+};
+endsnippet
+
+snippet for "for (...) {...} (counting up)"
+for (var ${1:i} = 0; $1 < ${2:Things.length}; $1++) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet ife "if ___ else"
+if (${1:condition}) {
+	$2
+}
+else {
+	$3
+}
+endsnippet
+
+snippet if "if"
+if (${1:condition}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet cl "console.log"
+console.log($0);
+endsnippet
+
+snippet req "require a module"
+require('$0')
+endsnippet
