@@ -1,0 +1,180 @@
+snippet "^#!" "#!/usr/bin/env ruby" r
+#!/usr/bin/env ruby
+$0
+endsnippet
+
+snippet If
+${1:command} if ${0:expression}
+endsnippet
+
+snippet Unless
+${1:command} unless ${0:expression}
+endsnippet
+
+snippet if
+if ${1:condition}
+	${2:# TODO}
+end
+endsnippet
+
+snippet ife
+if ${1:condition}
+	${2:# TODO}
+else
+	${3:# TODO}
+end
+endsnippet
+
+snippet ifee
+if ${1:condition}
+	${2:# TODO}
+elsif ${3:condition}
+	${4:# TODO}
+else
+	${0:# TODO}
+end
+endsnippet
+
+snippet unless
+unless ${1:condition}
+	${0:# TODO}
+end
+endsnippet
+
+snippet def
+def ${1:function_name}(${2:*args})
+	${0:# TODO}
+end
+endsnippet
+
+snippet defi
+def initialize(${1:*args})
+	${0:# TODO}
+end
+endsnippet
+
+snippet defr
+def ${1:function_name}(${2:args})
+	${3:# TODO}
+rescue
+	${0:# TODO}
+end
+endsnippet
+
+snippet For
+(${1:from}..${2:to}).each { |${3:i}| ${4:# TODO} }
+endsnippet
+
+snippet for
+(${1:from}..${2:to}).each do |${3:i}|
+	${0:# TODO}
+end
+endsnippet
+
+snippet Each
+${1:elements}.each { |${2:${1/s$//}}| ${3:# TODO} }
+endsnippet
+
+snippet each
+${1:elements}.each do |${2:${1/s$//}}|
+	${0:# TODO}
+end
+endsnippet
+
+snippet "each_?s(lice)?" "<array>.each_slice(n) do |slice| <block> end" r
+${1:elements}.each_slice(${2:2}) do |${3:slice}|
+	${0:# TODO}
+end
+endsnippet
+
+snippet "Each_?s(lice)?" "<array>.each_slice(n) { |slice| <block> }" r
+${1:elements}.each_slice(${2:2}) { |${3:slice}| ${0:# TODO} }
+endsnippet
+
+snippet do "do |<key>| ... end" i
+do |${1:args}|
+	$0
+end
+endsnippet
+
+snippet Do "do ... end" i
+do
+	$0
+end
+endsnippet
+
+snippet until
+until ${1:expression}
+	${0:# TODO}
+end
+endsnippet
+
+snippet Until
+begin
+	${0:# TODO}
+end until ${1:expression}
+endsnippet
+
+snippet while
+while ${1:expression}
+	${0:# TODO}
+end
+endsnippet
+
+snippet While
+begin
+	${0:# TODO}
+end while ${1:expression}
+endsnippet
+
+snippet attrr
+attr_reader :${0:attr_names}
+endsnippet
+
+snippet attrw
+attr_writer :${0:attr_names}
+endsnippet
+
+snippet attra
+attr_accessor :${0:attr_names}
+endsnippet
+
+snippet begin
+begin
+	${1:# TODO}
+rescue
+	${0:# TODO}
+end
+endsnippet
+
+snippet rescue
+rescue Exception => e
+	puts e.message
+	puts e.backtrace.inspect
+	${0:# Rescue}
+endsnippet
+
+snippet "\b(case|sw(itch)?)" "case <variable> when <expression> ... end" r
+case ${1:variable}
+when ${2:expression}
+$0
+end
+endsnippet
+
+snippet alias
+alias :${1:new_name} :${2:old_name}
+endsnippet
+
+snippet class
+class ${1:class_name}
+	def initialize(${2:*args})
+		$0
+	end
+end
+endsnippet
+
+snippet module
+module ${1:module_name}
+	$0
+end
+endsnippet

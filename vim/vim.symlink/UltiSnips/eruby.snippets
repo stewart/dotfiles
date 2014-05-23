@@ -7,7 +7,7 @@ snippet =
 endsnippet
 
 snippet each
-<% ${1:collection}.each do |${2:single}| %>
+<% ${1:elements}.each do |${2:${1/s$//}}| %>
 	$0
 <% end %>
 endsnippet
