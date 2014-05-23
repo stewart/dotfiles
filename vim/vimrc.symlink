@@ -354,6 +354,14 @@ augroup ft_eruby
 augroup END
 
 " }}}
+" SCSS {{{
+
+augroup ft_scss
+    au!
+    au Filetype scss :UltiSnipsAddFiletypes scss.css
+augroup END
+
+" }}}
 " Wisp {{{
 
 augroup ft_wisp
