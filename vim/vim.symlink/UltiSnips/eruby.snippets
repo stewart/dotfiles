@@ -1,0 +1,27 @@
+snippet %
+<% $0 %>
+endsnippet
+
+snippet =
+<%= $0 %>
+endsnippet
+
+snippet each
+<% ${1:collection}.each do |${2:single}| %>
+	$0
+<% end %>
+endsnippet
+
+snippet if
+<% if ${1:condition} %>
+	$0
+<% end %>
+endsnippet
+
+snippet ife
+<% if ${1:condition} %>
+	$2
+<% else %>
+	$0
+<% end %>
+endsnippet

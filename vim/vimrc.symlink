@@ -346,6 +346,14 @@ augroup ft_clojure
 augroup END
 
 " }}}
+" ERuby {{{
+
+augroup ft_eruby
+    au!
+    au Filetype eruby :UltiSnipsAddFiletypes eruby.html
+augroup END
+
+" }}}
 " Wisp {{{
 
 augroup ft_wisp

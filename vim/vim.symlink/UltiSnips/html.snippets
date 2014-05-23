@@ -1,0 +1,100 @@
+snippet doctype
+<!doctype html>
+
+endsnippet
+
+snippet html
+<html lang="en">
+$0
+</html>
+endsnippet
+
+snippet head
+<head>
+	<meta charset="utf-8">
+
+	<title>${1:Title}</title>
+
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+
+endsnippet
+
+snippet h1
+<h1>$0</h1>
+endsnippet
+
+snippet h2
+<h2>$0</h2>
+endsnippet
+
+snippet h3
+<h3>$0</h3>
+endsnippet
+
+snippet a
+<a href="${1:http://example.com}">$0</a>
+endsnippet
+
+snippet table
+<table>
+	<thead>
+		<tr>
+			<th>${1:Column}</th>
+		</tr>
+	</thead>
+
+	<tfoot>
+		<tr>
+			<td>${2:Footnote}</td>
+		</tr>
+	</tfoot>
+
+	<tbody>
+		<tr>${3:Data}</tr>
+	</tbody>
+</table>
+endsnippet
+
+snippet thead
+<thead>
+	<tr>
+		<th>${1:Column}</th>$0
+	</tr>
+</thead>
+endsnippet
+
+snippet tfoot
+<tfoot>
+	<tr>
+		<td>${1:Footer}</td>$0
+	</tr>
+</tfoot>
+endsnippet
+
+snippet tbody
+<tbody>
+	<tr>
+		<td>${1:Footer}</td>$0
+	</tr>
+</tbody>
+endsnippet
+
+snippet tr
+<tr>$0</tr>
+endsnippet
+
+snippet td
+<td>$0</td>
+endsnippet
+
+snippet script "Script with source"
+<script src="$1"></script>
+
+endsnippet
+
+snippet script "Inline script"
+<script>
+	$0
+</script>
+endsnippet
