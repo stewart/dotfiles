@@ -1,0 +1,2 @@
+#!/bin/bash
+pmset -g batt | tail -1 | awk '{print $2}' | sed -e 's/;//'
