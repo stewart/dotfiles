@@ -1,0 +1,66 @@
+snippet ns
+(ns ${1:namespace}
+	$0)
+endsnippet
+
+snippet c
+(comment
+	$0
+	)
+endsnippet
+
+snippet def
+(def ${1:name}
+	$0)
+endsnippet
+
+snippet defn
+(defn ${1:name}${2:
+	"${3:doc-string}"
+	}[${4:arg-list}]
+	$0)
+endsnippet
+
+snippet defp
+(defprotocol ${1:Name}
+	$0)
+endsnippet
+
+snippet defr
+(defrecord ${1:Name} [${2:fields}]
+	${3:Protocol}
+	$0)
+endsnippet
+
+snippet deft
+(deftype ${1:Name} [${2:fields}]
+	${3:Protocol}
+	$0)
+endsnippet
+
+snippet if
+(if ${1:test-expr}
+	${2:then-expr}
+	${3:else-expr})
+endsnippet
+
+snippet fn
+(fn [${1:arg-list}] $0)
+endsnippet
+
+snippet let
+(let [$1]
+	$0)
+endsnippet
+
+snippet req
+(:require [${1:namespace} :as [$0]])
+endsnippet
+
+snippet use
+(:use [${1:namespace} :only [$0]])
+endsnippet
+
+snippet import
+(:import [${1:package}])
+endsnippet

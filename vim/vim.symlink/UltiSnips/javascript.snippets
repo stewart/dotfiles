@@ -1,7 +1,13 @@
 snippet fn "Function"
-var ${1:function_name} = function $1(${2:args}) {
+function(${1:args}) {
 	$0
-};
+}
+endsnippet
+
+snippet nfn "Named Function"
+function ${1:FunctionName}(${2:args}) {
+	$0
+}
 endsnippet
 
 snippet : "Object Value JS"
@@ -46,5 +52,20 @@ console.log($0);
 endsnippet
 
 snippet req "require a module"
-require('$0')
+require('$0');
+endsnippet
+
+snippet switch
+switch (${1:expression}) {
+	case ${2:case}:
+		${VISUAL}${3:// TODO}
+		break;
+
+	default:
+		${VISUAL}${0}
+}
+endsnippet
+
+snippet exp
+module.exports
 endsnippet
