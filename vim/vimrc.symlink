@@ -499,11 +499,6 @@ nnoremap <leader>gt :call SelectaFile("./test/")<cr>
 nnoremap <leader>b :call SelectaBuffer()<cr>
 
 " }}}
-" Airline {{{
-
-let g:airline_powerline_fonts = 1
-
-" }}}
 " Scratch {{{
 
 command! ScratchToggle call ScratchToggle()
