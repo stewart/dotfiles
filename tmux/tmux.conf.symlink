@@ -45,10 +45,10 @@ bind s split-window -v
 bind S choose-session
 
 # Pane resizing
-bind -r C-h resize-pane -L 3
-bind -r C-j resize-pane -D 3
-bind -r C-k resize-pane -U 3
-bind -r C-l resize-pane -R 3
+bind -r Left resize-pane -L 2
+bind -r Right resize-pane -R 2
+bind -r Down resize-pane -D 2
+bind -r Up resize-pane -U 2
 
 # Sane scrolling
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
