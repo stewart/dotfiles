@@ -620,6 +620,10 @@ function! RenameFile() " {{{
         redraw!
     endif
 endfunction " }}}
+function! SendToFIFO(command) " {{{
+" sends command to FIFO living in /tmp
+   silent! exec ":!echo '" . a:command . "' > /tmp/fifo"
+endfunction " }}}
 function! SelectaCommand(choice_command, vim_command) "{{{
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
