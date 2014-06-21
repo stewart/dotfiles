@@ -214,8 +214,8 @@ map <leader>rT :call RunNearestTest()<cr>
 map <leader>ra :call RunTests('')<cr>
 
 " Resize splits/windows
-nnoremap <left>  :3wincmd <<cr>
-nnoremap <right> :3wincmd ><cr>
+nnoremap <right>  :3wincmd <<cr>
+nnoremap <left> :3wincmd ><cr>
 nnoremap <up>    :3wincmd +<cr>
 nnoremap <down>  :3wincmd -<cr>
 
