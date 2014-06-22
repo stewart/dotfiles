@@ -350,6 +350,8 @@ augroup ft_clojure
     au!
     set wildignore+=classes
     set wildignore+=lib
+    au Filetype clojure nnoremap <leader>e :Eval<cr>
+    au Filetype clojure nnoremap <leader>E :%Eval<cr>
 augroup END
 
 " }}}
