@@ -76,3 +76,6 @@
 [submodule "vim/vim.symlink/bundle/abolish"]
 	path = vim/vim.symlink/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
+[submodule "vim/vim.symlink/bundle/vinegar"]
+	path = vim/vim.symlink/bundle/vinegar
+	url = https://github.com/tpope/vim-vinegar.git
