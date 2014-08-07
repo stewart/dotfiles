@@ -52,9 +52,6 @@
 [submodule "vim/vim.symlink/bundle/literate-coffeescript"]
 	path = vim/vim.symlink/bundle/literate-coffeescript
 	url = https://github.com/mintplant/vim-literate-coffeescript.git
-[submodule "vim/vim.symlink/bundle/golang"]
-	path = vim/vim.symlink/bundle/golang
-	url = https://github.com/jnwhiteh/vim-golang.git
 [submodule "vim/vim.symlink/bundle/exchange"]
 	path = vim/vim.symlink/bundle/exchange
 	url = https://github.com/tommcdo/vim-exchange.git
