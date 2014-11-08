@@ -1,97 +1,93 @@
 #!/usr/bin/env node
 
-// I"m going to be a terrible person and explicitly require a globally installed module.
-// Sorry, Mom.
-var rest = require("/usr/local/lib/node_modules/restler"),
-    fs = require('fs');
+(function() {
+  var rest = require("/usr/local/lib/node_modules/restler"),
+      fs = require("fs");
 
-var env = function(prop) {
-  if (process.env.hasOwnProperty(prop)) {
-    return process.env[prop];
+  var file = process.argv[2];
+
+  if (!file) {
+    throw new Error("No filename passed to script");
   }
 
-  throw new Error("Unable to find environment variable - " + prop);
-};
-
-var config = {
-  imgur: {
-    refreshToken: env("IMGUR_REFRESH_TOKEN"),
-    clientId: env("IMGUR_CLIENT_ID"),
-    clientSecret: env("IMGUR_CLIENT_SECRET"),
-  },
-
-  endpoints: {
-    token: "https://api.imgur.com/oauth2/token",
-    upload: "https://api.imgur.com/3/image"
-  }
-};
-
-var contentType = function(str) {
-  if (/\.jpe?g$/.test(str)) {
-    return "image/jpeg";
+  if (!fs.existsSync(file)) {
+    throw new Error("File does not exist");
   }
 
-  if (/\.png$/.test(str)) {
-    return "image/png";
+  var config = {
+    imgur: {
+      refreshToken: env("IMGUR_REFRESH_TOKEN"),
+      clientId: env("IMGUR_CLIENT_ID"),
+      clientSecret: env("IMGUR_CLIENT_SECRET"),
+    },
+
+    endpoints: {
+      token: "https://api.imgur.com/oauth2/token",
+      upload: "https://api.imgur.com/3/image"
+    }
+  };
+
+  function env(prop) {
+    if (process.env.hasOwnProperty(prop)) {
+      return process.env[prop];
+    }
+
+    throw new Error("Unable to find environment variable - " + prop);
   }
 
-  if (/\.gif$/.test(str)) {
-    return "image/gif";
+  function contentType(filename) {
+    if (/\.jpe?g$/.test(filename)) {
+      return "image/jpeg";
+    }
+
+    if (/\.png$/.test(filename)) {
+      return "image/png";
+    }
+
+    if (/\.gif$/.test(filename)) {
+      return "image/gif";
+    }
+
+    return null;
   }
-}
 
-var Imgur = {
-  accessToken: null,
-
-  refreshToken: function(callback) {
+  function getAccessToken(callback) {
     rest.postJson(config.endpoints.token, {
       refresh_token: config.imgur.refreshToken,
       client_id: config.imgur.clientId,
       client_secret: config.imgur.clientSecret,
       grant_type: 'refresh_token'
     }).on('complete', function(data, response) {
-      if (data.access_token) {
-        Imgur.accessToken = data.access_token;
-      } else {
-        throw new Error("Unable to obtain access_token from Imgur.")
+      if (!data.access_token) {
+        throw new Error("Unable to obtain access_token from Imgur.");
       }
 
-      callback();
-    });
-  },
-
-  upload: function(path) {
-    var exists = fs.existsSync(path);
-
-    if (!exists) {
-      throw new Error("Specified file (" + path + ") doesn't exist.");
-    }
-
-    Imgur.refreshToken(function() {
-      var token = Imgur.accessToken,
-          stat = fs.statSync(path);
-
-      var type = contentType(path);
-
-      rest.post(config.endpoints.upload, {
-        multipart: true,
-
-        headers: {
-          'Authorization': "Bearer " + token
-        },
-
-        data: {
-          'image': rest.file(path, null, stat.size, null, type)
-        }
-      }).on('complete', function(data, response) {
-        if (data.status == 200) {
-          console.log(data.data.link);
-        } else {
-          throw new Error("An error occured uploading the image. " + data);
-        }
-      });
+      callback(data.access_token);
     });
   }
-};
 
-Imgur.upload(process.argv[2]);
+  function upload(token) {
+    var size = fs.statSync(file).size,
+        type = contentType(file);
+
+    rest.post(config.endpoints.upload, {
+      multipart: true,
+
+      headers: {
+        'Authorization': "Bearer " + token
+      },
+
+      data: {
+        'image': rest.file(file, null, size, null, type)
+      }
+    }).on('complete', function(data, response) {
+      if (data.status == 200) {
+        console.log(data.data.link);
+      } else {
+        throw new Error("An error occured uploading the image. " + data);
+      }
+    });
+  }
+
+  getAccessToken(upload);
+})();
