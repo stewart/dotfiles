@@ -213,6 +213,9 @@ map <leader>rt :call RunTestFile()<cr>
 map <leader>rT :call RunNearestTest()<cr>
 map <leader>ra :call RunTests('')<cr>
 
+" Shortcut to run Make
+map <leader>ma :!make<cr>
+
 " Resize splits/windows
 nnoremap <right>  :3wincmd <<cr>
 nnoremap <left> :3wincmd ><cr>
@@ -224,7 +227,7 @@ cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
 " Open Markdown previews in Marked.app
-nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+nnoremap <leader>md :silent !open -a Marked.app '%:p'<cr>
 
 " Make finding marks easier
 noremap ' `
@@ -385,6 +388,8 @@ augroup ft_javascript
     au!
 
     au Filetype javascript nnoremap L :!jshint %<cr>
+
+    au Filetype javascript map <leader>rt :!make<cr>
 
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
