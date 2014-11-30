@@ -82,3 +82,6 @@
 [submodule "vim/vim.symlink/bundle/vim-sexp-mappings-for-regular-people"]
 	path = vim/vim.symlink/bundle/vim-sexp-mappings-for-regular-people
 	url = https://github.com/tpope/vim-sexp-mappings-for-regular-people.git
+[submodule "vim/vim.symlink/bundle/elixir"]
+	path = vim/vim.symlink/bundle/elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
