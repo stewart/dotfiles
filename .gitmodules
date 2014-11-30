@@ -88,3 +88,6 @@
 [submodule "vim/vim.symlink/bundle/rust"]
 	path = vim/vim.symlink/bundle/rust
 	url = https://github.com/wting/rust.vim.git
+[submodule "vim/vim.symlink/bundle/javascript"]
+	path = vim/vim.symlink/bundle/javascript
+	url = https://github.com/pangloss/vim-javascript.git
