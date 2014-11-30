@@ -91,3 +91,6 @@
 [submodule "vim/vim.symlink/bundle/javascript"]
 	path = vim/vim.symlink/bundle/javascript
 	url = https://github.com/pangloss/vim-javascript.git
+[submodule "vim/vim.symlink/bundle/spider"]
+	path = vim/vim.symlink/bundle/spider
+	url = https://github.com/ZucchiniZe/vim-spider.git
