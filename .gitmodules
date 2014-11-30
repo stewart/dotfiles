@@ -85,3 +85,6 @@
 [submodule "vim/vim.symlink/bundle/elixir"]
 	path = vim/vim.symlink/bundle/elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "vim/vim.symlink/bundle/rust"]
+	path = vim/vim.symlink/bundle/rust
+	url = https://github.com/wting/rust.vim.git
