@@ -94,3 +94,6 @@
 [submodule "vim/vim.symlink/bundle/spider"]
 	path = vim/vim.symlink/bundle/spider
 	url = https://github.com/ZucchiniZe/vim-spider.git
+[submodule "vim/vim.symlink/bundle/less"]
+	path = vim/vim.symlink/bundle/less
+	url = https://github.com/groenewege/vim-less.git
