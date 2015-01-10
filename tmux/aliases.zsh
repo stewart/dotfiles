@@ -1,4 +1,3 @@
-alias t='tmux'
 alias tn='tmux new -s'
 alias tnd='tmux new -s ${PWD##*/}'
 alias tk='tmux kill-server'

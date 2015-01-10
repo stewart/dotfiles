@@ -18,3 +18,6 @@ alias ffs='sudo !!'
 
 # shortcut for javascript terminal
 alias jsc='/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc'
+
+# find files in-repo
+alias t='git ls-files | grep'
