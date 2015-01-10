@@ -382,6 +382,15 @@ augroup ft_wisp
 augroup END
 
 " }}}
+"
+" Pixie {{{
+
+augroup ft_pixie
+    au!
+    au BufNewFile,BufRead *.pixie,*.pxi setlocal filetype=clojure
+augroup END
+
+" }}}
 " Javascript {{{
 
 augroup ft_javascript
@@ -390,6 +399,8 @@ augroup ft_javascript
     au Filetype javascript nnoremap L :!jshint %<cr>
 
     au Filetype javascript map <leader>rt :!make<cr>
+
+    au BufNewFile,BufRead *.jshintrc setlocal filetype=json
 
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
