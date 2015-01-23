@@ -449,8 +449,7 @@ augroup ft_go
 
     au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
     au Filetype go setlocal listchars+=tab:\ \ 
-    au FileType go au BufWritePre <buffer> Fmt
-    let g:gofmt_command = "goimports"
+    au FileType go au BufWritePre <buffer> GoImports
 augroup END
 
 " }}}
@@ -523,6 +522,7 @@ nnoremap <leader>gf :call SelectaFile("./features/")<cr>
 nnoremap <leader>gl :call SelectaFile("./lib/")<cr>
 nnoremap <leader>gs :call SelectaFile("./spec/")<cr>
 nnoremap <leader>gt :call SelectaFile("./test/")<cr>
+nnoremap <leader>gp :call SelectaFile("./public/")<cr>
 nnoremap <leader>b :call SelectaBuffer()<cr>
 
 " }}}
@@ -644,38 +644,35 @@ function! SendToFIFO(command) " {{{
 " sends command to FIFO living in /tmp
    silent! exec ":!echo '" . a:command . "' > /tmp/fifo"
 endfunction " }}}
-function! SelectaCommand(choice_command, vim_command) "{{{
+function! SelectaCommand(choice_command, selecta_args, vim_command) "{{{
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
   try
-    exec a:vim_command . " " . system(a:choice_command . " | selecta")
+    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
   catch /Vim:Interrupt/
     " Swallow the ^C so that the redraw below happens; otherwise there will be
     " leftovers from selecta on the screen
+    redraw!
+    return
   endtry
   redraw!
-endfunction " }}}
+  exec a:vim_command . " " . selection
+endfunction "}}}
 function! SelectaFile(dir_name) "{{{
   let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | egrep -v '^(node_modules|vendor/bundle)' | sort -u"
-  call SelectaCommand(command, ":e")
+  call SelectaCommand(command, "", ":e")
 endfunction " }}}
 function! SelectaFileWithoutExclude(dir_name) "{{{
   let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | sort -u"
-  call SelectaCommand(command, ":e")
+  call SelectaCommand(command, "", ":e")
 endfunction " }}}
 function! SelectaTag() "{{{
   let command = "awk '{print $1}' tags | sort -u | grep -v '^!'"
-  call SelectaCommand(command, ":tag")
+  call SelectaCommand(command, "", ":tag")
 endfunction " }}}
 function! SelectaBuffer() "{{{
-  redir => bufs
-    silent buffers
-  redir END
-  try
-    exec ":b " . system("vim-selecta-buffer", bufs)
-  catch /Vim:Interrupt/
-  endtry
-  redraw!
+  let buffers = map(range(1, bufnr("$")), 'bufname(bufnr(v:val))')
+  call SelectaCommand('echo "' . join(buffers, "\n") . '"', "", ":b")
 endfunction " }}}
 " Opens a link to the current file on GitHub
 function! OpenOnGithub(owner)
