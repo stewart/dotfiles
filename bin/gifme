@@ -1,62 +1,14 @@
-#!/usr/bin/env python
-# Stupid and quick gif finding with the power of the_silver_searcher, only
-# relevant to me.
-#
-# This should probably just be a shell script. Too lazy.
-#
-# Usage:
-#   gif chilicheesefriess
-#     http://pics.stwrt.ca/chilicheesefries.gif copied to your clipboard
-#   gif theylive
-#     Take your pick:
-#       A: theylive.gif
-#       B: theylive.png
-#     a
-#     http://pics.stwrt.ca/they_life.gif copied to your clipboard.
+#!/usr/bin/env zsh
+# Made it a fucking shell script.
+# Good riddance.
 
-import sys
-from string import ascii_uppercase
-from subprocess import check_output, call
+() {
+    local RESULT
+    local URL
 
-GIFS_FOLDER = "~/Dropbox/Pictures/gifs"
-URL_BASE = "http://gifs.stwrt.ca/"
-ALPHABET = list(ascii_uppercase) + map(str, range(10))
+    RESULT=$(basename $(find ~/Dropbox/Pictures/gifs -type f -name '*.gif') | selecta)
+    URL=$(echo "http://gifs.stwrt.ca/$RESULT" | xargs echo)
 
-def main(argv):
-    term = argv[1] if len(argv) > 1 else quit()
-
-    results = check_output("ls %s | ag %s" %(GIFS_FOLDER, term), shell=True)
-    results = results.split()
-
-    if len(results) == 0:
-        quit("No gifs found. Try something else.")
-    elif len(results) > len(ALPHABET):
-        quit("Way too many gifs found. Try a less vague search.")
-
-    if len(results) == 1:
-        url = URL_BASE + results[0]
-        call("echo '%s' | pbcopy" % url, shell=True)
-        print "  %s copied to your clipboard." % url
-    else:
-        letters_to_results = dict(zip(ALPHABET, results))
-
-        print "  Take your pick:"
-
-        for result in letters_to_results:
-            print "    %s: %s" %(result, letters_to_results[result])
-
-        picked_letter = raw_input().upper()
-
-        if picked_letter not in letters_to_results:
-            quit("Invalid selection. Try again")
-
-        url = URL_BASE + letters_to_results[picked_letter]
-        call("echo '%s' | pbcopy" % url, shell=True)
-        print "  %s copied to your clipboard." % url
-
-def quit(message="Usage: gifme [search_term]"):
-    print "  %s" % message
-    sys.exit()
-
-if __name__ == '__main__':
-    main(sys.argv[0:])
+    echo $URL | pbcopy
+    echo $URL
+}
