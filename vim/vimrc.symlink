@@ -209,9 +209,8 @@ cmap w!! %!sudo tee > /dev/null %
 map <leader><leader> <c-^>
 
 " Shortcut to run current rspec file
-map <leader>rt :call RunTestFile()<cr>
-map <leader>rT :call RunNearestTest()<cr>
-map <leader>ra :call RunTests('')<cr>
+map <leader>t :call RunTestFile()<cr>
+map <leader>T :call RunNearestTest()<cr>
 
 " Shortcut to run Make
 map <leader>ma :!make<cr>
@@ -398,7 +397,7 @@ augroup ft_javascript
 
     au Filetype javascript nnoremap L :!jshint %<cr>
 
-    au Filetype javascript map <leader>rt :!make<cr>
+    au Filetype javascript map <leader>t :!make<cr>
 
     au BufNewFile,BufRead *.jshintrc setlocal filetype=json
 
@@ -444,12 +443,20 @@ augroup END
 " }}}
 " Golang {{{
 
+let g:go_fmt_command = "goimports"
+
 augroup ft_go
     au!
 
     au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
     au Filetype go setlocal listchars+=tab:\ \ 
-    au FileType go au BufWritePre <buffer> GoImports
+
+    " au FileType go au BufWritePre <buffer> GoImports
+
+    au Filetype go nnoremap <leader>d :vsp <CR>:exe "GoDef" <CR>
+    au Filetype go nnoremap <leader>rt :exe "GoTest"<cr>
+    au Filetype go nnoremap <leader>ru :exe "GoRun"<cr>
+    au Filetype go nnoremap <leader>b :exe "GoBuild"<cr>
 augroup END
 
 " }}}
@@ -535,7 +542,6 @@ map <Leader>c <c-_><c-_>
 
 let g:UltiSnipsExpandTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
-nnoremap <silent> <leader>es :UltiSnipsEdit<cr>
 
 "}}}
 " }}}
