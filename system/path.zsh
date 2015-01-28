@@ -1,1 +1,1 @@
-export PATH=".:./bin:./node_modules/.bin:$ZSH/bin:$HOME/bin:$GOPATH/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/share/npm/bin:/usr/local/sbin:/usr/bin:/bin:/usr/local/share/python:$PATH"
+export PATH=".:./bin:./node_modules/.bin:$ZSH/bin:$HOME/bin:/usr/local/opt/go/libexec/bin:$GOPATH/bin:/usr/local/heroku/bin:/usr/local/bin:/usr/local/share/npm/bin:/usr/local/sbin:/usr/bin:/bin:/usr/local/share/python:$PATH"
