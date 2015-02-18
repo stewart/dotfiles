@@ -1,0 +1,83 @@
+snippet cc "createClass"
+var ${1:`name`} = React.createClass({
+	render: function() {
+		return (
+			$0
+		);
+	}
+});
+
+module.exports = $1;
+endsnippet
+
+snippet cdm "componentDidMount"
+componentDidMount: function() {
+	$0
+},
+endsnippet
+
+snippet cdu "componentDidUpdate"
+componentDidUpdate: function(prevProps, prevState) {
+	$0
+},
+endsnippet
+
+snippet cwm "componentWillMount"
+componentWillMount: function() {
+	$0
+},
+endsnippet
+
+snippet cwrp "componentWillReceiveProps"
+componentWillReceiveProps: function(nextProps) {
+	$0
+},
+endsnippet
+
+snippet cwum "componentWillUnmount"
+componentWillUnmount: function() {
+	$0
+},
+endsnippet
+
+snippet cwu "componentWillUpdate"
+componentWillUpdate: function(nextProps, nextState) {
+	$0
+},
+endsnippet
+
+snippet gdp "getDefaultProps"
+getDefaultProps: function() {
+	return {
+		$0
+	};
+},
+endsnippet
+
+snippet gis "getInitialState"
+getInitialState: function() {
+	return {
+		$0
+	};
+},
+endsnippet
+
+snippet pt "propTypes"
+propTypes: {
+	$0
+},
+endsnippet
+
+snippet scu "shouldComponentUpdate"
+shouldComponentUpdate: function(nextProps, nextState) {
+	return ${1:true};
+},
+endsnippet
+
+snippet ts "this.state"
+{this.state.${1:prop}}
+endsnippet
+
+snippet tp "this.props"
+{this.props${1:prop}}
+endsnippet
