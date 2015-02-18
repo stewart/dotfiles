@@ -496,6 +496,7 @@ augroup ft_ruby
 
     au BufRead,BufNewFile {Capfile,Gemfile,Rakefile,Thorfile,Vagrantfile,config.ru,.caprc,.irbrc} set ft=ruby
     au Filetype ruby setlocal path+=./lib,./app/models,./app/controllers
+    au Filetype ruby nnoremap L :!ruby -c %<cr>
 augroup END
 
 " }}}
