@@ -32,7 +32,6 @@ These will make things more awesome:
 - ack
 - coreutils
 - grc
-- hub
 - postgresql
 - chruby
 - reattach-to-user-namespace

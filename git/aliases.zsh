@@ -1,9 +1,6 @@
 # git
 alias g='git'
 
-# use 'hub as our git wrapper
-alias git='hub'
-
 # the rest of the fun aliases
 alias gs='git status -sb'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
