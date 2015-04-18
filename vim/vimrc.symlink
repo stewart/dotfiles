@@ -342,7 +342,7 @@ set tags=./.git/tags,./tags,tags
 
 augroup ft_blog_post
     au!
-    au BufRead,BufNewFile */dev/blog/* map ,rt :!hugo<cr><cr>
+    au BufRead,BufNewFile */dev/blog/* map ,rt :!hugo &>/dev/null<cr><cr>
 augroup END
 
 " }}}
@@ -395,7 +395,7 @@ augroup END
 augroup ft_javascript
     au!
 
-    au Filetype javascript nnoremap L :!jshint %<cr>
+    au Filetype javascript nnoremap L :!eslint %<cr>
 
     au Filetype javascript map <leader>t :!make<cr>
 
@@ -404,6 +404,15 @@ augroup ft_javascript
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
     au Filetype javascript inoremap <buffer> {<cr> {}<left><cr><space><space>.<cr><esc>kA<bs>
+augroup END
+
+" }}}
+" YAML {{{
+
+augroup ft_yaml
+    au!
+
+    au BufNewFile,BufRead *.eslintrc setlocal filetype=yaml
 augroup END
 
 " }}}
@@ -766,6 +775,34 @@ function! RunTests(filename) " {{{
 
     exec command
 endfunction " }}}
+function! s:ExecuteInShell(command, bang) " {{{
+  let s:_ = ''
+  let _ = a:bang != '' ? s:_ : a:command == '' ? '' : join(map(split(a:command), 'expand(v:val)'))
+
+  if (_ != '')
+    let s:_ = _
+    let bufnr = bufnr('%')
+    let winnr = bufwinnr('^' . _ . '$')
+    silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(_) : winnr . 'wincmd w'
+    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile
+    silent! :%d
+    let message = 'Execute ' . _ . '...'
+    call append(0, message)
+    echo message
+    silent! 2d | redraw
+    silent! execute 'silent! %!'. _
+    silent! execute 'syntax on'
+    silent! execute 'autocmd BufUnload <buffer> execute bufwinnr(' . bufnr . ') . ''wincmd w'''
+    silent! execute 'nnoremap <silent> <buffer> <CR> :call <SID>ExecuteInShell(''' . _ . ''', '''')<CR>'
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . _ . ''', '''')<CR>'
+    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>g :execute bufwinnr(' . bufnr . ') . ''wincmd w''<CR>'
+    silent! syntax on
+  endif
+endfunction
+
+command! -complete=shellcmd -nargs=* -bang Shell call s:ExecuteInShell(<q-args>, '<bang>')
+cabbrev shell Shell
+" }}}
 
 " }}}
 
