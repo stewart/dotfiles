@@ -27,18 +27,15 @@
 [merge]
   summary = true
   verbosity = 1
-  tool = fugitive
 [push]
   default = tracking
-[mergetool "fugitive"]
-  cmd = vim -f -c \"Gdiff\" \"$MERGED\"MERGED
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [browser "gitscm"]
   cmd = /bin/sh -c 'open http://git-scm.com/docs/$(basename $1 .html)' --
-[help]
-  browser = gitscm
-  format = html
+# [help]
+#   browser = gitscm
+#   format = html
 [alias]
   # add
   a = add
