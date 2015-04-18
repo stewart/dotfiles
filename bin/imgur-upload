@@ -82,7 +82,7 @@
       }
     }).on('complete', function(data, response) {
       if (data.status == 200) {
-        console.log(data.data.link);
+        console.log(data.data.link.trim());
       } else {
         throw new Error("An error occured uploading the image. " + data);
       }
