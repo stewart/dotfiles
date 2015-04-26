@@ -1,5 +1,5 @@
 " .vimrc
-" Author: Andrew Stewart <andrew@averagestudios.com>
+" Author: Andrew Stewart <andrew@stwrt.ca>
 " Source: https://github.com/stewart/dotfiles/tree/master/vim
 
 " Preamble ---------------------------------------------------------------- {{{
@@ -805,6 +805,12 @@ cabbrev shell Shell
 " }}}
 
 " }}}
+
+" source local vimrc modifications, if present
+let s:local_vimrc = $HOME . "/.vimrc.local"
+if filereadable(s:local_vimrc)
+    execute 'source ' . s:local_vimrc
+endif
 
 " Prevent project vimrc files from damaging stuff
 set secure
