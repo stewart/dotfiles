@@ -17,3 +17,9 @@ run-test.sh
 test-commands
 tags
 *.pyc
+
+# elixir
+/_build
+/deps
+erl_crash.dump
+*.ez
