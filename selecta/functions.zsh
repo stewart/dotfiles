@@ -3,7 +3,7 @@
 # Tmux-Selecta-Attach
 # Quickly find and attach to an open tmux session
 function tsa() {
-  tmux attach -t `tmux ls | sort | selecta | cut -f1 -d:`
+  tmux attach -t `tmux ls | sort | cut -f1 -d: | selecta`
 }
 
 # Vim-Find
