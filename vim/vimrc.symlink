@@ -422,7 +422,7 @@ augroup ft_markdown
     au!
 
     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=markdown
-    au BufNewFile,BufRead *.md,*.markdown setlocal textwidth=80
+    au BufNewFile,BufRead *.md,*.markdown setlocal textwidth=0
     au BufNewFile,BufRead *.md,*.markdown setlocal syntax=off
 
     " Use <localleader>1/2/3 to add headings.
@@ -447,6 +447,25 @@ augroup ft_python
     au!
 
     au Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
+
+" }}}
+" C# {{{
+
+augroup ft_cs
+    au!
+
+    au filetype cs setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+    au filetype cs setlocal listchars+=tab:\ \ 
+augroup END
+
+" }}}
+" Elixir {{{
+
+augroup ft_elixir
+    au!
+
+    au Filetype elixir map <leader>rt :!mix test<cr>
 augroup END
 
 " }}}
