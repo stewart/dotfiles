@@ -11,3 +11,7 @@ fi
 
 # shove public key to clipboard
 alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+
+function dirs() {
+  find . -type d -maxdepth 1 -mindepth 1 | awk '{print $1}' | sed 's/\.\///'
+}
