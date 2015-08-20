@@ -103,3 +103,6 @@
 [submodule "vim/vim.symlink/bundle/elm"]
 	path = vim/vim.symlink/bundle/elm
 	url = https://github.com/lambdatoast/elm.vim.git
+[submodule "vim/vim.symlink/bundle/split-join"]
+	path = vim/vim.symlink/bundle/split-join
+	url = https://github.com/AndrewRadev/splitjoin.vim.git
