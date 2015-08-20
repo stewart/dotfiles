@@ -185,10 +185,6 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 nnoremap <leader>` :set cursorline!<cr>:set cursorcolumn!<cr>
 
-" Easier way to ex mode
-nnoremap ; :
-vnoremap ; :
-
 " Gundo
 nnoremap <Leader>u :GundoToggle<CR>
 
