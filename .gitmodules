@@ -97,3 +97,6 @@
 [submodule "vim/vim.symlink/bundle/jsx"]
 	path = vim/vim.symlink/bundle/jsx
 	url = https://github.com/mxw/vim-jsx.git
+[submodule "vim/vim.symlink/bundle/quick-scope"]
+	path = vim/vim.symlink/bundle/quick-scope
+	url = https://github.com/unblevable/quick-scope.git
