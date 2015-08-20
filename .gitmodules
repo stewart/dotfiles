@@ -100,3 +100,6 @@
 [submodule "vim/vim.symlink/bundle/quick-scope"]
 	path = vim/vim.symlink/bundle/quick-scope
 	url = https://github.com/unblevable/quick-scope.git
+[submodule "vim/vim.symlink/bundle/elm"]
+	path = vim/vim.symlink/bundle/elm
+	url = https://github.com/lambdatoast/elm.vim.git
