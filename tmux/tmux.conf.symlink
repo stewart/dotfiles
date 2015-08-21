@@ -1,14 +1,12 @@
 # Rebind control key to C-a
-set-option -g prefix F10
-set-option -g prefix2 C-a
-bind F10 send-prefix
-bind C-a send-prefix -2
+set-option -g prefix C-a
+bind C-a send-prefix
 
 set -sg escape-time 0
 set -sg repeat-time 600
 
-# F10 F10 will load the last window
-bind-key F10 last-window
+# C-a C-a will load the last window
+bind-key C-a last-window
 
 # Change statusline colors
 set -g status-bg black
