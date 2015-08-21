@@ -690,7 +690,7 @@ function! SelectaCommand(choice_command, selecta_args, vim_command) "{{{
   exec a:vim_command . " " . selection
 endfunction "}}}
 function! SelectaFile(dir_name) "{{{
-  let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | egrep -v '^(node_modules|vendor/bundle)' | sort -u"
+  let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | egrep -v '^(node_modules|vendor/bundle|_build)' | sort -u"
   call SelectaCommand(command, "", ":e")
 endfunction " }}}
 function! SelectaFileWithoutExclude(dir_name) "{{{
