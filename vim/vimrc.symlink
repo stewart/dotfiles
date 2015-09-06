@@ -756,26 +756,14 @@ function! RunTests(filename) " {{{
     if a:filename == ''
         " no filename provided, so figure out what type of tests we have
         if filereadable("spec/spec_helper.rb")
-            if gemfile_present
-                let command = ":!bundle exec rspec --color"
-            else
-                let command = ":!rspec --color"
-            end
+            let command = ":!rspec"
         else
-            if gemfile_present
-                let command = ":!bundle exec rake test"
-            else
-                let command = ":!rake test"
-            end
+            let command = ":!rake test"
         end
     else
         " we're in a file, so run the relevant test
         if match(a:filename, '_spec.rb') != -1
-            if gemfile_present
-                let command = ":!bundle exec rspec --color " . a:filename
-            else
-                let command = ":!rspec --color " . a:filename
-            end
+            let command = ":!rspec --color " . a:filename
         elseif match(a:filename, '_test.rb') != -1
             if gemfile_present
                 let command = ":!bundle exec ruby " . a:filename
