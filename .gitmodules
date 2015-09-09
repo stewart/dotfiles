@@ -106,3 +106,6 @@
 [submodule "vim/vim.symlink/bundle/split-join"]
 	path = vim/vim.symlink/bundle/split-join
 	url = https://github.com/AndrewRadev/splitjoin.vim.git
+[submodule "vim/vim.symlink/bundle/fugitive"]
+	path = vim/vim.symlink/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
