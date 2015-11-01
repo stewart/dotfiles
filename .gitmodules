@@ -64,9 +64,6 @@
 [submodule "vim/vim.symlink/bundle/fireplace"]
 	path = vim/vim.symlink/bundle/fireplace
 	url = https://github.com/tpope/vim-fireplace.git
-[submodule "vim/vim.symlink/bundle/ultisnipts"]
-	path = vim/vim.symlink/bundle/ultisnipts
-	url = https://github.com/SirVer/ultisnips.git
 [submodule "vim/vim.symlink/bundle/abolish"]
 	path = vim/vim.symlink/bundle/abolish
 	url = https://github.com/tpope/vim-abolish.git
