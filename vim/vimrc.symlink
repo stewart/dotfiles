@@ -21,6 +21,7 @@ set noai
 set nosi
 set autoread
 set autowrite
+set t_Co=256
 set backspace=indent,eol,start
 set backupskip=/tmp/*,/private/tmp/*"
 set colorcolumn=80
