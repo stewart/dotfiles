@@ -351,22 +351,6 @@ augroup ft_clojure
 augroup END
 
 " }}}
-" ERuby {{{
-
-augroup ft_eruby
-    au!
-    au Filetype eruby :UltiSnipsAddFiletypes eruby.html
-augroup END
-
-" }}}
-" SCSS {{{
-
-augroup ft_scss
-    au!
-    au Filetype scss :UltiSnipsAddFiletypes scss.css
-augroup END
-
-" }}}
 " Wisp {{{
 
 augroup ft_wisp
@@ -559,12 +543,6 @@ nnoremap <leader>b :call SelectaBuffer()<cr>
 " T-Comment {{{
 
 map <Leader>c <c-_><c-_>
-
-"}}}
-" Ultisnips {{{
-
-let g:UltiSnipsExpandTrigger="<s-tab>"
-let g:UltiSnipsEditSplit="vertical"
 
 "}}}
 " }}}
