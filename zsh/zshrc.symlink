@@ -7,6 +7,9 @@ for config_file ($ZSH/*/*.zsh) source $config_file
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 
+# let me know how long everything takes
+REPORTTIME=10
+
 # .localrc for MYSTERY AND WONDER
 if [[ -a ~/.localrc ]]
 then
@@ -24,6 +27,10 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 bindkey '^R' history-incremental-search-backward
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
+
+# tmux/zsh thing for linux, idfk
+bindkey "^[OA" history-beginning-search-backward
+bindkey "^[OB" history-beginning-search-forward
 
 # initialize autocomplete
 autoload -U compinit
