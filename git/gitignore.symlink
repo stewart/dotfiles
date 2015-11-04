@@ -8,7 +8,7 @@ nbproject
 *.esproj
 
 todo
-notes
+/notes
 vendor/bundle/
 /.bundle
 /.vimrc
