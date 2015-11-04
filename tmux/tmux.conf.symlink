@@ -47,6 +47,10 @@ bind -r Right resize-pane -R 2
 bind -r Down resize-pane -D 2
 bind -r Up resize-pane -U 2
 
+# switch sessions
+bind -n S-Left switch-client -p
+bind -n S-Right switch-client -n
+
 # Sane scrolling
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 
