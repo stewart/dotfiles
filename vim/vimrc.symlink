@@ -265,7 +265,7 @@ nnoremap Vi} vi}V
 nnoremap D d$
 
 " Open current file and line on github
-nnoremap <leader>gh :call OpenOnGithub('')<cr>
+nnoremap <leader>gh :Gbrowse<cr>
 
 " Open a vsplit
 noremap <leader>v <C-w>v
@@ -703,21 +703,6 @@ function! SelectaBuffer() "{{{
   let buffers = map(range(1, bufnr("$")), 'bufname(bufnr(v:val))')
   call SelectaCommand('echo "' . join(buffers, "\n") . '"', "", ":b")
 endfunction " }}}
-" Opens a link to the current file on GitHub
-function! OpenOnGithub(owner)
-  let base_url = "https://github.com/"
-  let repo = split(getcwd(), "/")[-1] . '/'
-  let branch = substitute(system('git rev-parse --abbrev-ref HEAD'), "\n", '', '')
-  let filename = '/' . @%
-  let line = line('.')
-  let owner = a:owner
-
-  if owner == ''
-    let owner = substitute(system('whoami'), "\n", '', '')
-  end
-
-  silent! exec "!open " . base_url . owner . '/' . repo . "blob/" . branch . filename . shellescape("#L", 1) . line
-endfunction
 function! RunTestFile(...) " {{{
     if a:0
         let command_suffix = a:1
