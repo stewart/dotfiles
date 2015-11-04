@@ -798,5 +798,10 @@ if filereadable(s:local_vimrc)
     execute 'source ' . s:local_vimrc
 endif
 
+" source localrc if available
+if filereadable(glob("~/.vimrc.local")) 
+    source ~/.vimrc.local
+endif
+
 " Prevent project vimrc files from damaging stuff
 set secure
