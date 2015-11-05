@@ -521,23 +521,23 @@ augroup END
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
 
-" Selecta {{{
+" FZY {{{
 
 " Easier mappings for searches
-nnoremap <leader>. :call SelectaTag()<cr>
-nnoremap <leader>f :call SelectaFile("")<cr>
-nnoremap <leader>gg :call SelectaFileWithoutExclude("")<cr>
-nnoremap <leader>gm :call SelectaFile("./app/models/")<cr>
-nnoremap <leader>gc :call SelectaFile("./app/controllers/")<cr>
-nnoremap <leader>ga :call SelectaFile("./app/assets/")<cr>
-nnoremap <leader>gv :call SelectaFile("./app/views/")<cr>
-nnoremap <leader>gd :call SelectaFile("./db/")<cr>
-nnoremap <leader>gf :call SelectaFile("./features/")<cr>
-nnoremap <leader>gl :call SelectaFile("./lib/")<cr>
-nnoremap <leader>gs :call SelectaFile("./spec/")<cr>
-nnoremap <leader>gt :call SelectaFile("./test/")<cr>
-nnoremap <leader>gp :call SelectaFile("./public/")<cr>
-nnoremap <leader>b :call SelectaBuffer()<cr>
+nnoremap <leader>. :call SelectTag()<cr>
+nnoremap <leader>f :call SelectFile("")<cr>
+nnoremap <leader>gg :call SelectFileWithoutExclude("")<cr>
+nnoremap <leader>gm :call SelectFile("./app/models/")<cr>
+nnoremap <leader>gc :call SelectFile("./app/controllers/")<cr>
+nnoremap <leader>ga :call SelectFile("./app/assets/")<cr>
+nnoremap <leader>gv :call SelectFile("./app/views/")<cr>
+nnoremap <leader>gd :call SelectFile("./db/")<cr>
+nnoremap <leader>gf :call SelectFile("./features/")<cr>
+nnoremap <leader>gl :call SelectFile("./lib/")<cr>
+nnoremap <leader>gs :call SelectFile("./spec/")<cr>
+nnoremap <leader>gt :call SelectFile("./test/")<cr>
+nnoremap <leader>gp :call SelectFile("./public/")<cr>
+nnoremap <leader>b :call SelectBuffer()<cr>
 
 " }}}
 " T-Comment {{{
@@ -651,35 +651,35 @@ function! SendToFIFO(command) " {{{
 " sends command to FIFO living in /tmp
    silent! exec ":!echo '" . a:command . "' > /tmp/fifo"
 endfunction " }}}
-function! SelectaCommand(choice_command, selecta_args, vim_command) "{{{
+function! SelectCommand(choice_command, select_args, vim_command) "{{{
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
   try
-    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+    let selection = system(a:choice_command . " | fzy " . a:select_args)
   catch /Vim:Interrupt/
     " Swallow the ^C so that the redraw below happens; otherwise there will be
-    " leftovers from selecta on the screen
+    " leftovers from fzy on the screen
     redraw!
     return
   endtry
   redraw!
   exec a:vim_command . " " . selection
 endfunction "}}}
-function! SelectaFile(dir_name) "{{{
-  let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | egrep -v '^(node_modules|vendor/bundle|_build)' | sort -u"
-  call SelectaCommand(command, "", ":e")
+function! SelectFile(dir_name) "{{{
+  let command = "find " . a:dir_name . "* -maxdepth 15 -type f -or -type l | egrep -v '^(node_modules|vendor/bundle|_build)' | sort -u"
+  call SelectCommand(command, "", ":e")
 endfunction " }}}
-function! SelectaFileWithoutExclude(dir_name) "{{{
-  let command = "find " . a:dir_name . "* -type f -or -type l -maxdepth 15 | sort -u"
-  call SelectaCommand(command, "", ":e")
+function! SelectFileWithoutExclude(dir_name) "{{{
+  let command = "find " . a:dir_name . "* -maxdepth 15 -type f -or -type l | sort -u"
+  call SelectCommand(command, "", ":e")
 endfunction " }}}
-function! SelectaTag() "{{{
+function! SelectTag() "{{{
   let command = "awk '{print $1}' tags | sort -u | grep -v '^!'"
-  call SelectaCommand(command, "", ":tag")
+  call SelectCommand(command, "", ":tag")
 endfunction " }}}
-function! SelectaBuffer() "{{{
+function! SelectBuffer() "{{{
   let buffers = map(range(1, bufnr("$")), 'bufname(bufnr(v:val))')
-  call SelectaCommand('echo "' . join(buffers, "\n") . '"', "", ":b")
+  call SelectCommand('echo "' . join(buffers, "\n") . '"', "", ":b")
 endfunction " }}}
 function! RunTestFile(...) " {{{
     if a:0

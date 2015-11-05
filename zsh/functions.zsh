@@ -16,10 +16,10 @@ function server() { # via https://gist.github.com/1525217
 }
 
 function newfile() {
-  local dir=$(find . -type d -maxdepth 15 |
+  local dir=$(find . -maxdepth 15 -type d |
     egrep -v '^./(node_modules|vendor/bundle|.git)' |
     sort -u |
-    selecta
+    fzy
   )
 
   echo ''

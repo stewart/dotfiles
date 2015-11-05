@@ -6,7 +6,7 @@
     local RESULT
     local URL
 
-    RESULT=$(basename $(find ~/Dropbox/Pictures/gifs -type f -name '*.gif') | selecta)
+    RESULT=$(basename $(find ~/Dropbox/Pictures/gifs -type f -name '*.gif') | fzy)
     URL=$(echo "http://gifs.stwrt.ca/$RESULT" | xargs echo)
 
     echo $URL | pbcopy
