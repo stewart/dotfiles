@@ -34,11 +34,14 @@ bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iqE 
 bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys C-l) || tmux select-pane -R"
 bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE '(^|\/)vim$' && tmux send-keys 'C-\\') || tmux select-pane -l"
 
+# clear screen
 bind l send-keys C-l
 
-# Saner splitting.
+# easier splitting.
 bind v split-window -h
 bind s split-window -v
+
+# choose your session
 bind S choose-session
 
 # Pane resizing
