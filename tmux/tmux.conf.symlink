@@ -1,6 +1,6 @@
 # Rebind control key to C-a
 set-option -g prefix C-a
-bind C-a send-prefix
+bind-key a send-prefix
 
 set -sg escape-time 0
 set -sg repeat-time 600
