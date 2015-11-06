@@ -37,12 +37,8 @@ bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE 
 # clear screen
 bind l send-keys C-l
 
-# easier splitting.
-bind v split-window -h
-bind s split-window -v
-
 # choose your session
-bind S choose-session
+bind s choose-session
 
 # Pane resizing
 bind -r Left resize-pane -L 2
