@@ -106,3 +106,6 @@
 [submodule "vim/vim.symlink/bundle/fugitive"]
 	path = vim/vim.symlink/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vim/vim.symlink/bundle/test"]
+	path = vim/vim.symlink/bundle/test
+	url = https://github.com/janko-m/vim-test.git
