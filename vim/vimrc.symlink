@@ -7,7 +7,6 @@
 filetype off
 call pathogen#infect()
 filetype plugin indent on
-set nocompatible
 
 " }}}
 " Statusline --------------------------------------------------------------- {{{
@@ -19,22 +18,17 @@ set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 "
 set noai
 set nosi
-set autoread
 set autowrite
 set t_Co=256
-set backspace=indent,eol,start
 set backupskip=/tmp/*,/private/tmp/*"
 set colorcolumn=80
 set completeopt=longest,menuone,preview
 set complete=.,w,b,u,t
-set clipboard=unnamed
-set encoding=utf-8
+set clipboard+=unnamedplus
 set exrc
 set fillchars=diff:⣿,vert:│
 set hidden
-set history=1000
 set nojoinspaces
-set laststatus=2
 set lazyredraw
 set linebreak
 set list
@@ -62,7 +56,6 @@ set switchbuf=useopen
 set title
 set ttimeout
 set ttimeoutlen=10
-set ttyfast
 set undofile
 set undoreload=10000
 set virtualedit+=block
@@ -186,6 +179,11 @@ nnoremap <leader>` :set cursorline!<cr>:set cursorcolumn!<cr>
 " Gundo
 nnoremap <Leader>u :GundoToggle<CR>
 
+" nvim stuff
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
 " keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
@@ -306,9 +304,7 @@ command! -nargs=? -complete=buffer -bang Bonly
 
 set ignorecase
 set smartcase
-set incsearch
 set showmatch
-set hlsearch
 set gdefault
 
 " Centers search results
