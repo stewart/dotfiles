@@ -200,10 +200,6 @@ cmap w!! %!sudo tee > /dev/null %
 " Shortcut to previous file
 map <leader><leader> <c-^>
 
-" Shortcut to run current rspec file
-map <leader>t :call RunTestFile()<cr>
-map <leader>T :call RunNearestTest()<cr>
-
 " Shortcut to run Make
 map <leader>ma :!make<cr>
 
@@ -541,6 +537,15 @@ nnoremap <leader>b :call SelectBuffer()<cr>
 map <Leader>c <c-_><c-_>
 
 "}}}
+" Test {{{
+
+nmap <silent> <localleader>t :TestNearest<CR>
+nmap <silent> <localleader>rt :TestFile<CR>
+nmap <silent> <localleader>a :TestSuite<CR>
+
+let test#strategy = "neovim"
+
+"}}}
 " }}}
 " Text objects ------------------------------------------------------------ {{{
 
@@ -676,64 +681,6 @@ endfunction " }}}
 function! SelectBuffer() "{{{
   let buffers = map(range(1, bufnr("$")), 'bufname(bufnr(v:val))')
   call SelectCommand('echo "' . join(buffers, "\n") . '"', "", ":b")
-endfunction " }}}
-function! RunTestFile(...) " {{{
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(_spec.rb\|_test.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:current_test_file")
-        return
-    end
-    call RunTests(t:current_test_file . command_suffix)
-endfunction " }}}
-function! RunNearestTest() " {{{
-    if match(expand("%"), '_spec.rb') != -1
-        let spec_line_number = line('.')
-        call RunTestFile(":" . spec_line_number . " -b")
-    else
-        call RunTestFile()
-    end
-endfunction " }}}
-function! SetTestFile() " {{{
-    " Set the spec file that tests will be run for.
-    let t:current_test_file=@%
-endfunction " }}}
-function! RunTests(filename) " {{{
-    " Write the file and run tests for the given filename
-    if expand("%") != ""
-        :w
-    end
-
-    let gemfile_present = filereadable("Gemfile")
-
-    if a:filename == ''
-        " no filename provided, so figure out what type of tests we have
-        if filereadable("spec/spec_helper.rb")
-            let command = ":!rspec"
-        else
-            let command = ":!rake test"
-        end
-    else
-        " we're in a file, so run the relevant test
-        if match(a:filename, '_spec.rb') != -1
-            let command = ":!rspec --color " . a:filename
-        elseif match(a:filename, '_test.rb') != -1
-            if gemfile_present
-                let command = ":!bundle exec ruby " . a:filename
-            else
-                let command = ":!ruby " . a:filename
-            end
-        end
-    end
-
-    exec command
 endfunction " }}}
 function! s:ExecuteInShell(command, bang) " {{{
   let s:_ = ''
