@@ -184,6 +184,19 @@ if has('nvim')
   tnoremap <Esc> <C-\><C-n>
 endif
 
+" 'normal' vim stuff
+if !has('nvim')
+  set nocompatible
+  set autoread
+  set backspace=indent,eol,start
+  set encoding=utf-8
+  set history=1000
+  set laststatus=2
+  set ttyfast
+  set incsearch
+  set hlsearch
+endif
+
 " keep the cursor in place while joining lines
 nnoremap J mzJ`z
 
