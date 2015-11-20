@@ -5,8 +5,54 @@
 " Preamble ---------------------------------------------------------------- {{{
 
 filetype off
-call pathogen#infect()
 filetype plugin indent on
+
+" }}}
+" Plugins ------------------------------------------------------------------ {{{
+
+call plug#begin('~/.vim/plugged')
+
+" basics
+Plug 'Raimondi/delimitMate'
+Plug 'austintaylor/vim-indentobject'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'tmhedberg/matchit'
+
+" filetypes
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'guns/vim-sexp', { 'for': 'clojure' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
+Plug 'mxw/vim-jsx'
+Plug 'nono/vim-handlebars'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-haml'
+Plug 'wting/rust.vim', { 'for': 'rust' }
+
+" helpers
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'sjl/gundo.vim'
+Plug 'tommcdo/vim-exchange'
+Plug 'tomtom/tcomment_vim'
+Plug 'tsaleh/vim-align'
+Plug 'tudorprodan/html_annoyance.vim'
+Plug 'unblevable/quick-scope'
+
+" tpope
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-classpath', { 'for': ['clojure', 'java'] }
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-rails', { 'on': 'Rails' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
+
+call plug#end()
 
 " }}}
 " Statusline --------------------------------------------------------------- {{{
@@ -24,7 +70,7 @@ set backupskip=/tmp/*,/private/tmp/*"
 set colorcolumn=80
 set completeopt=longest,menuone,preview
 set complete=.,w,b,u,t
-set clipboard+=unnamedplus
+set clipboard+=unnamed,unnamedplus
 set exrc
 set fillchars=diff:⣿,vert:│
 set hidden
@@ -548,15 +594,6 @@ nnoremap <leader>b :call SelectBuffer()<cr>
 " T-Comment {{{
 
 map <Leader>c <c-_><c-_>
-
-"}}}
-" Test {{{
-
-nmap <silent> <localleader>t :TestNearest<CR>
-nmap <silent> <localleader>rt :TestFile<CR>
-nmap <silent> <localleader>a :TestSuite<CR>
-
-let test#strategy = "neovim"
 
 "}}}
 " }}}
