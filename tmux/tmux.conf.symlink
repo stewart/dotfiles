@@ -71,6 +71,7 @@ set -g message-attr bold
 set -g status-left-length 32
 set -g status-right-length 150
 set -g status-interval 5
+set -g status-justify centre
 
 set -g status-left '#[fg=colour234,bg=colour11,bold] #S #[fg=colour11,bg=colour234,bold] '
 
