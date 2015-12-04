@@ -21,7 +21,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tmhedberg/matchit'
 
 " filetypes
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'eelixir'] }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
