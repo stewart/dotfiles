@@ -508,8 +508,6 @@ augroup ft_go
     au Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
     au Filetype go setlocal listchars+=tab:\ \ 
 
-    " au FileType go au BufWritePre <buffer> GoImports
-
     au Filetype go nnoremap <leader>d :vsp <CR>:exe "GoDef" <CR>
     au Filetype go nnoremap <leader>rt :exe "GoTest"<cr>
     au Filetype go nnoremap <leader>ru :exe "GoRun"<cr>
