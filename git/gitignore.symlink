@@ -24,3 +24,6 @@ tags
 erl_crash.dump
 *.ez
 stdout
+
+# ag
+.agignore

@@ -58,6 +58,7 @@
   # diff
   d = diff
   dc = diff --cached
+  dsf = "!git diff --color $@ | diff-so-fancy"
   dcw = diff --color-words
   last = diff HEAD
 
