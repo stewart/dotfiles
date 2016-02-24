@@ -84,8 +84,6 @@ set noerrorbells
 set noshowcmd
 set notimeout
 set novisualbell
-set number
-set relativenumber
 set ruler
 set shiftround
 set showbreak=↪
@@ -153,27 +151,6 @@ set nowrap
 set whichwrap+=<,>,h,l,[,]      " backspace and cursor keys wrap to
 
 " }}}
-" Relative Line Numbers in Current Buffer {{{
-
-fun! SetRelativeNumberInBuffer()
-  setlocal relativenumber
-endfun
-
-fun! SetNumberInBuffer()
-  setlocal number
-endfun
-
-if exists('&relativenumber')
-  set relativenumber
-
-  augroup WindowRNU
-    auto!
-    auto BufWinEnter,WinEnter,FocusGained * call SetRelativeNumberInBuffer()
-    auto WinLeave,FocusLost               * call SetNumberInBuffer()
-  augroup END
-endif
-
-" }}}
 " Backups {{{
 
 set backup
@@ -223,6 +200,9 @@ nnoremap <leader>` :set cursorline!<cr>:set cursorcolumn!<cr>
 
 " Gundo
 nnoremap <Leader>u :GundoToggle<CR>
+
+" Toggle numbers 
+nnoremap <Leader>n :set invnumber invrelativenumber<CR>
 
 " nvim stuff
 if has('nvim')
