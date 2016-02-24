@@ -32,6 +32,10 @@ task :install do
     end
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
+
+  # ranger lives in $HOME/.config
+  `mkdir -p ~/.config`
+  `ln -s $PWD/ranger ~/.config/ranger`
 end
 
 desc "Clean up installed dotfiles."
