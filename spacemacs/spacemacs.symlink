@@ -33,6 +33,8 @@ values."
            ruby-version-manager 'chruby)
      ruby-on-rails
      github
+     html
+     javascript
      markdown
      org
      ;; (shell :variables
