@@ -26,6 +26,7 @@ values."
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
+     elixir
      emacs-lisp
      git
      go
