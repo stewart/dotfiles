@@ -260,6 +260,7 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (setq powerline-default-separator 'nil)
+  (setq evil-move-cursor-back 'nil)
   (setq gofmt-command "goimports"))
 
 ;; Do not write anything past this comment. This is where Emacs will
