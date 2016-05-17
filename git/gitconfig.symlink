@@ -30,7 +30,7 @@
 [push]
   default = tracking
 [format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+  pretty = fuller
 [browser "gitscm"]
   cmd = /bin/sh -c 'open http://git-scm.com/docs/$(basename $1 .html)' --
 # [help]
