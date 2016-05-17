@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+AWS_REGION="us-east-1"
+DEST_DIR="s3://i.stwrt.ca/s"
+SHOT_URL="http://i.stwrt.ca/s"
+TMP="/tmp/capture.png"
+
+set_platform() {
+  unamestr=`uname -s`
+
+  if [[ $unamestr == 'Darwin' ]]; then
+    platform="osx"
+  else
+    platform="linux"
+  fi
+}
+
+check_deps() {
+  if $(! hash pwgen 2> /dev/null); then
+    echo "pwgen is required, but not installed"
+
+    if [[ $platform == "osx" ]]; then
+      echo "install it with \`brew install pwgen\`"
+    else
+      echo "install it with \`sudo apt-get install pwgen\`"
+    fi
+
+    exit 1
+  fi
+
+  if $(! hash aws 2> /dev/null); then
+    echo "awscli is required, but not installed"
+
+    if [[ $platform == "osx" ]]; then
+      echo "install it with \`brew install awscli\`"
+    else
+      echo "install it with \`sudo pip install awscli\`"
+    fi
+
+    exit 1
+  fi
+
+  if $(! hash optipng 2> /dev/null); then
+    echo "optipng is required, but not installed"
+
+    if [[ $platform == "osx" ]]; then
+      echo "install it with \`brew install optipng\`"
+    else
+      echo "install it with \`sudo apt-get install optipng\`"
+    fi
+
+    exit 1
+  fi
+}
+
+take_screenshot() {
+  FILENAME="$(pwgen -s1).png"
+  FILE_DEST="$DEST_DIR/$FILENAME"
+  FILE_URL="$SHOT_URL/$FILENAME"
+
+  echo "• taking screenshot"
+  if [[ $platform == "osx" ]]; then
+    screencapture -x -i $TMP
+  elif [[ $platform == "linux" ]]; then
+    escrotum -s $TMP
+  fi
+}
+
+compress_and_upload() {
+  echo "• compressing"
+  optipng $TMP 2>/dev/null
+
+  echo "• uploading"
+  aws --profile snap --region "$AWS_REGION" s3 cp $TMP "$FILE_DEST" >/dev/null
+
+  echo "done - $FILE_URL"
+}
+
+copy_to_clipboard() {
+  if [[ $platform == "osx" ]]; then
+    echo $FILE_URL | pbcopy
+  elif [[ $platform == "linux" ]]; then
+    echo $FILE_URL | xclip -selection c
+  fi
+}
+
+set_platform
+check_deps
+take_screenshot
+compress_and_upload
+copy_to_clipboard
