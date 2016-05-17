@@ -458,6 +458,16 @@ augroup ft_python
 augroup END
 
 " }}}
+" C {{{
+
+augroup ft_c
+    au!
+
+    au Filetype c setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+    au Filetype c setlocal listchars+=tab:\ \ 
+augroup END
+
+" }}}
 " C# {{{
 
 augroup ft_cs
