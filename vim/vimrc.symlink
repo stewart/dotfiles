@@ -33,7 +33,7 @@ Plug 'nono/vim-handlebars'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-haml'
 Plug 'leafgarland/typescript-vim'
-Plug 'wting/rust.vim', { 'for': 'rust' }
+Plug 'wting/rust.vim'
 
 " helpers
 Plug 'AndrewRadev/splitjoin.vim'
