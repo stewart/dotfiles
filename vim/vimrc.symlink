@@ -253,7 +253,7 @@ cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
 " Open Markdown previews in Marked.app
-nnoremap <leader>md :silent !open -a Marked.app '%:p'<cr>
+nnoremap <leader>md :silent !open -a Marked\ 2.app '%:p'<cr>
 
 " Make finding marks easier
 noremap ' `
