@@ -62,13 +62,13 @@ take_screenshot() {
   if [[ $platform == "osx" ]]; then
     screencapture -x -i $TMP
   elif [[ $platform == "linux" ]]; then
-    escrotum -s $TMP
+    escrotum -s $TMP &>/dev/null
   fi
 }
 
 compress_and_upload() {
   echo "• compressing"
-  optipng $TMP 2>/dev/null
+  optipng $TMP &>/dev/null
 
   echo "• uploading"
   aws --profile snap --region "$AWS_REGION" s3 cp $TMP "$FILE_DEST" >/dev/null
