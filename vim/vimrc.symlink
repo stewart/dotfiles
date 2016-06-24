@@ -705,11 +705,11 @@ function! SelectCommand(choice_command, select_args, vim_command) "{{{
   exec a:vim_command . " " . selection
 endfunction "}}}
 function! SelectFile(dir_name) "{{{
-  let command = "find " . a:dir_name . "* -maxdepth 15 -type f -or -type l | egrep -v '^(node_modules|vendor/bundle|_build)' | sort -u"
+  let command = "find " . a:dir_name . "* -maxdepth 15 -type f -or -type l | grep -v '(node_modules|vendor/bundle|_build|bower_components)'"
   call SelectCommand(command, "", ":e")
 endfunction " }}}
 function! SelectFileWithoutExclude(dir_name) "{{{
-  let command = "find " . a:dir_name . "* -maxdepth 15 -type f -or -type l | sort -u"
+  let command = "find " . a:dir_name . "* -maxdepth 15 -type f -or -type l"
   call SelectCommand(command, "", ":e")
 endfunction " }}}
 function! SelectTag() "{{{
