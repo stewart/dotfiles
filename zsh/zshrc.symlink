@@ -1,6 +1,10 @@
 # shortcut to dotfiles path
 export ZSH=$HOME/.dotfiles
 
+# initialize autocomplete
+autoload -U compinit
+compinit
+
 # source all .zsh files in this repo
 for config_file ($ZSH/*/*.zsh) source $config_file
 
@@ -31,10 +35,3 @@ bindkey "^[[B" history-beginning-search-forward
 # tmux/zsh thing for linux, idfk
 bindkey "^[OA" history-beginning-search-backward
 bindkey "^[OB" history-beginning-search-forward
-
-# initialize autocomplete
-autoload -U compinit
-compinit
-
-# load every completion file after autocomplete loads
-for config_file ($ZSH/**/completion.sh) source $config_file
