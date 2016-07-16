@@ -73,6 +73,7 @@
   changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
   short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   changelog = log --pretty=format:\" * %s\"
+  mynotes = log --reverse --author=andrew@stwrt.ca --pretty=format:\"- %s\" --since=yesterday
   shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
 
   # fast-forward
