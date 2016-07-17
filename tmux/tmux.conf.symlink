@@ -103,3 +103,10 @@ bind -t vi-copy v begin-selection
 bind -t vi-copy y copy-selection
 bind -t vi-copy Escape cancel
 bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+
+# Light statusline
+# set -g status-bg colour250
+# set -g window-status-format "#[fg=colour240] #I #W "
+# set -g window-status-current-format "#[bg=colour244,fg=colour255,noreverse,bold] #I | #W #[nobold]"
+# set -g status-left '#[fg=colour238,bg=colour11,bold] #S  '
+# set -g status-right '#[fg=colour238]%R | %d %b | #(battery) #[bg=colour240,fg=colour255] #h '
