@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+# generates a printable string, suitable for statusline usage, indicating what
+# track cmus is currently playing
+
+def remote_exists?
+  system "which cmus-remote &> /dev/null"
+end
+
+def status
+  `cmus-remote -Q`
+end
+
+def parse(status)
+  initial = {
+    "tags" => {},
+    "settings" => {}
+  }
+
+  status.
+    split("\n").
+    map { |line| line.split(" ", 2) }.
+    reduce(initial) do |acc, (type, rest)|
+      data = rest.split(" ", 2)
+
+      case type
+      when "status", "file", "duration", "position"
+        acc[type] = rest
+      when "tag"
+        acc["tags"][data.shift] = data.join
+      when "set"
+        acc["settings"][data.shift] = data.join
+      end
+
+      acc
+    end
+end
+
+def format(status)
+  tags = status["tags"]
+  if tags && tags["title"]
+    "♫ " + [tags["artist"], tags["title"]].compact.join(" - ")
+  else
+    "" # nothing playing
+  end
+end
+
+def main
+  if remote_exists?
+    case status
+    when /^status/
+      format(parse(status))
+    when "cmus-remote: cmus is not running"
+      ""
+    else
+      "cmus-current-track: unknown player state"
+    end
+  else
+    "nope"
+  end
+end
+
+puts main
