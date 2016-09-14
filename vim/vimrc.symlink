@@ -33,6 +33,7 @@ Plug 'nono/vim-handlebars'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-haml'
 Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 Plug 'wting/rust.vim'
 
 " helpers
@@ -43,6 +44,7 @@ Plug 'tommcdo/vim-exchange'
 Plug 'tomtom/tcomment_vim'
 Plug 'tsaleh/vim-align'
 Plug 'tudorprodan/html_annoyance.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 " tpope
 Plug 'tpope/vim-abolish'
