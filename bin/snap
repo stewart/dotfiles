@@ -62,7 +62,7 @@ take_screenshot() {
   if [[ $platform == "osx" ]]; then
     screencapture -x -i $TMP
   elif [[ $platform == "linux" ]]; then
-    escrotum -s $TMP &>/dev/null
+    import  $TMP &>/dev/null
   fi
 }
 
