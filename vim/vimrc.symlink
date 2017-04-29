@@ -28,9 +28,9 @@ Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
-Plug 'mxw/vim-jsx'
 Plug 'nono/vim-handlebars'
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-haml'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
@@ -586,6 +586,12 @@ nnoremap <leader>b :call SelectBuffer()<cr>
 map <Leader>c <c-_><c-_>
 
 "}}}
+" JSX {{{
+
+let g:jsx_ext_required = 0
+
+"}}}
+"
 " }}}
 " Text objects ------------------------------------------------------------ {{{
 
