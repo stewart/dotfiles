@@ -57,6 +57,8 @@ set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 
 # Make sure tmux knows we're using a 256-color terminal
 set -g default-terminal "screen-256color"
+set -g default-shell $SHELL
+set -g default-command "reattach-to-user-namespace -l ${SHELL}"
 
 # Status
 set -g status-fg white
@@ -92,17 +94,17 @@ bind c new-window
 bind , command-prompt "rename-window '%%'"
 
 # Copy mode
-# setw -g mode-keys vi
-# bind ` copy-mode
-# unbind [
-# unbind p
-# bind p paste-buffer
+setw -g mode-keys vi
+bind ` copy-mode
+unbind [
+unbind p
+bind p paste-buffer
 # bind -T copy-mode-vi H start-of-line
 # bind -T copy-mode-vi L end-of-line
 # bind -T copy-mode-vi v begin-selection
 # bind -T copy-mode-vi y copy-selection
 # bind -T copy-mode-vi Escape cancel
-# bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 
 # Light statusline
 # set -g status-bg colour250
