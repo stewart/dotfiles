@@ -27,7 +27,7 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 Plug 'guns/vim-sexp', { 'for': 'clojure' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'lambdatoast/elm.vim', { 'for': 'elm' }
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'nono/vim-handlebars'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
