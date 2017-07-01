@@ -323,7 +323,26 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  )
+  (setq c-basic-offset 2
+        css-indent-offset 2
+        evil-shift-width 2
+        javascript-indent-level 2
+        js2-basic-offset 2
+        js-indent-level 2
+        json-encoding-default-indentation 2
+        json-reformat:indent-width 2
+        react-indent-level 2
+        sh-basic-offset 2
+        sh-indentation 2
+        standard-indent 2
+        typescript-indent-level 2
+        web-mode-attr-indent-offset 2
+        web-mode-attr-value-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-markup-indent-offset 2
+        web-mode-sql-indent-offset 2))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
