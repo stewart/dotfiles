@@ -34,7 +34,7 @@ Plug 'mxw/vim-jsx'
 Plug 'tpope/vim-haml'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
-Plug 'wting/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 " helpers
 Plug 'AndrewRadev/splitjoin.vim'
@@ -589,6 +589,11 @@ map <Leader>c <c-_><c-_>
 " JSX {{{
 
 let g:jsx_ext_required = 0
+
+"}}}
+" Elm {{{
+
+let g:elm_format_autosave = 1
 
 "}}}
 "
