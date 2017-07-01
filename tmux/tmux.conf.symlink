@@ -99,11 +99,6 @@ bind ` copy-mode
 unbind [
 unbind p
 bind p paste-buffer
-# bind -T copy-mode-vi H start-of-line
-# bind -T copy-mode-vi L end-of-line
-# bind -T copy-mode-vi v begin-selection
-# bind -T copy-mode-vi y copy-selection
-# bind -T copy-mode-vi Escape cancel
 bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 
 # Light statusline
