@@ -9,7 +9,7 @@ function tsa() {
 # Vim-Find
 # Quickly find and open a file in vim
 function v() {
-  vim `find * -maxdepth 15 -type f -or -type l | ag -v '^(node_modules|vendor/bundle|bower_components|_build|tmp|.git)' | rff`
+  vim `find * -maxdepth 15 -type f -or -type l | ag -v '^(node_modules|vendor/bundle|bower_components|elm-stuff|build|_build|tmp|.git)' | rff`
 }
 
 # Kill-Process
