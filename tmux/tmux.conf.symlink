@@ -38,7 +38,7 @@ bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iqE 
 bind l send-keys C-l
 
 # choose your session (now with fuzzy search)
-bind s split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzy | xargs tmux switch-client -t"
+bind s split-window -v "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | rff | xargs tmux switch-client -t"
 
 # Pane resizing
 bind -r Left resize-pane -L 2
