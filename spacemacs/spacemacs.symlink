@@ -342,7 +342,8 @@ you should place your code here."
         web-mode-code-indent-offset 2
         web-mode-css-indent-offset 2
         web-mode-markup-indent-offset 2
-        web-mode-sql-indent-offset 2))
+        web-mode-sql-indent-offset 2)
+  (add-hook 'elm-mode-hook #'turn-off-elm-indent))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
