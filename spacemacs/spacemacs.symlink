@@ -42,7 +42,9 @@ values."
      elm
      emacs-lisp
      go
-     git
+     (git :variables
+          git-commit-summary-max-length 50
+          git-commit-fill-column 72)
      helm
      html
      javascript
