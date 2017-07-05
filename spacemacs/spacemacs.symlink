@@ -355,7 +355,6 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
 
   (add-hook 'js2-mode-hook 'prettier-js-mode)
-  (add-hook 'web-mode-hook 'prettier-js-mode)
   (add-hook 'typescript-mode-hook 'prettier-js-mode)
   (setq prettier-js-args
         '("--trailing-comma" "es5"
