@@ -49,7 +49,8 @@ values."
      html
      javascript
      markdown
-     org
+     (org :variables
+          org-projectile-file "notes.org")
      python
      react
      (ruby :variables
