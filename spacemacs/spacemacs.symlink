@@ -348,6 +348,9 @@ you should place your code here."
 
   (add-hook 'elm-mode-hook #'turn-off-elm-indent)
 
+  ;; Use typescript-mode for tsx files, because web-mode sucks
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))
+
   (spacemacs/load-theme 'doom-one)
   (setq powerline-default-separator 'bar))
 
