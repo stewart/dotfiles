@@ -361,6 +361,9 @@ you should place your code here."
         '("--trailing-comma" "es5"
           "--single-quote"))
 
+  ;; disable native fullscreen on macOS
+  (setq ns-use-native-fullscreen nil)
+
   (spacemacs/load-theme 'doom-one)
   (setq powerline-default-separator 'bar))
 
