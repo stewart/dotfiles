@@ -363,6 +363,20 @@ you should place your code here."
   ;; disable native fullscreen on macOS
   (setq ns-use-native-fullscreen nil)
 
+  ;; allow C-{hjkl} to navigate between splits
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+
+  ;; Map o/O to what I'm used to
+  (define-key evil-normal-state-map "o"
+    (lambda ()
+      (interactive)
+      (call-interactively 'spacemacs/evil-insert-line-below)
+      (evil-next-line)))
+  (define-key evil-normal-state-map "O" 'spacemacs/evil-insert-line-below)
+
   (spacemacs/load-theme 'doom-one)
   (setq powerline-default-separator 'bar))
 
