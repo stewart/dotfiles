@@ -9,7 +9,7 @@ function tsa() {
 # Vim-Find
 # Quickly find and open a file in vim
 function v() {
-  vim `fd . --type f | rff`
+  vim `fd . --type f $@ | rff`
 }
 
 # Kill-Process
