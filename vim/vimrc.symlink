@@ -108,6 +108,9 @@ set virtualedit+=block
 set mouse=a
 set t_ti= t_te=   " makes vim play nice with terminal scrollback
 
+" Shorten file messages, truncate long ones, and remove start screen
+set shortmess=atI
+
 " Resize splits when the window is resized
 au VimResized * :wincmd =
 
@@ -636,13 +639,6 @@ endfunction
 " }}}
 " Functions--------------------------------------------------------- {{{
 
-function! s:CopyMotionForType(type) " {{{
-    if a:type ==# 'v'
-        silent execute "normal! `<" . a:type . "`>y"
-    elseif a:type ==# 'char'
-        silent execute "normal! `[v`]y"
-    endif
-endfunction " }}}
 function! BufOnly(buffer, bang) " {{{
   if a:buffer == ''
     " No buffer provided, use the current buffer.
@@ -690,19 +686,6 @@ function! BufOnly(buffer, bang) " {{{
   endif
 
 endfunction " }}}
-function! RenameFile() " {{{
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction " }}}
-function! SendToFIFO(command) " {{{
-" sends command to FIFO living in /tmp
-   silent! exec ":!echo '" . a:command . "' > /tmp/fifo"
-endfunction " }}}
 function! SelectCommand(choice_command, select_args, vim_command) "{{{
 " Run a given vim command on the results of fuzzy selecting from a given shell
 " command. See usage below.
@@ -733,42 +716,7 @@ function! SelectBuffer() "{{{
   let buffers = map(range(1, bufnr("$")), 'bufname(bufnr(v:val))')
   call SelectCommand('echo "' . join(buffers, "\n") . '"', "", ":b")
 endfunction " }}}
-function! s:ExecuteInShell(command, bang) " {{{
-  let s:_ = ''
-  let _ = a:bang != '' ? s:_ : a:command == '' ? '' : join(map(split(a:command), 'expand(v:val)'))
-
-  if (_ != '')
-    let s:_ = _
-    let bufnr = bufnr('%')
-    let winnr = bufwinnr('^' . _ . '$')
-    silent! execute  winnr < 0 ? 'botright vnew ' . fnameescape(_) : winnr . 'wincmd w'
-    setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile
-    silent! :%d
-    let message = 'Execute ' . _ . '...'
-    call append(0, message)
-    echo message
-    silent! 2d | redraw
-    silent! execute 'silent! %!'. _
-    silent! execute 'syntax on'
-    silent! execute 'autocmd BufUnload <buffer> execute bufwinnr(' . bufnr . ') . ''wincmd w'''
-    silent! execute 'nnoremap <silent> <buffer> <CR> :call <SID>ExecuteInShell(''' . _ . ''', '''')<CR>'
-    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . _ . ''', '''')<CR>'
-    silent! execute 'nnoremap <silent> <buffer> <LocalLeader>g :execute bufwinnr(' . bufnr . ') . ''wincmd w''<CR>'
-    silent! syntax on
-  endif
-endfunction
-
-command! -complete=shellcmd -nargs=* -bang Shell call s:ExecuteInShell(<q-args>, '<bang>')
-cabbrev shell Shell
 " }}}
-
-" }}}
-
-" source local vimrc modifications, if present
-let s:local_vimrc = $HOME . "/.vimrc.local"
-if filereadable(s:local_vimrc)
-    execute 'source ' . s:local_vimrc
-endif
 
 " source localrc if available
 if filereadable(glob("~/.vimrc.local")) 
