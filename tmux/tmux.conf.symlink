@@ -67,19 +67,18 @@ set -g pane-border-fg colour245
 set -g pane-active-border-fg colour39
 set -g message-fg colour16
 set -g message-bg colour221
-set -g message-attr bold
 
 set -g status-left-length 32
 set -g status-right-length 150
 set -g status-interval 5
 set -g status-justify centre
 
-set -g status-left '#[fg=colour234,bg=colour11,bold] #S #[fg=colour11,bg=colour234,bold] '
+set -g status-left '#[fg=colour234,bg=colour11] #S #[fg=colour11,bg=colour234] '
 
-set -g status-right '#[fg=colour238]%R | %d %b #[fg=colour254,nobold]#[fg=colour16,bg=colour254,bold] #h '
+set -g status-right '#[fg=colour238]%R | %d %b #[fg=colour254]#[fg=colour16,bg=colour254] #h '
 
 set -g window-status-format "#[fg=colour238,bg=colour234] #I #W "
-set -g window-status-current-format "#[fg=colour234,bg=colour238]#[fg=colour230,bg=colour238,noreverse,bold] #I #[fg=colour234,bg=colour238]|#[fg=colour230,bg=colour238,noreverse,bold] #W #[fg=colour238,bg=colour234,nobold]"
+set -g window-status-current-format "#[fg=colour234,bg=colour238]#[fg=colour230,bg=colour238,noreverse] #I #[fg=colour234,bg=colour238]|#[fg=colour230,bg=colour238,noreverse] #W #[fg=colour238,bg=colour234]"
 
 # Activity
 setw -g monitor-activity on
