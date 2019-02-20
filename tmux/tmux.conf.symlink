@@ -75,7 +75,7 @@ set -g status-justify centre
 
 set -g status-left '#[fg=colour234,bg=colour11] #S #[fg=colour11,bg=colour234] '
 
-set -g status-right '#[fg=colour238]%R | %d %b #[fg=colour254]#[fg=colour16,bg=colour254] #h '
+set -g status-right '#[fg=colour238]%Y-%m-%d • %R '
 
 set -g window-status-format "#[fg=colour238,bg=colour234] #I #W "
 set -g window-status-current-format "#[fg=colour234,bg=colour238]#[fg=colour230,bg=colour238,noreverse] #I #[fg=colour234,bg=colour238]|#[fg=colour230,bg=colour238,noreverse] #W #[fg=colour238,bg=colour234]"
