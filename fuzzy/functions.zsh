@@ -21,5 +21,10 @@ function kps() {
 # Git-Select-Branch
 # Checkout a branch
 function gsb() {
-  git branch --all --remotes | cut -c 3- | rev | cut -d "/" -f 1 | rev | rff | xargs git checkout
+  git branch | cut -c 3- | rff | xargs git checkout
+}
+
+# Fuzzily-Change-Directories
+function fcd() {
+  cd "$(fd --type d | rff)"
 }
