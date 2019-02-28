@@ -5,43 +5,9 @@
 
 --languages=-html
 
---langdef=Clojure
---langmap=Clojure:.clj
---regex-clojure=/\([ \t]*create-ns[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/n,namespace/
---regex-clojure=/\([ \t]*def[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/d,definition/
---regex-clojure=/\([ \t]*defn-?[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/f,function/
---regex-clojure=/\([ \t]*defmacro[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/m,macro/
---regex-clojure=/\([ \t]*definline[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/i,inline/
---regex-clojure=/\([ \t]*defmulti[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/a,multimethod definition/
---regex-clojure=/\([ \t]*defmethod[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/b,multimethod instance/
---regex-clojure=/\([ \t]*defonce[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/c,definition (once)/
---regex-clojure=/\([ \t]*defstruct[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/s,struct/
---regex-clojure=/\([ \t]*intern[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/v,intern/
---regex-clojure=/\([ \t]*ns[ \t]+([-[:alnum:]*+!_:\/.?]+)/\1/n,namespace/
-
 --exclude="vendor/bundle"
 --exclude="node_modules"
-
---langdef=coffee
---langmap=coffee:.coffee
---regex-coffee=/(^|=[ \t])*class ([A-Za-z]+\.)*([A-Za-z]+)( extends [A-Za-z.]+)?$/\3/c,class/
---regex-coffee=/^[ \t]*(module\.)?(exports\.)?@?([A-Za-z.]+):.*[-=]>.*$/\3/m,method/
---regex-coffee=/^[ \t]*(module\.)?(exports\.)?([A-Za-z.]+)[ \t]+=.*[-=]>.*$/\3/f,function/
---regex-coffee=/^[ \t]*([A-Za-z.]+)[ \t]+=[^->\n]*$/\1/v,variable/
---regex-coffee=/^[ \t]*@([A-Za-z.]+)[ \t]+=[^->\n]*$/\1/f,field/
---regex-coffee=/^[ \t]*@([A-Za-z.]+):[^->\n]*$/\1/f,static field/
---regex-coffee=/^[ \t]*([A-Za-z.]+):[^->\n]*$/\1/f,field/
---regex-coffee=/(constructor: \()@([A-Za-z.]+)/\2/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){0}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){1}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){2}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){3}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){4}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){5}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){6}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){7}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){8}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){9}/\3/f,field/
+--exclude="_build/"
 
 --langdef=Elixir
 --langmap=Elixir:.ex.exs
