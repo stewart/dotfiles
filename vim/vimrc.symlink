@@ -19,6 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-eunuch'
 
 " filetypes
 Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'eelixir'] }
@@ -572,6 +573,7 @@ nnoremap <leader>. :call SelectTag()<cr>
 nnoremap <leader>f :call SelectFile("")<cr>
 nnoremap <leader>gg :call SelectFileWithoutExclude("")<cr>
 nnoremap <leader>gm :call SelectFile("./app/models/")<cr>
+nnoremap <leader>gn :call SelectFile("./notes/")<cr>
 nnoremap <leader>gc :call SelectFile("./app/controllers/")<cr>
 nnoremap <leader>ga :call SelectFile("./app/assets/")<cr>
 nnoremap <leader>gv :call SelectFile("./app/views/")<cr>
@@ -709,7 +711,7 @@ function! SelectFileWithoutExclude(dir_name) "{{{
   call SelectCommand(command, "", ":e")
 endfunction " }}}
 function! SelectTag() "{{{
-  let command = "awk '{print $1}' tags | ag -v '^!'"
+  let command = "awk '{print $1}' tags | rg -v '^!'"
   call SelectCommand(command, "", ":tag")
 endfunction " }}}
 function! SelectBuffer() "{{{
