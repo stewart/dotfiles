@@ -20,6 +20,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-eunuch'
+Plug 'mileszs/ack.vim'
 
 " filetypes
 Plug 'elixir-lang/vim-elixir', { 'for': ['elixir', 'eelixir'] }
@@ -51,6 +52,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-classpath', { 'for': ['clojure', 'java'] }
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-rails', { 'on': 'Rails' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
@@ -590,6 +592,11 @@ nnoremap <leader>b :call SelectBuffer()<cr>
 
 map <Leader>c <c-_><c-_>
 
+"}}}
+" T-Comment {{{
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-heading'
+endif
 "}}}
 " JSX {{{
 
