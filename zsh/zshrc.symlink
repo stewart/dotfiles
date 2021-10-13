@@ -8,8 +8,9 @@ compinit
 # source all .zsh files in this repo
 for config_file ($ZSH/*/*.zsh) source $config_file
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+# load asdf, autocompletion
+. $HOME/.asdf/asdf.sh
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # let me know how long everything takes
 REPORTTIME=10
