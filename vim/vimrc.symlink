@@ -494,6 +494,7 @@ augroup ft_elixir
     au!
 
     au Filetype elixir map <leader>rt :!mix test<cr>
+    au BufRead,BufNewFile *.heex set filetype=eelixir
 augroup END
 
 " }}}
