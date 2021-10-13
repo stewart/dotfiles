@@ -2,7 +2,7 @@
 export ZSH=$HOME/.dotfiles
 
 # initialize autocomplete
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
 # source all .zsh files in this repo
