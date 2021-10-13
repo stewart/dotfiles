@@ -54,6 +54,7 @@ Plug 'tpope/vim-classpath', { 'for': ['clojure', 'java'] }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-git'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-rails', { 'on': 'Rails' }
 Plug 'tpope/vim-sexp-mappings-for-regular-people', { 'for': ['clojure'] }
 
