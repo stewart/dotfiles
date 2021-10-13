@@ -1,3 +1,3 @@
 function reverse-proxy-port() {
-  ssh -NR 3000:localhost:$1 stwrt.ca
+  ssh -NR 9999:localhost:$1 stwrt.ca
 }
