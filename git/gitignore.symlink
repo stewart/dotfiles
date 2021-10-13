@@ -15,7 +15,7 @@ vendor/bundle/
 dump.rdb
 run-test.sh
 test-commands
-tags
+/tags
 *.pyc
 
 # elixir
