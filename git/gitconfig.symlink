@@ -114,3 +114,5 @@
 
   # tag
   t = tag -n
+[init]
+	defaultBranch = main
